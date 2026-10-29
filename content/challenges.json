@@ -1,0 +1,337 @@
+[
+  {
+    "id": "b01-absage-dienstleister",
+    "titel": "Absage an den Lieblingsdienstleister",
+    "bereich": "beruflich",
+    "typ": "schriftlich",
+    "situation": "Ein Dienstleister, mit dem du gern zusammenarbeitest, hat sich viel Mühe mit einem Angebot gegeben. Ihr habt euch trotzdem für einen anderen Anbieter entschieden, weil der schneller liefern kann.",
+    "aufgabe": "Schreib die Absage in höchstens fünf Sätzen: Entscheidung zuerst, kurzer ehrlicher Grund, Wertschätzung für die Arbeit, Tür für später offen.",
+    "techniken": ["pyramidenprinzip", "vier-seiten-modell"],
+    "reflexion": ["Steht die Entscheidung im ersten Satz?", "Welche Beziehungsbotschaft sendet deine Mail?"],
+    "musterantwort": "Hallo Frau Berger, wir haben uns für dieses Projekt für einen anderen Anbieter entschieden. Ausschlaggebend war allein die Lieferzeit, die wir diesmal nicht verschieben können. Ihr Angebot war das durchdachteste, das wir bekommen haben, danke für die Mühe. Beim nächsten Projekt mit mehr Vorlauf melde ich mich gern wieder bei Ihnen."
+  },
+  {
+    "id": "b02-kollege-spaet",
+    "titel": "Der Kollege, der immer knapp liefert",
+    "bereich": "beruflich",
+    "typ": "schriftlich",
+    "situation": "Ein Kollege schickt dir seine Zuarbeit für den Monatsbericht zum dritten Mal in Folge erst am Morgen der Abgabe. Du musst dann hektisch einarbeiten und hast keine Zeit zum Prüfen. Er ist fachlich gut und nett, du willst die Zusammenarbeit nicht belasten.",
+    "aufgabe": "Formuliere, was du ihm im Vier-Augen-Gespräch sagst. Nutze Situation, Verhalten, Wirkung und schließe mit einer Frage oder Bitte.",
+    "techniken": ["sbi-feedback", "ich-botschaften"],
+    "reflexion": ["Hast du ein Urteil („unzuverlässig“) vermieden?", "Ist deine Bitte konkret genug, dass er weiß, was er ändern soll?"],
+    "musterantwort": "Beim Monatsbericht kam deine Zuarbeit die letzten drei Male erst am Abgabemorgen. Ich konnte sie dann nur noch einkopieren, nicht prüfen, und war ziemlich unter Druck. Was bräuchtest du, damit sie spätestens am Vortag um 15 Uhr bei mir ist?"
+  },
+  {
+    "id": "b03-preisdruck",
+    "titel": "„Ihr Preis ist viel zu hoch“",
+    "bereich": "beruflich",
+    "typ": "schriftlich",
+    "situation": "Ein wichtiger Kunde sagt im Termin: „Ihr Preis liegt deutlich über dem, was wir uns vorgestellt haben. Da müssen Sie runter, sonst wird das nichts.“ Du hast kaum Spielraum.",
+    "aufgabe": "Schreib deine nächsten zwei bis drei Sätze. Keine Rechtfertigung und kein sofortiger Nachlass: Erfrage, was hinter der Forderung steckt.",
+    "techniken": ["kalibrierte-fragen", "interessen-statt-positionen", "labeling"],
+    "reflexion": ["Beginnen deine Fragen mit „Wie“ oder „Was“?", "Was hast du über die Interessen des Kunden gelernt, wenn er antwortet?"],
+    "musterantwort": "Es klingt so, als hätten Sie intern eine klare Budgetgrenze. Wie sind Sie zu dem Betrag gekommen, mit dem Sie gerechnet haben? Und was wäre Ihnen an der Lösung am wichtigsten, wenn wir über den Umfang reden?"
+  },
+  {
+    "id": "b04-status-drei-saetze",
+    "titel": "Projektstand in drei Sätzen",
+    "bereich": "beruflich",
+    "typ": "schriftlich",
+    "situation": "Im Flur fragt dich jemand aus der Geschäftsführung: „Wie steht's eigentlich mit dem Projekt?“ Das Projekt ist zwei Wochen hinter Plan, weil ein Zulieferer Probleme hat. Ihr habt eine Lösung in Arbeit.",
+    "aufgabe": "Formuliere deine Antwort in maximal drei Sätzen: Kernaussage zuerst, dann Ursache, dann nächster Schritt.",
+    "techniken": ["pyramidenprinzip"],
+    "reflexion": ["Würde der erste Satz allein reichen?", "Hast du eine Entscheidung oder Unterstützung gebraucht, und hast du sie benannt?"],
+    "musterantwort": "Wir liegen zwei Wochen hinter Plan, der Endtermin ist aber noch zu halten. Grund ist ein Lieferengpass bei einem Zulieferer. Ein Zweitlieferant ist angefragt, bis Freitag weiß ich, ob wir ihn brauchen."
+  },
+  {
+    "id": "b05-nein-zusatzaufgabe",
+    "titel": "Nein zur Zusatzaufgabe",
+    "bereich": "beruflich",
+    "typ": "schriftlich",
+    "situation": "Deine Führungskraft oder ein Mitgründer bittet dich, zusätzlich die Organisation einer Messe zu übernehmen. Du bist schon voll ausgelastet und weißt, dass dann etwas Wichtiges liegen bleibt.",
+    "aufgabe": "Schreib deine Antwort nach DESC: Lage beschreiben, was es für dich bedeutet, was du konkret vorschlägst, welche Folgen das hat.",
+    "techniken": ["desc-skript", "schallplatte"],
+    "reflexion": ["Ist dein Nein eindeutig oder lädt es zum Nachverhandeln ein?", "Hast du eine echte Alternative angeboten oder nur eine Ausrede?"],
+    "musterantwort": "Ich habe gerade den Jahresabschluss und die Lieferantenverhandlungen auf dem Tisch, beides mit festen Terminen. Wenn ich die Messe dazunehme, leidet eines davon sichtbar. Mein Vorschlag: Ich übernehme die Messe, wenn die Verhandlungen bis Monatsende an jemand anderen gehen, oder wir geben die Messe an Lisa und ich unterstütze mit einem Tag. Dann bleibt keines der Themen auf halber Strecke liegen."
+  },
+  {
+    "id": "b06-gereizte-mail",
+    "titel": "Antwort auf eine gereizte Mail",
+    "bereich": "beruflich",
+    "typ": "schriftlich",
+    "situation": "Eine Kundin schreibt: „Ich warte jetzt seit einer Woche auf eine Antwort. So kann man nicht zusammenarbeiten!“ Tatsächlich ist ihre Anfrage intern liegen geblieben.",
+    "aufgabe": "Schreib die Antwort: erst das Gefühl anerkennen, dann Verantwortung übernehmen, dann den konkreten nächsten Schritt mit Termin. Keine Ausreden.",
+    "techniken": ["labeling", "vier-seiten-modell"],
+    "reflexion": ["Auf welches der vier Ohren hast du geantwortet?", "Würdest du dich als Kundin nach dieser Mail ernst genommen fühlen?"],
+    "musterantwort": "Hallo Frau Kaya, Sie haben recht, eine Woche ohne Antwort ist zu lang, und ich verstehe, dass Sie verärgert sind. Ihre Anfrage ist bei uns liegen geblieben, das geht auf uns. Die Antwort zu Ihren drei Punkten bekommen Sie morgen bis 12 Uhr von mir persönlich."
+  },
+  {
+    "id": "b07-batna-vorbereitung",
+    "titel": "Deine Alternative vor der Verhandlung",
+    "bereich": "beruflich",
+    "typ": "schriftlich",
+    "situation": "Nächste Woche verhandelst du über etwas Wichtiges: Gehalt, Konditionen mit einem Lieferanten, einen Vertrag. Du merkst, dass du nervös bist und eigentlich nur hoffst, dass es gut ausgeht.",
+    "aufgabe": "Schreibe auf: Was ist deine beste Alternative, wenn es keine Einigung gibt? Was vermutest du als Alternative der Gegenseite? Welches Ergebnis wäre für dich die Untergrenze?",
+    "techniken": ["batna", "interessen-statt-positionen"],
+    "reflexion": ["Wie fühlst du dich, nachdem deine Alternative auf dem Papier steht?", "Kannst du deine Alternative noch verbessern, bevor das Gespräch stattfindet?"]
+  },
+  {
+    "id": "b08-kritik-im-meeting",
+    "titel": "Kritik vor versammelter Runde",
+    "bereich": "beruflich",
+    "typ": "schriftlich",
+    "situation": "Du stellst im Meeting deinen Plan vor. Ein Kollege sagt vor allen: „Das ist doch völlig unrealistisch, das haben wir schon dreimal versucht.“ Alle schauen zu dir.",
+    "aufgabe": "Formuliere deine Antwort in zwei bis drei Sätzen: den wahren Kern anerkennen, nicht rechtfertigen, sachlich zurück zum Thema.",
+    "techniken": ["fogging", "erwachsenen-ich"],
+    "reflexion": ["Welcher Impuls kam zuerst: verteidigen, zurückschießen, einknicken?", "Bleibt mit deiner Antwort die Diskussion bei der Sache?"],
+    "musterantwort": "Kann gut sein, dass es ambitioniert ist, und die früheren Versuche sollten wir kennen. Was ist damals konkret gescheitert? Dann schauen wir, ob der Plan das schon berücksichtigt."
+  },
+  {
+    "id": "b09-feedforward-geben",
+    "titel": "Vorschläge statt Verriss",
+    "bereich": "beruflich",
+    "typ": "schriftlich",
+    "situation": "Eine Kollegin hat dir ihre Präsentation für einen Investorentermin gezeigt. Sie ist zu lang, die wichtigste Zahl kommt erst auf Folie 14. Stark ist das Kundenbeispiel auf Folie 6. Sie fragt: „Und, was meinst du?“",
+    "aufgabe": "Gib ihr zwei bis drei konkrete Vorschläge für die nächste Fassung, ohne die bestehende zu kritisieren.",
+    "techniken": ["feedforward", "pyramidenprinzip"],
+    "reflexion": ["Sind deine Vorschläge so konkret, dass sie sie sofort umsetzen kann?", "Hast du auch gesagt, was gut ist und bleiben soll?"],
+    "musterantwort": "Ich würde die Zahl von Folie 14 ganz nach vorn ziehen, als ersten Satz: Das ist die Geschichte. Danach drei Folien, die sie belegen, der Rest in den Anhang. Und der Kundenfall auf Folie 6 ist stark, den würde ich unbedingt drinlassen."
+  },
+  {
+    "id": "b10-teufelskreis-team",
+    "titel": "Der Kreislauf im Team",
+    "bereich": "beruflich",
+    "typ": "schriftlich",
+    "situation": "Denk an eine Zusammenarbeit, die immer wieder hakt: Jemand fragt ständig nach, ein anderer meldet sich immer seltener. Oder einer entscheidet schnell allein, der andere blockiert danach. Du bist selbst Teil davon.",
+    "aufgabe": "Beschreibe den Kreislauf in vier Teilen: dein Verhalten, dein Inneres, das Verhalten des anderen, sein vermutetes Inneres. Wo könntest du aussteigen?",
+    "techniken": ["teufelskreis", "metakommunikation"],
+    "reflexion": ["Hat sich dein Blick auf den anderen durch das Aufschreiben verändert?", "Was wäre ein erster kleiner Schritt, um den Kreis zu unterbrechen?"]
+  },
+  {
+    "id": "b11-dreimal-paraphrasieren",
+    "titel": "Dreimal zurückgeben",
+    "bereich": "beruflich",
+    "typ": "alltag",
+    "situation": "Heute hast du Meetings oder Telefonate. Normalerweise antwortest du sofort mit deiner Meinung oder Lösung.",
+    "aufgabe": "Gib heute in Gesprächen mindestens dreimal mit eigenen Worten wieder, was du gehört hast, bevor du antwortest: „Wenn ich dich richtig verstehe, …“",
+    "techniken": ["aktives-zuhoeren", "oars"],
+    "reflexion": ["Wie hat dein Gegenüber reagiert?", "Gab es einen Moment, in dem du etwas falsch verstanden hattest?"]
+  },
+  {
+    "id": "b12-antwort-zuerst",
+    "titel": "Ein Tag Kernaussage zuerst",
+    "bereich": "beruflich",
+    "typ": "alltag",
+    "situation": "Du schreibst heute Mails und Nachrichten wie jeden Tag.",
+    "aufgabe": "Beginne heute jede berufliche Mail und Nachricht mit der Kernaussage oder Bitte. Kein Anlauf, keine Vorgeschichte im ersten Satz.",
+    "techniken": ["pyramidenprinzip"],
+    "reflexion": ["Wie oft musstest du umformulieren?", "Kamen Antworten schneller oder klarer als sonst?"]
+  },
+  {
+    "id": "b13-blinder-fleck",
+    "titel": "Frag nach deinem blinden Fleck",
+    "bereich": "beruflich",
+    "typ": "alltag",
+    "situation": "Es gibt Dinge an deiner Art zu kommunizieren, die andere sehen und du nicht.",
+    "aufgabe": "Frag heute eine Person aus deinem Arbeitsumfeld eine konkrete Frage, z. B.: „Was sollte ich in Meetings öfter tun, was seltener?“ Hör zu, bedank dich, rechtfertige nichts.",
+    "techniken": ["johari-fenster", "feedforward"],
+    "reflexion": ["Was hast du erfahren, das du nicht wusstest?", "Wie schwer war es, nichts zu rechtfertigen?"]
+  },
+  {
+    "id": "b14-nur-fragen",
+    "titel": "Fünf Minuten nur fragen",
+    "bereich": "beruflich",
+    "typ": "alltag",
+    "situation": "In einem Gespräch heute willst du etwas erreichen: eine Entscheidung, eine Zusage, einen Kompromiss.",
+    "aufgabe": "Stell in den ersten fünf Minuten nur offene Fragen mit „Wie“ oder „Was“. Keine eigenen Argumente, bis du die Lage des anderen verstanden hast.",
+    "techniken": ["kalibrierte-fragen", "oars"],
+    "reflexion": ["Was hast du erfahren, das du sonst überhört hättest?", "Hat sich dadurch dein Vorgehen im Gespräch geändert?"]
+  },
+  {
+    "id": "b15-gefuehl-benennen",
+    "titel": "Ein Gefühl benennen",
+    "bereich": "beruflich",
+    "typ": "alltag",
+    "situation": "Irgendwo wird es heute angespannt: ein genervter Kunde, ein gestresster Kollege, eine schwierige Abstimmung.",
+    "aufgabe": "Benenne einmal das Gefühl des anderen als Vermutung („Es klingt so, als ob …“) und halte danach mindestens drei Sekunden Stille aus.",
+    "techniken": ["labeling", "aktives-zuhoeren"],
+    "reflexion": ["Wie hat sich die Stimmung danach verändert?", "Lagst du mit deiner Vermutung richtig?"]
+  },
+  {
+    "id": "b16-prozess-ansprechen",
+    "titel": "Das Meeting anhalten",
+    "bereich": "beruflich",
+    "typ": "alltag",
+    "situation": "In vielen Meetings dreht sich die Diskussion im Kreis, und alle merken es, aber keiner sagt es.",
+    "aufgabe": "Sprich heute in einem Meeting oder Gespräch einmal an, wie ihr gerade redet, z. B.: „Ich merke, wir drehen uns. Sollen wir kurz klären, was wir heute entscheiden müssen?“",
+    "techniken": ["metakommunikation"],
+    "reflexion": ["Wie hat die Runde reagiert?", "Was hätte passieren können, wenn du nichts gesagt hättest?"]
+  },
+  {
+    "id": "p01-haushalt-gfk",
+    "titel": "Der ewige Streit um den Haushalt",
+    "bereich": "privat",
+    "typ": "schriftlich",
+    "situation": "Die Spülmaschine ist wieder nicht ausgeräumt, obwohl ihr abgesprochen habt, dass das abwechselnd passiert. In dir steigt der Satz „Nie machst du was!“ hoch.",
+    "aufgabe": "Formuliere, was du stattdessen sagst, in den vier Schritten: Beobachtung, Gefühl, Bedürfnis, Bitte.",
+    "techniken": ["gewaltfreie-kommunikation", "ich-botschaften"],
+    "reflexion": ["Ist deine Beobachtung frei von „immer“ und „nie“?", "Ist die Bitte konkret und erfüllbar?"],
+    "musterantwort": "Die Spülmaschine ist heute und gestern nicht ausgeräumt worden, obwohl diese Woche du dran bist. Ich bin genervt, weil ich mich darauf verlassen möchte, dass unsere Absprachen gelten. Kannst du sie heute Abend ausräumen, und können wir am Wochenende kurz schauen, ob die Aufteilung für dich so passt?"
+  },
+  {
+    "id": "p02-einladung-absagen",
+    "titel": "Eine Einladung ehrlich absagen",
+    "bereich": "privat",
+    "typ": "schriftlich",
+    "situation": "Freunde laden dich am Samstag zum Grillen ein. Du hast nichts anderes vor, brauchst aber nach einer anstrengenden Woche einfach Ruhe. Normalerweise würdest du eine Ausrede erfinden.",
+    "aufgabe": "Schreib eine kurze, ehrliche Absage ohne Ausrede, die trotzdem zeigt, dass dir die Freunde wichtig sind.",
+    "techniken": ["ich-botschaften", "pyramidenprinzip"],
+    "reflexion": ["Wie fühlt sich die ehrliche Variante an im Vergleich zur Ausrede?", "Enthält die Absage etwas, das die Beziehung stärkt?"],
+    "musterantwort": "Danke für die Einladung! Ich sage diesmal ab, nach der Woche brauche ich den Samstag für mich. Habt einen schönen Abend, und lasst uns bald was ausmachen, ich melde mich nächste Woche."
+  },
+  {
+    "id": "p03-nachbar-laerm",
+    "titel": "Der Nachbar und die laute Musik",
+    "bereich": "privat",
+    "typ": "schriftlich",
+    "situation": "Der Nachbar über dir hört unter der Woche bis nach Mitternacht laute Musik. Du kennst ihn nur vom Grüßen im Treppenhaus und willst keinen Streit.",
+    "aufgabe": "Bereite vor, was du an seiner Tür sagst, als DESC-Skript: beschreiben, ausdrücken, konkret wünschen, Folgen.",
+    "techniken": ["desc-skript", "ich-botschaften"],
+    "reflexion": ["Ist dein Wunsch so konkret, dass er weiß, was zu tun ist?", "Klingt dein Text nach Gespräch oder nach Anzeige?"],
+    "musterantwort": "Hallo, ich wohne direkt unter Ihnen. Unter der Woche ist die Musik bei mir oft bis nach Mitternacht deutlich zu hören. Ich muss früh raus und schlafe dann schlecht. Wäre es möglich, dass es unter der Woche ab 22 Uhr leiser wird? Dann bin ich am Wochenende auch ganz entspannt, wenn es mal später wird."
+  },
+  {
+    "id": "p04-vier-ohren-handy",
+    "titel": "„Du bist ja schon wieder am Handy“",
+    "bereich": "privat",
+    "typ": "schriftlich",
+    "situation": "Am Abend sagt dein Partner oder deine Partnerin: „Du bist ja schon wieder am Handy.“ Du spürst sofort den Impuls, dich zu verteidigen.",
+    "aufgabe": "Schreib die vier möglichen Botschaften des Satzes auf (Sache, Selbstkundgabe, Beziehung, Appell). Dann formuliere eine Antwort, die auf die Selbstkundgabe eingeht.",
+    "techniken": ["vier-seiten-modell", "aktives-zuhoeren"],
+    "reflexion": ["Mit welchem Ohr hörst du solche Sätze normalerweise?", "Wie würde das Gespräch mit deiner neuen Antwort weitergehen?"],
+    "musterantwort": "Sache: Du nutzt gerade dein Handy. Selbstkundgabe: Ich fühle mich allein. Beziehung: Das Handy ist dir gerade wichtiger als ich. Appell: Leg es weg. Antwort: „Du hättest gern, dass wir den Abend zusammen verbringen, oder? Ich leg's weg.“"
+  },
+  {
+    "id": "p05-inneres-team-geld",
+    "titel": "Ein Freund bittet um Geld",
+    "bereich": "privat",
+    "typ": "schriftlich",
+    "situation": "Ein guter Freund fragt, ob du ihm einen größeren Betrag leihen kannst. Du könntest es dir leisten, hast aber ein ungutes Gefühl.",
+    "aufgabe": "Lass drei bis vier innere Stimmen zu Wort kommen, je ein Satz. Formuliere dann eine klare Antwort an den Freund, die zu deiner Gesamthaltung passt.",
+    "techniken": ["inneres-team", "ich-botschaften"],
+    "reflexion": ["Welche Stimme ist sonst die lauteste, und hat sie hier gewonnen?", "Kannst du hinter deiner Antwort stehen, auch wenn er enttäuscht ist?"]
+  },
+  {
+    "id": "p06-verkaeufer-telefon",
+    "titel": "Der hartnäckige Anrufer",
+    "bereich": "privat",
+    "typ": "schriftlich",
+    "situation": "Ein Anrufer will dir einen neuen Stromvertrag verkaufen. Er ist freundlich, aber hartnäckig: „Sie sparen garantiert, ich brauche nur kurz Ihre Zählernummer.“",
+    "aufgabe": "Schreib den Dialog mit mindestens drei Einwänden des Anrufers. Deine Antwort bleibt jedes Mal derselbe kurze Satz.",
+    "techniken": ["schallplatte"],
+    "reflexion": ["Wie schwer fällt es dir, nicht auf Argumente einzugehen?", "Wo im echten Leben würde dir dieser Satz helfen?"],
+    "musterantwort": "„Sie sparen garantiert.“ – „Danke, ich möchte keinen neuen Vertrag.“ – „Aber nur eine Minute!“ – „Verstehe. Ich möchte keinen neuen Vertrag.“ – „Andere Kunden sind begeistert.“ – „Schön für sie. Ich möchte keinen neuen Vertrag. Ich lege jetzt auf.“"
+  },
+  {
+    "id": "p07-familienfeier-vorwurf",
+    "titel": "Der alte Vorwurf an der Kaffeetafel",
+    "bereich": "privat",
+    "typ": "schriftlich",
+    "situation": "Bei einer Familienfeier sagt ein Verwandter vor allen: „Du hast ja nie Zeit für uns, immer nur die Arbeit.“ Das Thema kommt jedes Mal.",
+    "aufgabe": "Formuliere eine Antwort, die den wahren Kern anerkennt, sich nicht rechtfertigt und die Stimmung nicht kippen lässt.",
+    "techniken": ["fogging", "erwachsenen-ich"],
+    "reflexion": ["Welcher Ich-Zustand meldet sich bei dir bei diesem Satz?", "Steckt hinter dem Vorwurf ein Wunsch, den du ansprechen könntest?"],
+    "musterantwort": "„Stimmt, ich war dieses Jahr selten da. Schön, dass wir heute zusammensitzen. Lass uns nachher mal schauen, wann ich wieder vorbeikommen kann.“"
+  },
+  {
+    "id": "p08-entschuldigung",
+    "titel": "Eine Entschuldigung, die ankommt",
+    "bereich": "privat",
+    "typ": "schriftlich",
+    "situation": "Du hast den Geburtstag einer guten Freundin vergessen. Erst zwei Tage später fällt es dir ein.",
+    "aufgabe": "Schreib ihr eine Nachricht: Was ist passiert, Verantwortung übernehmen ohne „aber“, zeigen, dass du verstehst, wie es bei ihr ankommt, und was du jetzt tust.",
+    "techniken": ["gewaltfreie-kommunikation", "aktives-zuhoeren"],
+    "reflexion": ["Enthält deine Nachricht eine Rechtfertigung, die du streichen könntest?", "Ist das Angebot am Ende ernst gemeint und konkret?"],
+    "musterantwort": "Ich habe deinen Geburtstag vergessen, und es tut mir ehrlich leid. Ich kann mir vorstellen, dass dich das enttäuscht hat, gerade von mir. Nachträglich alles Gute! Darf ich dich nächste Woche zum Essen einladen? Dienstag oder Donnerstag?"
+  },
+  {
+    "id": "p09-zuhoeren-ohne-rat",
+    "titel": "Zuhören ohne Ratschlag",
+    "bereich": "privat",
+    "typ": "alltag",
+    "situation": "Irgendwer erzählt dir heute von einem Problem: Partner, Freundin, Familie.",
+    "aufgabe": "Gib keinen einzigen Ratschlag. Hör zu, frag nach, gib wieder, was du verstehst. Erst wenn ausdrücklich gefragt wird, darfst du deine Meinung sagen.",
+    "techniken": ["aktives-zuhoeren", "oars"],
+    "reflexion": ["Wie oft lag dir ein Ratschlag auf der Zunge?", "Hat die Person am Ende selbst eine Idee entwickelt?"]
+  },
+  {
+    "id": "p10-konkretes-lob",
+    "titel": "Ein konkretes Kompliment",
+    "bereich": "privat",
+    "typ": "alltag",
+    "situation": "Lob bleibt im Alltag oft allgemein („Super!“) oder ganz aus.",
+    "aufgabe": "Sag heute einem Menschen aus deinem privaten Umfeld ein konkretes Kompliment: was genau er oder sie getan hat und was es bei dir bewirkt hat.",
+    "techniken": ["sbi-feedback", "oars"],
+    "reflexion": ["Wie hat die Person reagiert?", "Fiel es dir leichter oder schwerer als Kritik?"]
+  },
+  {
+    "id": "p11-bitte-statt-vorwurf",
+    "titel": "Bitte statt Vorwurf",
+    "bereich": "privat",
+    "typ": "alltag",
+    "situation": "Es gibt etwas Kleines, das dich an jemandem stört, und du hast es bisher nur mit Seufzen oder Spitzen kommentiert.",
+    "aufgabe": "Sprich es heute als konkrete Bitte aus: was du beobachtest, was dir wichtig ist und was du dir wünschst.",
+    "techniken": ["gewaltfreie-kommunikation", "ich-botschaften"],
+    "reflexion": ["Wie hat dein Gegenüber reagiert?", "Was hat dich bisher davon abgehalten, es direkt zu sagen?"]
+  },
+  {
+    "id": "p12-volle-aufmerksamkeit",
+    "titel": "Volle Aufmerksamkeit",
+    "bereich": "privat",
+    "typ": "alltag",
+    "situation": "Gespräche laufen oft nebenher: Handy in der Hand, Gedanken bei der Arbeit.",
+    "aufgabe": "Führe heute ein Gespräch von mindestens zehn Minuten mit voller Aufmerksamkeit: Handy außer Sichtweite, keine Nebentätigkeit, Blick beim anderen.",
+    "techniken": ["aktives-zuhoeren"],
+    "reflexion": ["Was ist dir aufgefallen, das du sonst übersehen hättest?", "Wie oft wollten deine Gedanken abschweifen?"]
+  },
+  {
+    "id": "p13-nachfragen-statt-annehmen",
+    "titel": "Nachfragen statt annehmen",
+    "bereich": "privat",
+    "typ": "alltag",
+    "situation": "Jemand sagt heute etwas, das dich irritiert oder kränkt. Normalerweise würdest du es still interpretieren und dich ärgern.",
+    "aufgabe": "Frag nach, wie es gemeint war, z. B.: „Wie meinst du das?“ oder „Ich habe das als Kritik gehört, war das so gemeint?“",
+    "techniken": ["vier-seiten-modell", "metakommunikation"],
+    "reflexion": ["War es so gemeint, wie du es gehört hattest?", "Mit welchem Ohr hattest du zuerst gehört?"]
+  },
+  {
+    "id": "p14-kleines-nein",
+    "titel": "Ein kleines Nein",
+    "bereich": "privat",
+    "typ": "alltag",
+    "situation": "Kleine Bitten, die du eigentlich nicht erfüllen willst, sagst du oft trotzdem zu.",
+    "aufgabe": "Sag heute zu einer kleinen Bitte Nein, freundlich, mit höchstens einem Satz Begründung. Wenn nachgehakt wird: denselben Satz wiederholen.",
+    "techniken": ["schallplatte", "desc-skript"],
+    "reflexion": ["Wie hat sich das Nein angefühlt, vorher und nachher?", "Ist etwas Schlimmes passiert?"]
+  },
+  {
+    "id": "p15-interessen-erfragen",
+    "titel": "Das Warum hinter dem Wunsch",
+    "bereich": "privat",
+    "typ": "alltag",
+    "situation": "Bei einer gemeinsamen Entscheidung (Urlaub, Wochenende, Anschaffung) prallen gerade zwei Wünsche aufeinander.",
+    "aufgabe": "Frag heute nach, was dem anderen an seinem Wunsch wichtig ist, und erzähl, was dir an deinem wichtig ist. Sucht danach mindestens eine dritte Option.",
+    "techniken": ["interessen-statt-positionen", "kalibrierte-fragen"],
+    "reflexion": ["Welches Interesse steckte hinter der Position des anderen?", "Habt ihr eine Lösung gefunden, die besser ist als der Kompromiss in der Mitte?"]
+  },
+  {
+    "id": "p16-erwachsen-reagieren",
+    "titel": "Sachlich bleiben, wenn's zwickt",
+    "bereich": "privat",
+    "typ": "alltag",
+    "situation": "Es gibt Menschen und Sätze, die dich zuverlässig auf die Palme bringen.",
+    "aufgabe": "Wenn dich heute ein Satz triggert: kurz durchatmen und mit einer sachlichen Frage antworten statt mit Verteidigung oder Gegenangriff.",
+    "techniken": ["erwachsenen-ich", "fogging"],
+    "reflexion": ["Was war der Auslöser, und was wolltest du zuerst antworten?", "Wie lief das Gespräch nach deiner sachlichen Frage weiter?"]
+  }
+]

@@ -1,0 +1,342 @@
+[
+  {
+    "id": "aktives-zuhoeren",
+    "name": "Aktives Zuhören",
+    "kategorie": "Zuhören",
+    "urheber": "Carl R. Rogers, Richard E. Farson",
+    "quelle": "Rogers, C. R. & Farson, R. E. (1957): Active Listening. Industrial Relations Center, University of Chicago",
+    "kurz": "Du hörst nicht nur auf die Worte, sondern auf die ganze Botschaft, und zeigst dem anderen, was bei dir angekommen ist. Erst wenn sich dein Gegenüber verstanden fühlt, ist es bereit, deine Sicht zu hören.",
+    "schritte": [
+      "Volle Aufmerksamkeit: Handy weg, Blick zum Gegenüber, nicht nebenher an die eigene Antwort denken.",
+      "Inhalt in eigenen Worten zurückgeben (paraphrasieren).",
+      "Das mitschwingende Gefühl benennen (verbalisieren).",
+      "Nachfragen, wo etwas unklar ist, statt zu bewerten oder Ratschläge zu geben."
+    ],
+    "beispiel": "Kollegin: „Jetzt soll ich die Präsentation auch noch bis morgen machen.“ Du: „Das kommt zusätzlich zu allem anderen obendrauf, und dir fehlt die Zeit. Klingt ziemlich frustrierend.“",
+    "uebung": "Gib im nächsten Gespräch zweimal mit eigenen Worten wieder, was du gehört hast, bevor du selbst etwas Inhaltliches sagst.",
+    "merksatz": "Zurückgeben, was ankam, Inhalt und Gefühl, bevor ich selbst antworte."
+  },
+  {
+    "id": "vier-seiten-modell",
+    "name": "Vier-Seiten-Modell (Kommunikationsquadrat)",
+    "kategorie": "Verstehen",
+    "urheber": "Friedemann Schulz von Thun",
+    "quelle": "Schulz von Thun, F. (1981): Miteinander reden 1. Störungen und Klärungen. Rowohlt",
+    "kurz": "Jede Nachricht hat vier Seiten: Sachinhalt, Selbstkundgabe, Beziehung und Appell. Missverständnisse entstehen, wenn Sender und Empfänger unterschiedliche Seiten betonen. Wer die vier Ohren kennt, kann bewusst wählen, worauf er antwortet.",
+    "schritte": [
+      "Sachinhalt: Worüber informiere ich bzw. werde ich informiert?",
+      "Selbstkundgabe: Was gibt der Sprecher über sich preis?",
+      "Beziehung: Was hält er von mir, wie stehen wir zueinander?",
+      "Appell: Wozu will er mich veranlassen?",
+      "Bewusst entscheiden, auf welcher Seite du antwortest, oder nachfragen, welche gemeint war."
+    ],
+    "beispiel": "„Die Ampel ist grün.“ Sache: Die Ampel zeigt Grün. Selbstkundgabe: Ich habe es eilig. Beziehung: Ich traue dir das Fahren allein nicht zu. Appell: Fahr los!",
+    "uebung": "Nimm einen Satz, der dich heute gestört hat, und schreibe die vier möglichen Botschaften auf. Welches Ohr war bei dir am lautesten?",
+    "merksatz": "Sache, Selbstkundgabe, Beziehung, Appell: Ich wähle, mit welchem Ohr ich höre."
+  },
+  {
+    "id": "gewaltfreie-kommunikation",
+    "name": "Gewaltfreie Kommunikation",
+    "kategorie": "Konflikt",
+    "urheber": "Marshall B. Rosenberg",
+    "quelle": "Rosenberg, M. B. (1999): Nonviolent Communication. A Language of Compassion. PuddleDancer Press; dt.: Gewaltfreie Kommunikation, Junfermann",
+    "kurz": "Ein Anliegen in vier Schritten ausdrücken, ohne zu bewerten oder Schuld zuzuweisen. So kann das Gegenüber zuhören, statt sich verteidigen zu müssen.",
+    "schritte": [
+      "Beobachtung: konkret beschreiben, was passiert ist, ohne Bewertung.",
+      "Gefühl: sagen, wie es dir damit geht.",
+      "Bedürfnis: benennen, was dir wichtig ist und dahintersteht.",
+      "Bitte: eine konkrete, erfüllbare Bitte formulieren, keine Forderung."
+    ],
+    "beispiel": "„Als du gestern beim Abendessen dreimal aufs Handy geschaut hast (Beobachtung), war ich enttäuscht (Gefühl), weil mir unsere gemeinsame Zeit wichtig ist (Bedürfnis). Wärst du bereit, das Handy beim Essen wegzulegen? (Bitte)“",
+    "uebung": "Übersetze einen Vorwurf, den du in letzter Zeit gedacht oder gesagt hast, in die vier Schritte.",
+    "merksatz": "Beobachtung, Gefühl, Bedürfnis, Bitte: beschreiben statt bewerten."
+  },
+  {
+    "id": "ich-botschaften",
+    "name": "Ich-Botschaften",
+    "kategorie": "Konflikt",
+    "urheber": "Thomas Gordon",
+    "quelle": "Gordon, T. (1970): Parent Effectiveness Training; dt.: Familienkonferenz (1972). Für den Beruf: Leader Effectiveness Training (1977)",
+    "kurz": "Statt dem anderen zu sagen, wie er ist („Du bist unzuverlässig“), sprichst du über das konkrete Verhalten, seine Wirkung auf dich und dein Gefühl. Das klingt weniger nach Angriff und lässt dem anderen Raum, sein Verhalten selbst zu ändern.",
+    "schritte": [
+      "Verhalten beschreiben: „Wenn …“ (konkret, ohne Wertung).",
+      "Spürbare Wirkung auf dich nennen: „… dann …“.",
+      "Dein Gefühl benennen: „… und ich fühle mich …“."
+    ],
+    "beispiel": "Statt „Du lässt mich immer hängen“: „Wenn die Zahlen erst am Morgen der Sitzung kommen, kann ich sie nicht mehr prüfen, und ich fühle mich dann schlecht vorbereitet.“",
+    "uebung": "Schreibe drei Du-Sätze auf, die dir im Alltag rausrutschen, und formuliere sie als Ich-Botschaft um.",
+    "merksatz": "Verhalten, Wirkung, Gefühl: über mich sprechen statt über dich urteilen."
+  },
+  {
+    "id": "interessen-statt-positionen",
+    "name": "Interessen statt Positionen (Harvard-Konzept)",
+    "kategorie": "Verhandlung",
+    "urheber": "Roger Fisher, William Ury (Harvard Negotiation Project)",
+    "quelle": "Fisher, R. & Ury, W. (1981): Getting to Yes. Negotiating Agreement Without Giving In. Houghton Mifflin; dt.: Das Harvard-Konzept",
+    "kurz": "Positionen sind das, was jemand fordert; Interessen sind der Grund dafür. Wer nach dem Warum hinter der Forderung fragt, findet oft Lösungen, die beiden Seiten mehr bringen als ein Kompromiss in der Mitte. Dazu gehören drei weitere Grundsätze: Menschen und Probleme getrennt behandeln, mehrere Optionen entwickeln, auf neutrale Kriterien einigen.",
+    "schritte": [
+      "Menschen und Probleme getrennt behandeln: hart in der Sache, freundlich zur Person.",
+      "Hinter jeder Forderung das Interesse erfragen: „Was ist dir daran wichtig?“",
+      "Mehrere Optionen sammeln, bevor entschieden wird.",
+      "Auf neutrale Kriterien einigen (Marktpreis, Gutachten, Regeln), statt Willenskraft zu messen."
+    ],
+    "beispiel": "Zwei Männer in einer Bibliothek streiten ums Fenster: Einer will es offen, der andere zu. Frage nach dem Warum: frische Luft gegen Zugluft. Die Bibliothekarin öffnet ein Fenster im Nebenraum: Luft ohne Zug. (Beispiel aus dem Buch)",
+    "uebung": "Nimm eine laufende Meinungsverschiedenheit und notiere für beide Seiten: Was ist die Position, welches Interesse könnte dahinterstehen?",
+    "merksatz": "Nicht über Forderungen feilschen, sondern nach dem Warum fragen."
+  },
+  {
+    "id": "batna",
+    "name": "BATNA: die beste Alternative kennen",
+    "kategorie": "Verhandlung",
+    "urheber": "Roger Fisher, William Ury",
+    "quelle": "Fisher, R. & Ury, W. (1981): Getting to Yes. Houghton Mifflin; dt.: Das Harvard-Konzept",
+    "kurz": "BATNA steht für Best Alternative to a Negotiated Agreement: Was tust du, wenn es keine Einigung gibt? Wer seine Alternative kennt, weiß, wann er Nein sagen kann, und lässt sich weniger unter Druck setzen.",
+    "schritte": [
+      "Alle Optionen sammeln, die du ohne Einigung hättest.",
+      "Die aussichtsreichsten konkret ausarbeiten.",
+      "Die beste davon festlegen: das ist deine Untergrenze für jedes Angebot.",
+      "Überlegen, wie die Alternative der Gegenseite aussieht."
+    ],
+    "beispiel": "Vor einem Gespräch über eine Gehaltserhöhung: Liegt ein anderes Angebot vor? Welche Weiterbildung oder Aufgabe wäre ein Ausgleich? Was passiert, wenn du bleibst und nichts ändert sich?",
+    "uebung": "Schreibe für eine anstehende Verhandlung (Preis, Gehalt, Mietvertrag, Urlaubsplanung) deine BATNA in einem Satz auf.",
+    "merksatz": "Wer seine beste Alternative kennt, verhandelt ruhiger und weiß, wann Nein richtig ist."
+  },
+  {
+    "id": "sbi-feedback",
+    "name": "SBI-Feedback (Situation, Verhalten, Wirkung)",
+    "kategorie": "Feedback",
+    "urheber": "Center for Creative Leadership",
+    "quelle": "Weitzel, S. R. (2000): Feedback That Works. How to Build and Deliver Your Message. Center for Creative Leadership",
+    "kurz": "Feedback in drei Teilen: die konkrete Situation, das beobachtbare Verhalten und seine Wirkung. Keine Charakterurteile, keine Verallgemeinerungen. Funktioniert für Lob genauso wie für Kritik.",
+    "schritte": [
+      "Situation: wann und wo („Im Kundentermin am Dienstag …“).",
+      "Verhalten: was die Person getan oder gesagt hat, beobachtbar.",
+      "Wirkung: was das bei dir oder anderen ausgelöst hat.",
+      "Optional: nachfragen, wie die Person es selbst erlebt hat."
+    ],
+    "beispiel": "„Im Weekly gestern (S) hast du mich zweimal unterbrochen, bevor ich die Zahlen fertig erklärt hatte (B). Dadurch ist die Entscheidung auf nächste Woche gerutscht, weil das Team den Stand nicht kannte (I).“",
+    "uebung": "Formuliere ein Lob für jemanden aus deinem Umfeld nach SBI und sag es heute noch.",
+    "merksatz": "Situation, Verhalten, Wirkung: beobachtbar statt Urteil."
+  },
+  {
+    "id": "johari-fenster",
+    "name": "Johari-Fenster",
+    "kategorie": "Feedback",
+    "urheber": "Joseph Luft, Harrington Ingham",
+    "quelle": "Luft, J. & Ingham, H. (1955): The Johari window, a graphic model of interpersonal awareness. Proceedings of the Western Training Laboratory in Group Development, UCLA",
+    "kurz": "Ein Modell mit vier Feldern: öffentlich (kennen ich und andere), blinder Fleck (kennen nur andere), verborgen (kenne nur ich), unbekannt. Durch eingeholtes Feedback und eigene Offenheit wird das öffentliche Feld größer, das macht Zusammenarbeit leichter.",
+    "schritte": [
+      "Blinden Fleck verkleinern: gezielt um Feedback bitten und zuhören, ohne zu rechtfertigen.",
+      "Verborgenes Feld verkleinern: passend etwas von dir zeigen (Absichten, Bedenken, Arbeitsweise).",
+      "Konkret fragen statt allgemein: nicht „Wie war ich?“, sondern „Was soll ich in Meetings mehr oder weniger tun?“"
+    ],
+    "beispiel": "„Mir ist neulich aufgefallen, dass im Team wenig widersprochen wird, wenn ich etwas vorschlage. Was mache ich, das das begünstigen könnte?“",
+    "uebung": "Bitte heute eine Person um eine ehrliche Rückmeldung zu einem konkreten Punkt. Bedanke dich nur, rechtfertige nichts.",
+    "merksatz": "Feedback holen verkleinert den blinden Fleck, Offenheit das Verborgene."
+  },
+  {
+    "id": "pyramidenprinzip",
+    "name": "Pyramidenprinzip: Kernaussage zuerst",
+    "kategorie": "Klarheit",
+    "urheber": "Barbara Minto (McKinsey)",
+    "quelle": "Minto, B.: The Pyramid Principle. Logic in Writing and Thinking. Financial Times / Prentice Hall",
+    "kurz": "Erst die Kernaussage, dann die wenigen Argumente, die sie tragen, dann die Details. Der Leser weiß sofort, worum es geht, und kann selbst entscheiden, wie tief er einsteigt.",
+    "schritte": [
+      "Kernaussage oder Bitte in einem Satz an den Anfang.",
+      "Zwei bis drei Argumente darunter, die sie begründen, gleichartig gegliedert.",
+      "Details und Belege nur, soweit der Empfänger sie braucht.",
+      "Prüfen: Beantwortet der erste Satz die Frage, die der Leser im Kopf hat?"
+    ],
+    "beispiel": "Statt einer Chronologie: „Wir sollten den Start um zwei Wochen verschieben. Grund 1: Die Teile kommen später. Grund 2: Der Test braucht eine Woche mehr. Details unten.“",
+    "uebung": "Nimm deine letzte längere Mail und schreibe sie so um, dass der erste Satz allein reichen würde.",
+    "merksatz": "Antwort zuerst, Begründung danach, Details nach Bedarf."
+  },
+  {
+    "id": "labeling",
+    "name": "Labeling: Emotionen benennen",
+    "kategorie": "Verstehen",
+    "urheber": "Chris Voss",
+    "quelle": "Voss, C. & Raz, T. (2016): Never Split the Difference. Negotiating As If Your Life Depended On It. Harper Business; dt.: Kompromisslos verhandeln",
+    "kurz": "Du benennst das Gefühl oder die Sorge, die du beim Gegenüber wahrnimmst, als Vermutung: „Es klingt so, als ob …“. Das zeigt Verständnis, nimmt Druck raus und lädt zum Weitererzählen ein. Verwandt damit ist das Spiegeln: die letzten Worte des Gegenübers fragend wiederholen.",
+    "schritte": [
+      "Wahrnehmen, was hinter der Aussage stecken könnte (Ärger, Sorge, Zeitdruck).",
+      "Als Vermutung formulieren: „Es klingt so, als …“, „Es wirkt, als …“, „Ich habe den Eindruck, dass …“.",
+      "Nicht „Ich höre, dass …“: das lenkt den Fokus auf dich.",
+      "Danach schweigen und die Antwort abwarten."
+    ],
+    "beispiel": "Kunde: „Das ist jetzt schon die dritte Verschiebung.“ Du: „Es klingt so, als hätten Sie intern schon Ärger deswegen bekommen.“",
+    "uebung": "Benenne heute in einem angespannten Moment einmal das Gefühl des anderen als Vermutung und halte danach die Pause aus.",
+    "merksatz": "„Es klingt so, als …“ und dann schweigen."
+  },
+  {
+    "id": "kalibrierte-fragen",
+    "name": "Kalibrierte Fragen",
+    "kategorie": "Verhandlung",
+    "urheber": "Chris Voss",
+    "quelle": "Voss, C. & Raz, T. (2016): Never Split the Difference. Harper Business; dt.: Kompromisslos verhandeln",
+    "kurz": "Offene Fragen mit „Wie“ oder „Was“, die das Gegenüber dazu bringen, über dein Problem nachzudenken, statt gegen dich zu argumentieren. Sie geben dem anderen das Gefühl von Kontrolle und lenken trotzdem das Gespräch. „Warum“ meiden, das klingt schnell nach Vorwurf.",
+    "schritte": [
+      "Mit „Wie“ oder „Was“ beginnen.",
+      "Das Problem zum gemeinsamen Problem machen.",
+      "Kein „Warum“, keine Ja-Nein-Fragen.",
+      "Ruhig und neugierig fragen, dann zuhören."
+    ],
+    "beispiel": "Auf eine überzogene Forderung: „Wie soll ich das machen?“ oder „Was müsste passieren, damit das für uns beide funktioniert?“",
+    "uebung": "Bereite für ein schwieriges Gespräch drei Fragen vor, die mit „Wie“ oder „Was“ beginnen.",
+    "merksatz": "„Wie soll ich das machen?“: das Gegenüber löst mein Problem mit."
+  },
+  {
+    "id": "oars",
+    "name": "OARS aus der Motivierenden Gesprächsführung",
+    "kategorie": "Zuhören",
+    "urheber": "William R. Miller, Stephen Rollnick",
+    "quelle": "Miller, W. R. & Rollnick, S. (2013): Motivational Interviewing. Helping People Change. 3. Aufl., Guilford Press (Erstausgabe 1991); dt.: Motivierende Gesprächsführung",
+    "kurz": "Vier Grundwerkzeuge, mit denen du ein Gespräch so führst, dass der andere seine eigenen Gründe und Lösungen entdeckt: offene Fragen, Würdigung, reflektierendes Zuhören und Zusammenfassen.",
+    "schritte": [
+      "O wie Open questions: offene Fragen stellen.",
+      "A wie Affirmations: Stärken und Bemühungen ehrlich würdigen.",
+      "R wie Reflections: zurückspiegeln, was du verstanden hast.",
+      "S wie Summaries: zwischendurch zusammenfassen und fragen, ob es passt."
+    ],
+    "beispiel": "„Was ist für dich gerade das Schwierigste an dem Projekt? … Du hast trotz der vielen Wechsel drangeblieben, das ist nicht selbstverständlich. … Wenn ich dich richtig verstehe, geht es dir weniger um die Arbeit als um die unklaren Zuständigkeiten?“",
+    "uebung": "Führe ein Gespräch, in dem du jedes der vier Werkzeuge mindestens einmal einsetzt.",
+    "merksatz": "Offen fragen, würdigen, spiegeln, zusammenfassen."
+  },
+  {
+    "id": "metakommunikation",
+    "name": "Metakommunikation",
+    "kategorie": "Konflikt",
+    "urheber": "Paul Watzlawick, Janet H. Beavin, Don D. Jackson; weitergeführt von Friedemann Schulz von Thun",
+    "quelle": "Watzlawick, P., Beavin, J. H. & Jackson, D. D. (1967): Pragmatics of Human Communication. Norton; dt.: Menschliche Kommunikation (1969). Schulz von Thun, F. (1981): Miteinander reden 1",
+    "kurz": "Über die Art reden, wie ihr gerade miteinander redet. Wenn ein Gespräch festfährt, bringt ein weiteres Sachargument wenig. Ein Schritt zur Seite („Was passiert hier gerade zwischen uns?“) macht das Muster sichtbar und lösbar.",
+    "schritte": [
+      "Merken, dass ihr euch im Kreis dreht oder die Stimmung kippt.",
+      "Das Gespräch anhalten und beschreiben, was du wahrnimmst, als Ich-Aussage.",
+      "Nachfragen, wie der andere es erlebt.",
+      "Gemeinsam vereinbaren, wie ihr weiterredet."
+    ],
+    "beispiel": "„Ich merke, wir wiederholen seit zehn Minuten dieselben Argumente und werden beide lauter. Können wir kurz klären, worum es jedem von uns eigentlich geht?“",
+    "uebung": "Achte heute auf einen Moment, in dem ein Gespräch hakt, und sprich das Muster einmal offen an.",
+    "merksatz": "Wenn die Sache hakt, über das Wie reden, nicht noch mehr über das Was."
+  },
+  {
+    "id": "erwachsenen-ich",
+    "name": "Aus dem Erwachsenen-Ich antworten (Transaktionsanalyse)",
+    "kategorie": "Selbstklärung",
+    "urheber": "Eric Berne",
+    "quelle": "Berne, E. (1961): Transactional Analysis in Psychotherapy. Grove Press; Berne, E. (1964): Games People Play; dt.: Spiele der Erwachsenen",
+    "kurz": "Nach Berne kommunizieren wir aus drei Ich-Zuständen: Eltern-Ich (bewertend oder fürsorglich), Erwachsenen-Ich (sachlich, prüfend) und Kind-Ich (spontan, trotzig oder angepasst). Wird man aus dem Eltern-Ich angesprochen, reagiert man leicht trotzig oder unterwürfig. Wer bewusst aus dem Erwachsenen-Ich antwortet, holt das Gespräch auf die Sachebene.",
+    "schritte": [
+      "Erkennen, aus welchem Zustand das Gegenüber spricht (Ton, Wortwahl: „man muss“, „immer“, Vorwurf).",
+      "Den eigenen Impuls bemerken: verteidigen, zurückschlagen, einknicken?",
+      "Sachlich antworten: Fakten, Fragen, Optionen.",
+      "Ruhig bleiben, auch wenn der andere nicht sofort mitzieht."
+    ],
+    "beispiel": "Chef: „Das hätten Sie doch wissen müssen!“ Statt Rechtfertigung: „Mir fehlte die Info zum geänderten Termin. Was brauchen Sie jetzt von mir, damit wir es bis Freitag schaffen?“",
+    "uebung": "Wenn dich heute ein Satz triggert, antworte bewusst mit einer sachlichen Frage.",
+    "merksatz": "Auf Vorwurf nicht mit Trotz oder Einknicken reagieren: sachlich fragen."
+  },
+  {
+    "id": "desc-skript",
+    "name": "DESC-Skript",
+    "kategorie": "Selbstbehauptung",
+    "urheber": "Sharon Anthony Bower, Gordon H. Bower",
+    "quelle": "Bower, S. A. & Bower, G. H. (1976): Asserting Yourself. A Practical Guide for Positive Change. Addison-Wesley",
+    "kurz": "Ein Leitfaden, um ein Problem klar und fair anzusprechen: beschreiben, ausdrücken, konkret benennen, was du willst, und die Folgen nennen. Gut für Gespräche, die du vorher planen kannst.",
+    "schritte": [
+      "Describe: Situation und Verhalten sachlich beschreiben.",
+      "Express: sagen, was es bei dir auslöst.",
+      "Specify: konkret benennen, was du dir stattdessen wünschst.",
+      "Consequences: die positiven Folgen nennen, wenn es klappt (wenn nötig auch, was du sonst tust)."
+    ],
+    "beispiel": "„Die letzten drei Abrechnungen kamen jeweils eine Woche nach dem vereinbarten Termin (D). Das bringt meine Monatsplanung durcheinander (E). Ich brauche sie bis zum Fünften (S). Dann kann ich die Zahlungen pünktlich freigeben (C).“",
+    "uebung": "Schreib ein DESC-Skript für ein Thema, das du schon länger ansprechen willst.",
+    "merksatz": "Beschreiben, ausdrücken, konkret wünschen, Folgen nennen."
+  },
+  {
+    "id": "schallplatte",
+    "name": "Kaputte Schallplatte (Broken Record)",
+    "kategorie": "Selbstbehauptung",
+    "urheber": "Manuel J. Smith",
+    "quelle": "Smith, M. J. (1975): When I Say No, I Feel Guilty. Dial Press",
+    "kurz": "Du wiederholst dein Anliegen oder dein Nein ruhig und gleichlautend, ohne dich auf neue Argumente, Vorwürfe oder Ablenkungen einzulassen. Das schützt davor, sich zerreden oder umstimmen zu lassen.",
+    "schritte": [
+      "Deine Kernaussage in einem kurzen Satz festlegen.",
+      "Einwände kurz anerkennen („Verstehe ich“), aber nicht diskutieren.",
+      "Die Kernaussage im gleichen Ton wiederholen.",
+      "Bei Bedarf einen Kompromiss anbieten, aber nur, wenn du ihn wirklich willst."
+    ],
+    "beispiel": "Verkäufer: „Aber das Angebot gilt nur heute.“ Du: „Verstehe. Ich entscheide nicht heute.“ – „Sie verpassen echt was.“ – „Mag sein. Ich entscheide nicht heute.“",
+    "uebung": "Lege dir für eine typische Situation, in der du schwer Nein sagst, einen Schallplatten-Satz zurecht.",
+    "merksatz": "Ein Satz, ruhig wiederholt, statt sich auf jedes Argument einzulassen."
+  },
+  {
+    "id": "fogging",
+    "name": "Fogging (Nebelwerfen)",
+    "kategorie": "Selbstbehauptung",
+    "urheber": "Manuel J. Smith",
+    "quelle": "Smith, M. J. (1975): When I Say No, I Feel Guilty. Dial Press",
+    "kurz": "Auf Kritik oder Sticheleien stimmst du dem zu, was daran wahr sein könnte, ohne dich zu rechtfertigen oder anzugreifen. Die Kritik läuft ins Leere wie in eine Nebelwand, und du bleibst gelassen.",
+    "schritte": [
+      "Den wahren Kern oder die Möglichkeit anerkennen („Kann gut sein, dass …“).",
+      "Keine Rechtfertigung, kein Gegenangriff.",
+      "Beim eigenen Standpunkt bleiben.",
+      "Bei berechtigter Kritik später sachlich nachfragen, was genau gemeint ist."
+    ],
+    "beispiel": "„Du bist ja ständig unterwegs.“ – „Stimmt, ich bin gerade viel unterwegs.“ Oder: „Dein Plan ist viel zu ambitioniert.“ – „Gut möglich, dass er ambitioniert ist.“",
+    "uebung": "Antworte heute auf eine kleine Spitze mit „Kann gut sein“ oder „Da ist was dran“ und beobachte, was passiert.",
+    "merksatz": "Dem wahren Kern zustimmen, nichts rechtfertigen."
+  },
+  {
+    "id": "feedforward",
+    "name": "Feedforward",
+    "kategorie": "Feedback",
+    "urheber": "Marshall Goldsmith",
+    "quelle": "Goldsmith, M. (2002): Try Feedforward Instead of Feedback. Leader to Leader, Nr. 25",
+    "kurz": "Statt über Vergangenes zu urteilen, bittest du um Vorschläge für die Zukunft, oder gibst selbst welche. Der andere muss nichts verteidigen, sondern sammelt Ideen und entscheidet, was er übernimmt.",
+    "schritte": [
+      "Ein konkretes Verhalten wählen, das du (oder der andere) verbessern willst.",
+      "Um ein bis zwei Vorschläge für die Zukunft bitten.",
+      "Zuhören, mitschreiben, nur „Danke“ sagen: nicht kommentieren oder bewerten.",
+      "Selbst Vorschläge geben, ohne auf Fehler der Vergangenheit einzugehen."
+    ],
+    "beispiel": "„Ich möchte in Präsentationen schneller auf den Punkt kommen. Hast du ein, zwei Ideen, was ich beim nächsten Mal anders machen könnte?“",
+    "uebung": "Frag heute zwei Menschen nach je einem Vorschlag für ein Verhalten, an dem du arbeiten willst. Antworte nur mit „Danke“.",
+    "merksatz": "Vorschläge für morgen statt Urteile über gestern."
+  },
+  {
+    "id": "inneres-team",
+    "name": "Das Innere Team",
+    "kategorie": "Selbstklärung",
+    "urheber": "Friedemann Schulz von Thun",
+    "quelle": "Schulz von Thun, F. (1998): Miteinander reden 3. Das „Innere Team“ und situationsgerechte Kommunikation. Rowohlt",
+    "kurz": "In schwierigen Entscheidungen melden sich mehrere innere Stimmen: der Pflichtbewusste, der Harmoniebedürftige, der Skeptiker. Wer sie einzeln anhört und dann wie ein Teamleiter eine Linie findet, kommuniziert klarer und stimmiger.",
+    "schritte": [
+      "Alle inneren Stimmen zum Thema sammeln und ihnen einen Namen geben.",
+      "Jede Stimme einen Satz sagen lassen: Was will sie, wovor warnt sie?",
+      "Als „Oberhaupt“ abwägen und eine Haltung finden, die die wichtigen Anliegen berücksichtigt.",
+      "Daraus eine klare Aussage nach außen formulieren."
+    ],
+    "beispiel": "Ein Freund bittet um Geld. Der Hilfsbereite: „Klar, er ist ein Freund.“ Der Vorsichtige: „Das letzte Mal kam es spät zurück.“ Der Ehrliche: „Ich will nicht aus Pflichtgefühl Ja sagen.“ Ergebnis: „Ich leihe dir die Hälfte, mit festem Rückzahltermin.“",
+    "uebung": "Nimm eine Entscheidung, die dich gerade beschäftigt, und schreibe drei bis vier innere Stimmen mit je einem Satz auf.",
+    "merksatz": "Erst die inneren Stimmen anhören, dann mit einer Stimme sprechen."
+  },
+  {
+    "id": "teufelskreis",
+    "name": "Teufelskreis-Modell",
+    "kategorie": "Konflikt",
+    "urheber": "Friedemann Schulz von Thun, Christoph Thomann",
+    "quelle": "Thomann, C. & Schulz von Thun, F. (1988): Klärungshilfe. Handbuch für Therapeuten, Gesprächshelfer und Moderatoren in schwierigen Gesprächen. Rowohlt",
+    "kurz": "In festgefahrenen Beziehungen reagiert jeder auf das Verhalten des anderen, und genau diese Reaktion verstärkt das Verhalten, das ihn stört. Wer den Kreis aufzeichnet (äußeres Verhalten und innere Reaktion beider Seiten), erkennt, dass es keinen Schuldigen gibt, sondern ein Muster, und kann es unterbrechen.",
+    "schritte": [
+      "Dein sichtbares Verhalten benennen.",
+      "Was du dabei innerlich denkst oder fühlst.",
+      "Das sichtbare Verhalten des anderen, als Reaktion darauf.",
+      "Seine vermutete innere Reaktion, die wiederum dein Verhalten auslöst.",
+      "Einen Punkt wählen, an dem du den Kreis unterbrechen kannst."
+    ],
+    "beispiel": "Sie kontrolliert nach (Verhalten), weil sie sich Sorgen um den Termin macht (innen). Er zieht sich zurück und meldet sich seltener (Verhalten), weil er sich bevormundet fühlt (innen). Dadurch wächst ihre Sorge, und sie kontrolliert mehr.",
+    "uebung": "Zeichne einen Teufelskreis aus deinem Leben auf, in dem du selbst eine Rolle spielst. Wo könntest du aussteigen?",
+    "merksatz": "Nicht Schuld suchen, sondern den Kreis sehen und an der eigenen Stelle aussteigen."
+  }
+]
