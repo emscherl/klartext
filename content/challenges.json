@@ -8,6 +8,7 @@
     "aufgabe": "Schreib die Absage in höchstens fünf Sätzen: Entscheidung zuerst, kurzer ehrlicher Grund, Wertschätzung für die Arbeit, Tür für später offen.",
     "techniken": ["pyramidenprinzip", "vier-seiten-modell"],
     "reflexion": ["Steht die Entscheidung im ersten Satz?", "Welche Beziehungsbotschaft sendet deine Mail?"],
+    "kriterien": ["Die Entscheidung steht im ersten Satz.", "Der Grund ist kurz und ehrlich, ohne Ausrede.", "Du würdigst die Arbeit am Angebot konkret.", "Die Tür für später bleibt offen.", "Höchstens fünf Sätze."],
     "musterantwort": "Hallo Frau Berger, wir haben uns für dieses Projekt für einen anderen Anbieter entschieden. Ausschlaggebend war allein die Lieferzeit, die wir diesmal nicht verschieben können. Ihr Angebot war das durchdachteste, das wir bekommen haben, danke für die Mühe. Beim nächsten Projekt mit mehr Vorlauf melde ich mich gern wieder bei Ihnen."
   },
   {
@@ -19,6 +20,7 @@
     "aufgabe": "Formuliere, was du ihm im Vier-Augen-Gespräch sagst. Nutze Situation, Verhalten, Wirkung und schließe mit einer Frage oder Bitte.",
     "techniken": ["sbi-feedback", "ich-botschaften"],
     "reflexion": ["Hast du ein Urteil („unzuverlässig“) vermieden?", "Ist deine Bitte konkret genug, dass er weiß, was er ändern soll?"],
+    "kriterien": ["Die Situation ist konkret benannt (wann, was).", "Du beschreibst Verhalten statt Eigenschaften, kein „unzuverlässig“.", "Die Wirkung auf dich ist genannt.", "Du schließt mit einer Frage oder einer konkreten Bitte."],
     "musterantwort": "Beim Monatsbericht kam deine Zuarbeit die letzten drei Male erst am Abgabemorgen. Ich konnte sie dann nur noch einkopieren, nicht prüfen, und war ziemlich unter Druck. Was bräuchtest du, damit sie spätestens am Vortag um 15 Uhr bei mir ist?"
   },
   {
@@ -30,6 +32,7 @@
     "aufgabe": "Schreib deine nächsten zwei bis drei Sätze. Keine Rechtfertigung und kein sofortiger Nachlass: Erfrage, was hinter der Forderung steckt.",
     "techniken": ["kalibrierte-fragen", "interessen-statt-positionen", "labeling"],
     "reflexion": ["Beginnen deine Fragen mit „Wie“ oder „Was“?", "Was hast du über die Interessen des Kunden gelernt, wenn er antwortet?"],
+    "kriterien": ["Keine Rechtfertigung des Preises.", "Kein Nachlass, auch kein angedeuteter.", "Mindestens eine offene Frage nach dem, was hinter der Forderung steckt.", "Zwei bis drei Sätze."],
     "musterantwort": "Es klingt so, als hätten Sie intern eine klare Budgetgrenze. Wie sind Sie zu dem Betrag gekommen, mit dem Sie gerechnet haben? Und was wäre Ihnen an der Lösung am wichtigsten, wenn wir über den Umfang reden?"
   },
   {
@@ -41,6 +44,7 @@
     "aufgabe": "Formuliere deine Antwort in maximal drei Sätzen: Kernaussage zuerst, dann Ursache, dann nächster Schritt.",
     "techniken": ["pyramidenprinzip"],
     "reflexion": ["Würde der erste Satz allein reichen?", "Hast du eine Entscheidung oder Unterstützung gebraucht, und hast du sie benannt?"],
+    "kriterien": ["Die Kernaussage steht im ersten Satz.", "Die Ursache folgt kurz danach.", "Der nächste Schritt ist konkret, mit Termin oder Verantwortlichem.", "Höchstens drei Sätze."],
     "musterantwort": "Wir liegen zwei Wochen hinter Plan, der Endtermin ist aber noch zu halten. Grund ist ein Lieferengpass bei einem Zulieferer. Ein Zweitlieferant ist angefragt, bis Freitag weiß ich, ob wir ihn brauchen."
   },
   {
@@ -52,6 +56,7 @@
     "aufgabe": "Schreib deine Antwort nach DESC: Lage beschreiben, was es für dich bedeutet, was du konkret vorschlägst, welche Folgen das hat.",
     "techniken": ["desc-skript", "schallplatte"],
     "reflexion": ["Ist dein Nein eindeutig oder lädt es zum Nachverhandeln ein?", "Hast du eine echte Alternative angeboten oder nur eine Ausrede?"],
+    "kriterien": ["Die Lage ist sachlich beschrieben.", "Du sagst, was die Zusatzaufgabe für dich bedeutet.", "Du machst einen konkreten Gegenvorschlag.", "Die Folgen sind genannt, ohne Drohung."],
     "musterantwort": "Ich habe gerade den Jahresabschluss und die Lieferantenverhandlungen auf dem Tisch, beides mit festen Terminen. Wenn ich die Messe dazunehme, leidet eines davon sichtbar. Mein Vorschlag: Ich übernehme die Messe, wenn die Verhandlungen bis Monatsende an jemand anderen gehen, oder wir geben die Messe an Lisa und ich unterstütze mit einem Tag. Dann bleibt keines der Themen auf halber Strecke liegen."
   },
   {
@@ -63,6 +68,7 @@
     "aufgabe": "Schreib die Antwort: erst das Gefühl anerkennen, dann Verantwortung übernehmen, dann den konkreten nächsten Schritt mit Termin. Keine Ausreden.",
     "techniken": ["labeling", "vier-seiten-modell"],
     "reflexion": ["Auf welches der vier Ohren hast du geantwortet?", "Würdest du dich als Kundin nach dieser Mail ernst genommen fühlen?"],
+    "kriterien": ["Zuerst wird das Gefühl des anderen anerkannt.", "Du übernimmst Verantwortung, ohne Ausrede.", "Der nächste Schritt hat einen konkreten Termin.", "Kein „aber“ nach der Entschuldigung."],
     "musterantwort": "Hallo Frau Kaya, Sie haben recht, eine Woche ohne Antwort ist zu lang, und ich verstehe, dass Sie verärgert sind. Ihre Anfrage ist bei uns liegen geblieben, das geht auf uns. Die Antwort zu Ihren drei Punkten bekommen Sie morgen bis 12 Uhr von mir persönlich."
   },
   {
@@ -73,7 +79,8 @@
     "situation": "Nächste Woche verhandelst du über etwas Wichtiges: Gehalt, Konditionen mit einem Lieferanten, einen Vertrag. Du merkst, dass du nervös bist und eigentlich nur hoffst, dass es gut ausgeht.",
     "aufgabe": "Schreibe auf: Was ist deine beste Alternative, wenn es keine Einigung gibt? Was vermutest du als Alternative der Gegenseite? Welches Ergebnis wäre für dich die Untergrenze?",
     "techniken": ["batna", "interessen-statt-positionen"],
-    "reflexion": ["Wie fühlst du dich, nachdem deine Alternative auf dem Papier steht?", "Kannst du deine Alternative noch verbessern, bevor das Gespräch stattfindet?"]
+    "reflexion": ["Wie fühlst du dich, nachdem deine Alternative auf dem Papier steht?", "Kannst du deine Alternative noch verbessern, bevor das Gespräch stattfindet?"],
+    "kriterien": ["Deine beste Alternative ist konkret und realistisch.", "Du hast eine Vermutung zur Alternative der Gegenseite.", "Deine Untergrenze ist klar beziffert oder beschrieben."]
   },
   {
     "id": "b08-kritik-im-meeting",
@@ -84,6 +91,7 @@
     "aufgabe": "Formuliere deine Antwort in zwei bis drei Sätzen: den wahren Kern anerkennen, nicht rechtfertigen, sachlich zurück zum Thema.",
     "techniken": ["fogging", "erwachsenen-ich"],
     "reflexion": ["Welcher Impuls kam zuerst: verteidigen, zurückschießen, einknicken?", "Bleibt mit deiner Antwort die Diskussion bei der Sache?"],
+    "kriterien": ["Du erkennst den wahren Kern der Kritik an.", "Du rechtfertigst dich nicht.", "Du führst sachlich zum Thema zurück.", "Zwei bis drei Sätze."],
     "musterantwort": "Kann gut sein, dass es ambitioniert ist, und die früheren Versuche sollten wir kennen. Was ist damals konkret gescheitert? Dann schauen wir, ob der Plan das schon berücksichtigt."
   },
   {
@@ -95,6 +103,7 @@
     "aufgabe": "Gib ihr zwei bis drei konkrete Vorschläge für die nächste Fassung, ohne die bestehende zu kritisieren.",
     "techniken": ["feedforward", "pyramidenprinzip"],
     "reflexion": ["Sind deine Vorschläge so konkret, dass sie sie sofort umsetzen kann?", "Hast du auch gesagt, was gut ist und bleiben soll?"],
+    "kriterien": ["Zwei bis drei Vorschläge, jeder für sich umsetzbar.", "Die Vorschläge zielen auf die nächste Fassung, nicht auf Fehler der jetzigen.", "Die wichtigste Zahl soll nach vorn (Kernaussage zuerst).", "Du sagst, was stark ist und bleiben soll."],
     "musterantwort": "Ich würde die Zahl von Folie 14 ganz nach vorn ziehen, als ersten Satz: Das ist die Geschichte. Danach drei Folien, die sie belegen, der Rest in den Anhang. Und der Kundenfall auf Folie 6 ist stark, den würde ich unbedingt drinlassen."
   },
   {
@@ -105,7 +114,8 @@
     "situation": "Denk an eine Zusammenarbeit, die immer wieder hakt: Jemand fragt ständig nach, ein anderer meldet sich immer seltener. Oder einer entscheidet schnell allein, der andere blockiert danach. Du bist selbst Teil davon.",
     "aufgabe": "Beschreibe den Kreislauf in vier Teilen: dein Verhalten, dein Inneres, das Verhalten des anderen, sein vermutetes Inneres. Wo könntest du aussteigen?",
     "techniken": ["teufelskreis", "metakommunikation"],
-    "reflexion": ["Hat sich dein Blick auf den anderen durch das Aufschreiben verändert?", "Was wäre ein erster kleiner Schritt, um den Kreis zu unterbrechen?"]
+    "reflexion": ["Hat sich dein Blick auf den anderen durch das Aufschreiben verändert?", "Was wäre ein erster kleiner Schritt, um den Kreis zu unterbrechen?"],
+    "kriterien": ["Alle vier Teile sind beschrieben: dein Verhalten, dein Inneres, sein Verhalten, sein vermutetes Inneres.", "Die Teile greifen sichtbar ineinander.", "Du benennst eine Stelle, an der du aussteigen kannst."]
   },
   {
     "id": "b11-dreimal-paraphrasieren",
@@ -176,6 +186,7 @@
     "aufgabe": "Formuliere, was du stattdessen sagst, in den vier Schritten: Beobachtung, Gefühl, Bedürfnis, Bitte.",
     "techniken": ["gewaltfreie-kommunikation", "ich-botschaften"],
     "reflexion": ["Ist deine Beobachtung frei von „immer“ und „nie“?", "Ist die Bitte konkret und erfüllbar?"],
+    "kriterien": ["Eine Beobachtung ohne Bewertung.", "Ein echtes Gefühl, kein verkleidetes Urteil wie „übergangen“.", "Ein Bedürfnis, das hinter dem Gefühl steht.", "Eine konkrete, erfüllbare Bitte."],
     "musterantwort": "Die Spülmaschine ist heute und gestern nicht ausgeräumt worden, obwohl diese Woche du dran bist. Ich bin genervt, weil ich mich darauf verlassen möchte, dass unsere Absprachen gelten. Kannst du sie heute Abend ausräumen, und können wir am Wochenende kurz schauen, ob die Aufteilung für dich so passt?"
   },
   {
@@ -187,6 +198,7 @@
     "aufgabe": "Schreib eine kurze, ehrliche Absage ohne Ausrede, die trotzdem zeigt, dass dir die Freunde wichtig sind.",
     "techniken": ["ich-botschaften", "pyramidenprinzip"],
     "reflexion": ["Wie fühlt sich die ehrliche Variante an im Vergleich zur Ausrede?", "Enthält die Absage etwas, das die Beziehung stärkt?"],
+    "kriterien": ["Die Absage ist klar, kein „vielleicht“.", "Keine Ausrede, der Grund ist ehrlich oder weggelassen.", "Du zeigst, dass dir die Freunde wichtig sind.", "Kurz gehalten."],
     "musterantwort": "Danke für die Einladung! Ich sage diesmal ab, nach der Woche brauche ich den Samstag für mich. Habt einen schönen Abend, und lasst uns bald was ausmachen, ich melde mich nächste Woche."
   },
   {
@@ -198,6 +210,7 @@
     "aufgabe": "Bereite vor, was du an seiner Tür sagst, als DESC-Skript: beschreiben, ausdrücken, konkret wünschen, Folgen.",
     "techniken": ["desc-skript", "ich-botschaften"],
     "reflexion": ["Ist dein Wunsch so konkret, dass er weiß, was zu tun ist?", "Klingt dein Text nach Gespräch oder nach Anzeige?"],
+    "kriterien": ["Du beschreibst die Lage sachlich (wann, wie oft).", "Du sagst, was es für dich bedeutet.", "Dein Wunsch ist konkret und erfüllbar.", "Die Folgen sind positiv oder neutral formuliert, ohne Drohung."],
     "musterantwort": "Hallo, ich wohne direkt unter Ihnen. Unter der Woche ist die Musik bei mir oft bis nach Mitternacht deutlich zu hören. Ich muss früh raus und schlafe dann schlecht. Wäre es möglich, dass es unter der Woche ab 22 Uhr leiser wird? Dann bin ich am Wochenende auch ganz entspannt, wenn es mal später wird."
   },
   {
@@ -209,6 +222,7 @@
     "aufgabe": "Schreib die vier möglichen Botschaften des Satzes auf (Sache, Selbstkundgabe, Beziehung, Appell). Dann formuliere eine Antwort, die auf die Selbstkundgabe eingeht.",
     "techniken": ["vier-seiten-modell", "aktives-zuhoeren"],
     "reflexion": ["Mit welchem Ohr hörst du solche Sätze normalerweise?", "Wie würde das Gespräch mit deiner neuen Antwort weitergehen?"],
+    "kriterien": ["Alle vier Botschaften sind aufgeschrieben: Sache, Selbstkundgabe, Beziehung, Appell.", "Deine Antwort geht auf die Selbstkundgabe ein.", "Die Antwort ist ohne Rechtfertigung."],
     "musterantwort": "Sache: Du nutzt gerade dein Handy. Selbstkundgabe: Ich fühle mich allein. Beziehung: Das Handy ist dir gerade wichtiger als ich. Appell: Leg es weg. Antwort: „Du hättest gern, dass wir den Abend zusammen verbringen, oder? Ich leg's weg.“"
   },
   {
@@ -219,7 +233,8 @@
     "situation": "Ein guter Freund fragt, ob du ihm einen größeren Betrag leihen kannst. Du könntest es dir leisten, hast aber ein ungutes Gefühl.",
     "aufgabe": "Lass drei bis vier innere Stimmen zu Wort kommen, je ein Satz. Formuliere dann eine klare Antwort an den Freund, die zu deiner Gesamthaltung passt.",
     "techniken": ["inneres-team", "ich-botschaften"],
-    "reflexion": ["Welche Stimme ist sonst die lauteste, und hat sie hier gewonnen?", "Kannst du hinter deiner Antwort stehen, auch wenn er enttäuscht ist?"]
+    "reflexion": ["Welche Stimme ist sonst die lauteste, und hat sie hier gewonnen?", "Kannst du hinter deiner Antwort stehen, auch wenn er enttäuscht ist?"],
+    "kriterien": ["Drei bis vier innere Stimmen, je ein Satz.", "Die Stimmen sind unterschiedlich, auch eine unbequeme ist dabei.", "Deine Antwort an den Freund ist klar.", "Die Antwort passt zu deiner Gesamthaltung."]
   },
   {
     "id": "p06-verkaeufer-telefon",
@@ -230,6 +245,7 @@
     "aufgabe": "Schreib den Dialog mit mindestens drei Einwänden des Anrufers. Deine Antwort bleibt jedes Mal derselbe kurze Satz.",
     "techniken": ["schallplatte"],
     "reflexion": ["Wie schwer fällt es dir, nicht auf Argumente einzugehen?", "Wo im echten Leben würde dir dieser Satz helfen?"],
+    "kriterien": ["Mindestens drei Einwände des Anrufers.", "Deine Antwort ist jedes Mal derselbe kurze Satz.", "Keine Begründung, keine Diskussion."],
     "musterantwort": "„Sie sparen garantiert.“ – „Danke, ich möchte keinen neuen Vertrag.“ – „Aber nur eine Minute!“ – „Verstehe. Ich möchte keinen neuen Vertrag.“ – „Andere Kunden sind begeistert.“ – „Schön für sie. Ich möchte keinen neuen Vertrag. Ich lege jetzt auf.“"
   },
   {
@@ -241,6 +257,7 @@
     "aufgabe": "Formuliere eine Antwort, die den wahren Kern anerkennt, sich nicht rechtfertigt und die Stimmung nicht kippen lässt.",
     "techniken": ["fogging", "erwachsenen-ich"],
     "reflexion": ["Welcher Ich-Zustand meldet sich bei dir bei diesem Satz?", "Steckt hinter dem Vorwurf ein Wunsch, den du ansprechen könntest?"],
+    "kriterien": ["Du erkennst den wahren Kern an.", "Du rechtfertigst dich nicht.", "Der Ton bleibt freundlich, die Stimmung kippt nicht."],
     "musterantwort": "„Stimmt, ich war dieses Jahr selten da. Schön, dass wir heute zusammensitzen. Lass uns nachher mal schauen, wann ich wieder vorbeikommen kann.“"
   },
   {
@@ -252,6 +269,7 @@
     "aufgabe": "Schreib ihr eine Nachricht: Was ist passiert, Verantwortung übernehmen ohne „aber“, zeigen, dass du verstehst, wie es bei ihr ankommt, und was du jetzt tust.",
     "techniken": ["gewaltfreie-kommunikation", "aktives-zuhoeren"],
     "reflexion": ["Enthält deine Nachricht eine Rechtfertigung, die du streichen könntest?", "Ist das Angebot am Ende ernst gemeint und konkret?"],
+    "kriterien": ["Du sagst klar, was passiert ist.", "Du übernimmst Verantwortung ohne „aber“.", "Du zeigst, dass du verstehst, wie es bei ihr ankommt.", "Du sagst, was du jetzt tust."],
     "musterantwort": "Ich habe deinen Geburtstag vergessen, und es tut mir ehrlich leid. Ich kann mir vorstellen, dass dich das enttäuscht hat, gerade von mir. Nachträglich alles Gute! Darf ich dich nächste Woche zum Essen einladen? Dienstag oder Donnerstag?"
   },
   {
@@ -343,6 +361,7 @@
     "aufgabe": "Schreib deine Wortmeldung als Fünfsatz. Leg zuerst den Zielsatz fest und schreib ihn ganz unten hin, dann Einstieg und drei Gedankenschritte darüber.",
     "techniken": ["fuenfsatz", "pyramidenprinzip"],
     "reflexion": ["Hast du den Zielsatz wirklich zuerst geschrieben?", "Führen alle drei Schritte auf dieses Ziel hin, oder ist einer nur Hintergrund?"],
+    "kriterien": ["Der Zielsatz steht am Ende und ist eine klare Bitte oder Empfehlung.", "Es gibt einen Einstieg, der zum Thema hinführt.", "Drei Gedankenschritte, die alle auf das Ziel hinarbeiten.", "Fünf Sätze, nicht mehr."],
     "musterantwort": "Unsere Freigaben für Angebote dauern im Schnitt vier Tage. Erstens liegt jedes Angebot bei drei Leuten nacheinander. Zweitens weiß keiner, wer gerade dran ist. Drittens springen uns Kunden ab, die schnell entscheiden wollen. Deshalb schlage ich vor: Bis 10 000 Euro gibt eine Person frei, und wir testen das ab nächster Woche für einen Monat."
   },
   {
@@ -384,6 +403,7 @@
     "aufgabe": "Schreib zwei Wenn-dann-Pläne für genau diese Situation. Die Dann-Hälfte muss eine Handlung sein, die du sofort ausführen kannst.",
     "techniken": ["wenn-dann-plan", "bewusste-pause"],
     "reflexion": ["Ist das Wenn konkret genug, dass du es im Moment erkennst?", "Ist das Dann klein genug, dass du es auch unter Druck schaffst?"],
+    "kriterien": ["Zwei Pläne, jeder im Muster „Wenn …, dann …“.", "Das Wenn ist eine konkrete, erkennbare Situation.", "Das Dann ist eine Handlung, die du sofort ausführen kannst."],
     "musterantwort": "Wenn mich im Meeting jemand unvermittelt nach meiner Meinung fragt, dann atme ich einmal aus und sage zuerst meinen Kernsatz in einem Satz. Wenn ich merke, dass ich den Faden verliere, dann sage ich: „Worum es mir geht, ist …“ und wiederhole meinen Kernsatz."
   },
   {

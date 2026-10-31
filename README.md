@@ -6,6 +6,7 @@ Persönliches tägliches Kommunikationstraining als Web-App (PWA). Läuft am Rec
 
 - **12-Wochen-Plan:** Roadmap in drei Phasen (Grundlagen, Struktur, echte Gespräche) mit Phasen- und Wochenzielen. Das tägliche Training ist geführt: Schritt für Schritt mit Weiter und Zurück, jeder Schritt bringt sein Werkzeug mit (Begriff, Thema oder Frage des Tages, Timer, Aufnahme, Redeschiene). Am ersten Tag einer Woche stellt ein Einstiegsschritt die Woche vor, fehlt die Messaufnahme, kommt sie als eigener Schritt dazu. Die Übersicht zeigt nur die aktuelle Woche und die Phasen zum Aufklappen; Messwerte, Redeschienen und Einstellungen liegen auf eigenen Seiten. Messaufnahme einmal pro Woche mit Füllwörtern pro Minute, Kernsatz und rotem Faden, Vergleich mit Woche 1.
 - **Challenge des Tages:** jeden Tag eine neue Aufgabe, gemischt aus beruflichen und privaten Situationen. Entweder schriftlich (Antwort formulieren, danach eine mögliche Musterformulierung ansehen) oder im Alltag (erledigen, abschließen, kurz reflektieren). Passt sie nicht, gibt es per Klick eine Alternative.
+- **Feedback zur Antwort:** Nach dem Abschließen einer Challenge gibt es automatische Hinweise (Satzanzahl gegen die Vorgabe, langer erster Satz, „aber“, „immer/nie“, „man“, „du bist“, Weichmacher), eine Checkliste mit den Kriterien der Aufgabe zum Abhaken und die Musterformulierung zum Vergleich. „Feedback von Claude holen“ öffnet Claude mit einer fertigen Anfrage (Situation, Aufgabe, Techniken, Kriterien, Antwort) und kopiert sie zusätzlich in die Zwischenablage; die Antwort lässt sich in der App speichern. Daten verlassen das Gerät nur beim Tippen auf den Knopf.
 - **Techniken:** Bibliothek mit 30 etablierten Kommunikationstechniken, jeweils mit Erklärung, Schritten, Beispiel, Übung, Merksatz und Quelle. Challenges verlinken die passenden Techniken.
 - **Tipps & Kniffe:** 40 kurze, sofort anwendbare Tricks, einer davon täglich als Tipp des Tages.
 - **Wiederholung:** Techniken aus abgeschlossenen Challenges kommen automatisch in den Wiederholungsplan, Techniken und Tipps lassen sich auch von Hand aufnehmen. Bewertung mit Nochmal, Schwer, Gut, Leicht; die Abstände wachsen (1 Tag, 3, 7, dann ca. das 2,5-Fache).
@@ -107,7 +108,8 @@ Nur Techniken mit belegbarer Quelle aufnehmen. Neue Kategorien erscheinen automa
   "aufgabe": "Was genau zu tun ist",
   "techniken": ["id-einer-technik"],
   "reflexion": ["Leitfrage 1", "Leitfrage 2"],
-  "musterantwort": "Optional, nur bei schriftlich: eine mögliche Formulierung"
+  "musterantwort": "Optional, nur bei schriftlich: eine mögliche Formulierung",
+  "kriterien": ["Pflicht bei schriftlich: prüfbare Aussagen für den Selbstcheck"]
 }
 ```
 
@@ -163,7 +165,8 @@ src/plan.js               12-Wochen-Plan: Woche aus Startdatum, Fortschritt, Mes
 src/recorder.js           Sprachaufnahme (MediaRecorder) und Ablage der Messaufnahmen (IndexedDB)
 src/store.js              Speichern, Export, Import, Prüfung importierter Daten
 src/dates.js              Datumsrechnung in lokalen Kalendertagen
-src/feedback.js           Erweiterungspunkt für Feedback
+src/feedback.js           Anfrage an Claude bauen, Erweiterungspunkt für Feedback per API
+src/selfcheck.js          automatische Hinweise zu schriftlichen Antworten
 content/                  Techniken, Challenges, Tipps, 12-Wochen-Plan
 tests/                    automatische Tests (node --test)
 server.mjs                lokaler Server ohne Abhängigkeiten
