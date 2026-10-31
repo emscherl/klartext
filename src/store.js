@@ -4,8 +4,10 @@
 //   entries[YYYY-MM-DD] { date, challengeId, bereich, typ, skips, answer, reflection, done, completedAt, feedback: [] }
 //   cards[key]          { key: "technik:<id>" | "tipp:<id>", addedAt, due, interval, ease, reps, lapses, lastReview }
 //   reviewLog[YYYY-MM-DD] Anzahl Wiederholungen
+//   lastBackup          YYYY-MM-DD der letzten Sicherung oder null
 //   plan                { start: YYYY-MM-DD | null, thema, days[YYYY-MM-DD] { week, done, note },
-//                         checks[Woche] { date, fuellwoerter, sekunden, kernsatz, klarheit, notiz } }
+//                         checks[Woche] { date, fuellwoerter, sekunden, kernsatz, klarheit, ruhe, notiz, gespraech } }
+//                         date = Tag der Messung; gespraech allein zählt nicht als Messung
 // Version 2 ergänzt plan; Sicherungen aus Version 1 werden ohne Plan übernommen.
 // feedback bleibt in Version 1 leer. Ein späterer Feedback-Dienst hängt seine Rückmeldungen
 // dort an ({ source, text, createdAt }), ohne dass sich das Format ändert.
@@ -16,7 +18,7 @@ export const STORAGE_KEY = 'klartext:v1';
 export const SCHEMA_VERSION = 2;
 export const APP_ID = 'klartext';
 
-export const defaultState = () => ({ version: SCHEMA_VERSION, entries: {}, cards: {}, reviewLog: {}, plan: defaultPlan() });
+export const defaultState = () => ({ version: SCHEMA_VERSION, entries: {}, cards: {}, reviewLog: {}, plan: defaultPlan(), lastBackup: null });
 
 export function createStore(storage) {
   return {
@@ -88,6 +90,7 @@ export function validate(data) {
     if (isDateKey(date) && Number.isFinite(n) && n >= 0) state.reviewLog[date] = n;
   }
   state.plan = validatePlan(obj(data.plan));
+  state.lastBackup = isDateKey(data.lastBackup) ? data.lastBackup : null;
   return state;
 }
 
@@ -108,7 +111,9 @@ function validatePlan(p) {
       sekunden: int(c.sekunden, 1, 3600),
       kernsatz: typeof c.kernsatz === 'boolean' ? c.kernsatz : null,
       klarheit: int(c.klarheit, 1, 10),
+      ruhe: int(c.ruhe, 1, 10),
       notiz: str(c.notiz),
+      gespraech: str(c.gespraech),
     };
   }
   return plan;

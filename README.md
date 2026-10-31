@@ -10,7 +10,8 @@ Persönliches tägliches Kommunikationstraining als Web-App (PWA). Läuft am Rec
 - **Tipps & Kniffe:** 40 kurze, sofort anwendbare Tricks, einer davon täglich als Tipp des Tages.
 - **Wiederholung:** Techniken aus abgeschlossenen Challenges kommen automatisch in den Wiederholungsplan, Techniken und Tipps lassen sich auch von Hand aufnehmen. Bewertung mit Nochmal, Schwer, Gut, Leicht; die Abstände wachsen (1 Tag, 3, 7, dann ca. das 2,5-Fache).
 - **Fortschritt:** Serie, längste Serie, erledigte Challenges, Kalender der letzten vier Wochen, alle Antworten und Reflexionen zum Nachlesen und Weiterbearbeiten.
-- **Sicherung:** Export als JSON-Datei, Import ersetzt den Stand auf dem Gerät.
+- **Sicherung:** „Jetzt sichern“ öffnet am Handy das Teilen-Menü (iCloud Drive, Dateien, Google Drive), am Rechner gibt es einen Download. Nach 7 Tagen ohne Sicherung erinnert die Startseite daran. Import ersetzt den Stand auf dem Gerät.
+- **Verlauf:** Kurven über die 12 Planwochen für Füllwörter pro Minute, roten Faden und Ruhe, zum Antippen; dazu die Gespräche, die besser liefen.
 
 Bedienung am Rechner in der Wiederholung: Leertaste deckt auf, 1 bis 4 bewertet.
 

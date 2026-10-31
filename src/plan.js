@@ -45,8 +45,14 @@ export function fillerRate(check) {
 // Messwerte aufsteigend nach Woche, nur Wochen mit mindestens einem Wert
 export function checkSeries(checks) {
   return Object.entries(checks)
-    .map(([w, c]) => ({ week: Number(w), rate: fillerRate(c), klarheit: Number.isFinite(c.klarheit) ? c.klarheit : null, kernsatz: typeof c.kernsatz === 'boolean' ? c.kernsatz : null }))
-    .filter(r => r.rate !== null || r.klarheit !== null || r.kernsatz !== null)
+    .map(([w, c]) => ({
+      week: Number(w),
+      rate: fillerRate(c),
+      klarheit: Number.isFinite(c.klarheit) ? c.klarheit : null,
+      ruhe: Number.isFinite(c.ruhe) ? c.ruhe : null,
+      kernsatz: typeof c.kernsatz === 'boolean' ? c.kernsatz : null,
+    }))
+    .filter(r => r.rate !== null || r.klarheit !== null || r.ruhe !== null || r.kernsatz !== null)
     .sort((a, b) => a.week - b.week);
 }
 
@@ -57,8 +63,20 @@ export function compareChecks(checks, fromWeek, toWeek) {
   const ra = fillerRate(a), rb = fillerRate(b);
   return {
     rate: ra !== null && rb !== null ? { from: ra, to: rb, diff: Math.round((rb - ra) * 10) / 10 } : null,
-    klarheit: Number.isFinite(a.klarheit) && Number.isFinite(b.klarheit) ? { from: a.klarheit, to: b.klarheit, diff: b.klarheit - a.klarheit } : null,
+    klarheit: scale(a.klarheit, b.klarheit),
+    ruhe: scale(a.ruhe, b.ruhe),
   };
+}
+
+const scale = (from, to) => (Number.isFinite(from) && Number.isFinite(to) ? { from, to, diff: to - from } : null);
+
+// Sicherung fällig: Daten vorhanden und noch nie oder vor mindestens 7 Tagen gesichert.
+// Rückgabe: null (nicht fällig) oder { days } (Tage seit der letzten Sicherung, null = noch nie)
+export function backupDue(lastBackup, today, hasData) {
+  if (!hasData) return null;
+  if (!lastBackup) return { days: null };
+  const days = diffDays(lastBackup, today);
+  return days >= 7 ? { days } : null;
 }
 
 // Impuls des Tages (Begriff, Thema, Frage) aus Textlisten; n = 0 ist der Tagesimpuls, n > 0 Alternativen.

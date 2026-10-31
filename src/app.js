@@ -5,7 +5,7 @@ import { GRADES, GRADE_LABELS, cardKey, newCard, gradeCard, nextInterval, dueCar
 import { createStore, exportState, importState } from './store.js';
 import { currentStreak, longestStreak, stats } from './progress.js';
 import { provider as feedbackProvider } from './feedback.js';
-import { WEEKS, defaultPlan, planPosition, weekDates, trainedDays, phaseOf, fillerRate, checkSeries, compareChecks, impulse, extendPlan } from './plan.js';
+import { WEEKS, defaultPlan, planPosition, weekDates, trainedDays, phaseOf, fillerRate, checkSeries, compareChecks, impulse, extendPlan, backupDue } from './plan.js';
 import { recordingSupported, startRecording, saveRecording, loadRecording, deleteRecording } from './recorder.js';
 
 const store = createStore(localStorage);
@@ -89,6 +89,7 @@ function viewHome() {
       <div class="big">${streak}</div>
       <div class="hero-meta"><strong>${streak === 1 ? 'Tag' : 'Tage'} in Folge</strong><span class="mono dim">${plural(done, 'Challenge', 'Challenges')} · ${due} fällig</span></div>
     </section>
+    ${backupNotice()}
     <section class="stack">
       <span class="label">${esc(formatDe(d))}</span>
       <ul class="rows">
@@ -329,8 +330,9 @@ function viewProgress() {
     </section>
     <section class="section">
       <span class="label">Daten</span>
-      <p>Alles liegt nur in diesem Browser auf diesem Gerät. Exportiere regelmäßig eine Sicherung, damit nichts verloren geht, und um den Stand auf ein anderes Gerät zu übertragen.</p>
-      <div class="row"><button class="btn grow" data-act="export">Sicherung exportieren</button>
+      <p>Alles liegt nur in diesem Browser auf diesem Gerät. Sichere einmal pro Woche, am Handy am besten über Teilen nach iCloud Drive oder Google Drive. Sprachaufnahmen sind nicht enthalten.</p>
+      <p class="mono">${S.lastBackup ? `Letzte Sicherung: ${esc(formatDe(S.lastBackup, false))}` : 'Noch nie gesichert'}</p>
+      <div class="row"><button class="btn grow" data-act="export">Jetzt sichern</button>
         <label class="btn grow filebtn">Sicherung importieren<input type="file" id="import" accept="application/json,.json"></label></div>
     </section>
     <section class="section" id="install">
@@ -345,14 +347,41 @@ function viewProgress() {
 
 const firstLine = s => { const t = (s || '').trim().split('\n')[0]; return t.length > 70 ? t.slice(0, 70) + ' …' : t; };
 
-function exportData() {
-  const blob = new Blob([exportState(S)], { type: 'application/json' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = `klartext-sicherung-${today()}.json`;
-  a.click();
-  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
-  toast('Sicherung exportiert.');
+// Am Handy über das Teilen-Menü (iCloud Drive, Dateien, Google Drive, Mail), sonst als Download.
+async function exportData() {
+  const name = `klartext-sicherung-${today()}.json`;
+  const json = exportState({ ...S, lastBackup: today() });
+  const file = new File([json], name, { type: 'application/json' });
+  if (coarse() && navigator.canShare?.({ files: [file] })) {
+    try {
+      await navigator.share({ files: [file], title: 'Klartext-Sicherung' });
+    } catch (err) {
+      if (err?.name === 'AbortError') return; // abgebrochen: nicht als gesichert zählen
+      toast(`Teilen fehlgeschlagen: ${err.message}`);
+      return;
+    }
+  } else {
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(file);
+    a.download = name;
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  }
+  S.lastBackup = today();
+  save();
+  render();
+  toast('Sicherung gespeichert.');
+}
+
+const hasData = () => Object.keys(S.entries).length > 0 || Object.keys(S.plan.days).length > 0 || Object.keys(S.plan.checks).length > 0;
+
+function backupNotice() {
+  const due = backupDue(S.lastBackup, today(), hasData());
+  if (!due) return '';
+  return `<section class="notice backup">
+      <p><b>Sicherung fällig.</b> ${due.days === null ? 'Du hast noch nie gesichert.' : `Letzte Sicherung vor ${due.days} Tagen.`} Deine Daten liegen nur auf diesem Gerät.</p>
+      <button class="btn" data-act="export">Jetzt sichern</button>
+    </section>`;
 }
 
 async function importData(file) {
@@ -550,6 +579,7 @@ function viewTraining(i) {
       <form id="plan-day" class="stack" autocomplete="off">
         <textarea class="field" name="note" rows="3" placeholder="Eine Sache reicht.">${esc(day?.note)}</textarea>
       </form>
+      ${planPosition(S.plan.start, d).day >= 5 ? gespraechField(week) : ''}
       <div class="stack"><span class="label">Heute im Alltag</span><p class="prose">${esc(w.transfer)}</p></div>
       ${t ? `<div class="tip" style="padding:0"><span class="label">Kniff</span><h3>${esc(t.titel)}</h3><p>${esc(t.text)}</p></div>` : ''}`;
   }
@@ -662,8 +692,18 @@ function checkForm(n) {
       <div class="stack"><span class="label">Kernsatz im ersten Satz?</span>
         <div class="chips">${[['ja', true], ['nein', false]].map(([l, v]) => `<button type="button" class="chip ${c.kernsatz === v ? 'on' : ''}" data-act="check-set" data-field="kernsatz" data-value="${v}">${l}</button>`).join('')}</div></div>
       <div class="stack"><span class="label">Roter Faden (1 bis 10)</span>
-        <div class="chips">${Array.from({ length: 10 }, (_, i) => i + 1).map(v => `<button type="button" class="chip num ${c.klarheit === v ? 'on' : ''}" data-act="check-set" data-field="klarheit" data-value="${v}">${v}</button>`).join('')}</div></div>
+        <div class="chips">${scaleChips(c, 'klarheit')}</div></div>
+      <div class="stack"><span class="label">Wie ruhig warst du? (1 bis 10)</span>
+        <div class="chips">${scaleChips(c, 'ruhe')}</div></div>
     </form>`;
+}
+
+const scaleChips = (c, field) => Array.from({ length: 10 }, (_, i) => i + 1)
+  .map(v => `<button type="button" class="chip num ${c[field] === v ? 'on' : ''}" data-act="check-set" data-field="${field}" data-value="${v}">${v}</button>`).join('');
+
+function gespraechField(week) {
+  return `<label class="lab"><span class="label">Gespräch der Woche, das besser lief als früher</span>
+    <textarea class="field" id="week-gespraech" data-week="${week}" rows="2" placeholder="Mit wem, worum ging es, was war anders?">${esc(S.plan.checks[week]?.gespraech)}</textarea></label>`;
 }
 
 function viewCheck(n) {
@@ -680,15 +720,16 @@ function viewCheck(n) {
     ${checkRecorder(n)}
     ${checkForm(n)}
     <label class="lab"><span class="label">Notiz</span><textarea class="field" id="check-notiz" data-week="${n}" rows="3" placeholder="Was fällt dir auf, verglichen mit früher?">${esc(c.notiz)}</textarea></label>
+    ${gespraechField(n)}
     ${cmp && (cmp.rate || cmp.klarheit) ? `<section class="stack"><span class="label">Seit Woche 1</span><p class="prose">${cmp.rate ? `Füllwörter pro Minute: ${fmtNum(cmp.rate.from)} → ${fmtNum(cmp.rate.to)}. ` : ''}${cmp.klarheit ? `Roter Faden: ${cmp.klarheit.from} → ${cmp.klarheit.to}.` : ''}</p></section>` : ''}
     <details class="more"><summary>So misst du</summary><div><p class="prose dim">${esc(C.plan.messung.text)}</p><ul class="prompts">${C.plan.messung.kriterien.map(k => `<li>${esc(k)}</li>`).join('')}</ul><p class="source">Aufnahmen bleiben nur auf diesem Gerät und sind nicht in der Sicherung enthalten.</p></div></details>`;
   hydrateAudio(n);
 }
 
 function setCheck(week, field, value) {
-  const c = S.plan.checks[week] || (S.plan.checks[week] = { date: null, fuellwoerter: null, sekunden: 60, kernsatz: null, klarheit: null, notiz: '' });
+  const c = S.plan.checks[week] || (S.plan.checks[week] = { date: null, fuellwoerter: null, sekunden: 60, kernsatz: null, klarheit: null, ruhe: null, notiz: '', gespraech: '' });
   c[field] = value;
-  c.date = today();
+  if (field !== 'gespraech') c.date = today();
   save();
 }
 
@@ -696,16 +737,49 @@ function setCheck(week, field, value) {
 function viewMeasures() {
   topBar('Messwerte', '#/plan');
   const rows = checkSeries(S.plan.checks);
-  if (!rows.length) { app.innerHTML = `<div class="empty"><p>Noch keine Messung. Die erste machst du im Training von Woche 1, sie ist dein Ausgangswert.</p></div>`; return; }
+  const talks = Object.entries(S.plan.checks).filter(([, c]) => c.gespraech?.trim()).sort((x, y) => x[0] - y[0]);
+  if (!rows.length && !talks.length) { app.innerHTML = `<div class="empty"><p>Noch keine Messung. Die erste machst du im Training von Woche 1, sie ist dein Ausgangswert.</p></div>`; return; }
   const cmp = rows.length > 1 ? compareChecks(S.plan.checks, rows[0].week, rows[rows.length - 1].week) : null;
-  const maxRate = Math.max(1, ...rows.map(r => r.rate || 0));
-  app.innerHTML = `<section class="stack" style="padding-top:12px"><span class="label">${esc(messThema())}</span>
-    ${cmp?.rate || cmp?.klarheit ? `<h2 class="headline">${cmp.rate ? `${fmtNum(cmp.rate.from)} → ${fmtNum(cmp.rate.to)} Füllwörter pro Minute` : `Roter Faden ${cmp.klarheit.from} → ${cmp.klarheit.to}`}</h2><p class="source">Woche ${rows[0].week} bis Woche ${rows[rows.length - 1].week}${cmp.rate && cmp.klarheit ? `, roter Faden ${cmp.klarheit.from} → ${cmp.klarheit.to}` : ''}.</p>` : ''}
-    <table class="measure"><thead><tr><th>Woche</th><th>Füllw./Min.</th><th>Kernsatz</th><th>Faden</th></tr></thead><tbody>
-    ${rows.map(r => `<tr><td class="mono"><a href="#/plan/messung/${r.week}">${r.week}</a></td>
-      <td><span class="mbar"><i style="width:${r.rate === null ? 0 : (r.rate / maxRate) * 100}%"></i></span><span class="mono">${fmtNum(r.rate)}</span></td>
-      <td class="mono">${r.kernsatz === null ? '–' : r.kernsatz ? 'ja' : 'nein'}</td><td class="mono">${r.klarheit ?? '–'}</td></tr>`).join('')}
-    </tbody></table></section>`;
+  const pts = key => rows.filter(r => r[key] !== null).map(r => ({ week: r.week, value: r[key] }));
+  const rate = pts('rate');
+  app.innerHTML = `
+    <section class="stack" style="padding-top:12px"><span class="label">${esc(messThema())}</span>
+      ${cmp?.rate ? `<h2 class="headline">${fmtNum(cmp.rate.from)} → ${fmtNum(cmp.rate.to)} Füllwörter pro Minute</h2><p class="source">Woche ${rows[0].week} bis Woche ${rows[rows.length - 1].week}.</p>` : '<p class="source">Ab der zweiten Messung siehst du hier deinen Verlauf.</p>'}
+    </section>
+    ${rate.length ? lineChart('rate', 'Füllwörter pro Minute', 'weniger ist besser', rate, 0, niceMax(Math.max(...rate.map(p => p.value)))) : ''}
+    ${pts('klarheit').length ? lineChart('klarheit', 'Roter Faden', 'Selbsteinschätzung 1 bis 10', pts('klarheit'), 0, 10) : ''}
+    ${pts('ruhe').length ? lineChart('ruhe', 'Ruhe', 'Selbsteinschätzung 1 bis 10', pts('ruhe'), 0, 10) : ''}
+    ${rows.length ? `<details class="more"><summary>Alle Werte als Tabelle</summary><div>
+      <table class="measure"><thead><tr><th>Woche</th><th>Füllw./Min.</th><th>Kernsatz</th><th>Faden</th><th>Ruhe</th></tr></thead><tbody>
+      ${rows.map(r => `<tr><td class="mono"><a href="#/plan/messung/${r.week}">${r.week}</a></td><td class="mono">${fmtNum(r.rate)}</td>
+        <td class="mono">${r.kernsatz === null ? '–' : r.kernsatz ? 'ja' : 'nein'}</td><td class="mono">${r.klarheit ?? '–'}</td><td class="mono">${r.ruhe ?? '–'}</td></tr>`).join('')}
+      </tbody></table></div></details>` : ''}
+    ${talks.length ? `<section class="stack"><span class="label">Gespräche, die besser liefen</span><ul class="rows">${talks.map(([w, c]) => `<li class="talk"><span class="mono dim">W${w}</span><p>${esc(c.gespraech)}</p></li>`).join('')}</ul></section>` : ''}`;
+}
+
+const niceMax = v => { const steps = [2, 4, 5, 10, 15, 20, 30, 40, 50, 100]; return steps.find(s => s >= v * 1.1) || Math.ceil(v / 50) * 50; };
+
+// Liniendiagramm über die 12 Planwochen: eine Reihe, Punkte zum Antippen, erster und letzter Wert direkt beschriftet.
+function lineChart(id, title, sub, pts, yMin, yMax) {
+  const W = 340, H = 168, L = 30, R = 14, T = 16, Bm = 26;
+  const x = w => L + ((w - 1) / (WEEKS - 1)) * (W - L - R);
+  const y = v => T + (1 - (v - yMin) / (yMax - yMin)) * (H - T - Bm);
+  const ticks = [yMin, (yMin + yMax) / 2, yMax];
+  const path = pts.map((p, i) => `${i ? 'L' : 'M'}${x(p.week).toFixed(1)},${y(p.value).toFixed(1)}`).join(' ');
+  const first = pts[0], last = pts[pts.length - 1];
+  const lab = (p, anchor) => `<text class="vlab" x="${x(p.week) + (anchor === 'end' ? -8 : 8)}" y="${y(p.value) - 9}" text-anchor="${anchor}">${fmtNum(p.value)}</text>`;
+  return `<section class="stack chart" data-chart="${id}">
+    <div class="chart-head"><b>${esc(title)}</b><span class="dim">${esc(sub)}</span></div>
+    <span class="chart-read mono" aria-live="polite">Punkt antippen für den Wert</span>
+    <svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(title)} nach Planwoche: ${pts.map(p => `Woche ${p.week} ${fmtNum(p.value)}`).join(', ')}">
+      ${ticks.map(t => `<line class="grid" x1="${L}" x2="${W - R}" y1="${y(t)}" y2="${y(t)}"/><text class="tick" x="${L - 6}" y="${y(t) + 4}" text-anchor="end">${fmtNum(t)}</text>`).join('')}
+      ${[1, 4, 8, 12].map(w => `<text class="tick" x="${x(w)}" y="${H - 6}" text-anchor="middle">W${w}</text>`).join('')}
+      ${pts.length > 1 ? `<path class="series" d="${path}"/>` : ''}
+      ${pts.map(p => `<circle class="dot" cx="${x(p.week)}" cy="${y(p.value)}" r="4.5"/>`).join('')}
+      ${lab(first, pts.length > 1 && x(last.week) - x(first.week) < 60 ? 'end' : 'start')}
+      ${pts.length > 1 ? lab(last, last.week > 10 ? 'end' : 'start') : ''}
+      ${pts.map(p => `<circle class="hit" cx="${x(p.week)}" cy="${y(p.value)}" r="16" data-act="chart-pt" data-label="Woche ${p.week}: ${fmtNum(p.value)}"><title>Woche ${p.week}: ${fmtNum(p.value)}</title></circle>`).join('')}
+    </svg></section>`;
 }
 
 function viewRails() {
@@ -882,7 +956,14 @@ document.addEventListener('click', e => {
   else if (act === 'export') exportData();
   else if (act === 'install' && installPrompt) installPrompt.prompt().then(() => installPrompt.userChoice).then(r => { if (r.outcome === 'accepted') { installPrompt = null; render(); } });
   else if (act === 'feedback') requestFeedback(el.dataset.date);
-  else if (act === 'impulse') { ui.impulseSkip[el.dataset.kind] = (ui.impulseSkip[el.dataset.kind] || 0) + 1; render(); }
+  else if (act === 'chart-pt') {
+    const box = el.closest('.chart');
+    const read = box.querySelector('.chart-read');
+    read.textContent = el.dataset.label;
+    read.classList.add('on');
+    box.querySelectorAll('.hit.on').forEach(h => h.classList.remove('on'));
+    el.classList.add('on');
+  } else if (act === 'impulse') { ui.impulseSkip[el.dataset.kind] = (ui.impulseSkip[el.dataset.kind] || 0) + 1; render(); }
   else if (act === 'timer') startTimer(Number(el.dataset.sec));
   else if (act === 'timer-stop') { stopTimer(); render(); }
   else if (act === 'rec-start') recStart(el.dataset.target);
@@ -931,6 +1012,7 @@ document.addEventListener('input', e => {
     const q = $('#tech-q'); q.focus(); q.setSelectionRange(pos, pos);
   } else if (e.target.form?.id === 'ch') onChallengeInput(e.target.form, e.target.name, e.target.value);
   else if (e.target.id === 'check-notiz') setCheck(Number(e.target.dataset.week), 'notiz', e.target.value);
+  else if (e.target.id === 'week-gespraech') setCheck(Number(e.target.dataset.week), 'gespraech', e.target.value);
   else if (e.target.id === 'plan-thema') { S.plan.thema = e.target.value.slice(0, 200); save(); }
   else if (e.target.form?.id === 'plan-day') { const d = planDay(today()); if (d) { d.note = e.target.value; save(); } }
   else if (e.target.form?.id === 'plan-check') {

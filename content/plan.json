@@ -27,12 +27,13 @@
   },
   "messung": {
     "standardthema": "Was ich beruflich mache und was mir daran wichtig ist",
-    "text": "Einmal pro Woche eine Messaufnahme: eine Minute zum immer gleichen Thema, ohne Vorbereitung. Danach anhören und vier Werte eintragen. Nur so siehst du, ob sich wirklich etwas verändert, denn das eigene Gefühl täuscht beim Sprechen oft.",
+    "text": "Einmal pro Woche eine Messaufnahme: eine Minute zum immer gleichen Thema, ohne Vorbereitung. Danach anhören und die Werte eintragen. Nur so siehst du, ob sich wirklich etwas verändert, denn das eigene Gefühl täuscht beim Sprechen oft.",
     "kriterien": [
       "Füllwörter: alle „äh“, „ähm“, „also“ usw. zählen",
       "Dauer in Sekunden, daraus rechnet die App Füllwörter pro Minute",
       "Kernsatz im ersten Satz: ja oder nein",
-      "Roter Faden: Selbsteinschätzung von 1 bis 10"
+      "Roter Faden: Selbsteinschätzung von 1 bis 10",
+      "Ruhe: Wie ruhig hast du dich beim Sprechen gefühlt, von 1 bis 10"
     ]
   },
   "phasen": [
