@@ -333,5 +333,107 @@
     "aufgabe": "Wenn dich heute ein Satz triggert: kurz durchatmen und mit einer sachlichen Frage antworten statt mit Verteidigung oder Gegenangriff.",
     "techniken": ["erwachsenen-ich", "fogging"],
     "reflexion": ["Was war der Auslöser, und was wolltest du zuerst antworten?", "Wie lief das Gespräch nach deiner sachlichen Frage weiter?"]
+  },
+  {
+    "id": "b17-fuenfsatz-meeting",
+    "titel": "Wortmeldung als Fünfsatz",
+    "bereich": "beruflich",
+    "typ": "schriftlich",
+    "situation": "Im nächsten Teammeeting geht es um ein Thema, zu dem du eine klare Meinung hast, zum Beispiel ein Ablauf, der Zeit kostet. Meist redest du dich dort in Fahrt und landest woanders als geplant.",
+    "aufgabe": "Schreib deine Wortmeldung als Fünfsatz. Leg zuerst den Zielsatz fest und schreib ihn ganz unten hin, dann Einstieg und drei Gedankenschritte darüber.",
+    "techniken": ["fuenfsatz", "pyramidenprinzip"],
+    "reflexion": ["Hast du den Zielsatz wirklich zuerst geschrieben?", "Führen alle drei Schritte auf dieses Ziel hin, oder ist einer nur Hintergrund?"],
+    "musterantwort": "Unsere Freigaben für Angebote dauern im Schnitt vier Tage. Erstens liegt jedes Angebot bei drei Leuten nacheinander. Zweitens weiß keiner, wer gerade dran ist. Drittens springen uns Kunden ab, die schnell entscheiden wollen. Deshalb schlage ich vor: Bis 10 000 Euro gibt eine Person frei, und wir testen das ab nächster Woche für einen Monat."
+  },
+  {
+    "id": "b18-statusfrage-flur",
+    "titel": "Statusfrage im Flur",
+    "bereich": "beruflich",
+    "typ": "alltag",
+    "situation": "Jemand fragt dich spontan nach dem Stand eines Projekts, zwischen Tür und Angel oder zu Beginn eines Calls. Normalerweise erzählst du dann chronologisch, was alles passiert ist.",
+    "aufgabe": "Antworte heute auf mindestens eine solche Frage in genau drei Sätzen: Was ist der Stand? Was heißt das für dein Gegenüber? Was ist der nächste Schritt?",
+    "techniken": ["was-na-und-was-jetzt", "pyramidenprinzip"],
+    "reflexion": ["Welcher der drei Sätze fiel dir am schwersten?", "Hat dein Gegenüber nachgefragt, und wenn ja, wonach?"]
+  },
+  {
+    "id": "b19-praesentation-ohne-zettel",
+    "titel": "Drei Punkte ohne Zettel",
+    "bereich": "beruflich",
+    "typ": "alltag",
+    "situation": "Du sollst demnächst in einer Runde kurz etwas vorstellen, ein Ergebnis, ein Vorhaben oder ein Update. Mit Folien und Zettel verlierst du leicht den Blickkontakt.",
+    "aufgabe": "Lege die drei Kernpunkte an drei Stationen eines Wegs, den du gut kennst. Sprich den Beitrag zweimal zur Probe ohne Zettel, einmal davon mit Aufnahme, und halte ihn dann so.",
+    "techniken": ["loci-methode", "fuenfsatz"],
+    "reflexion": ["Welche Bilder hast du an welche Orte gelegt?", "Wo hat der Weg im Kopf getragen, wo hat er gehakt?"]
+  },
+  {
+    "id": "b20-nervoeser-termin",
+    "titel": "Vor dem wichtigen Termin",
+    "bereich": "beruflich",
+    "typ": "alltag",
+    "situation": "Dir steht ein Gespräch bevor, das dich nervös macht: Verhandlung, Präsentation vor Entscheidern, ein schwieriges Mitarbeitergespräch.",
+    "aufgabe": "Direkt vorher: zweimal zyklisch seufzen (doppelt ein, lang aus), dann einmal bewusst sagen „Ich bin gespannt“. Steig mit einem vorher festgelegten ersten Satz ein.",
+    "techniken": ["ausatmen-beruhigen", "aufregung-umdeuten"],
+    "reflexion": ["Wie hat sich die Anspannung vor und nach den Atemzügen angefühlt?", "Wie lief der erste Satz, wie die erste Minute?"]
+  },
+  {
+    "id": "b21-wenn-dann-meeting",
+    "titel": "Der Wenn-dann-Satz fürs Meeting",
+    "bereich": "beruflich",
+    "typ": "schriftlich",
+    "situation": "Es gibt eine wiederkehrende Situation, in der du ins Schwimmen gerätst: Du wirst plötzlich nach deiner Meinung gefragt, jemand unterbricht dich oder du sollst etwas zusammenfassen.",
+    "aufgabe": "Schreib zwei Wenn-dann-Pläne für genau diese Situation. Die Dann-Hälfte muss eine Handlung sein, die du sofort ausführen kannst.",
+    "techniken": ["wenn-dann-plan", "bewusste-pause"],
+    "reflexion": ["Ist das Wenn konkret genug, dass du es im Moment erkennst?", "Ist das Dann klein genug, dass du es auch unter Druck schaffst?"],
+    "musterantwort": "Wenn mich im Meeting jemand unvermittelt nach meiner Meinung fragt, dann atme ich einmal aus und sage zuerst meinen Kernsatz in einem Satz. Wenn ich merke, dass ich den Faden verliere, dann sage ich: „Worum es mir geht, ist …“ und wiederhole meinen Kernsatz."
+  },
+  {
+    "id": "b22-fuellwort-jagd",
+    "titel": "Ein Füllwort weniger",
+    "bereich": "beruflich",
+    "typ": "alltag",
+    "situation": "In deinen Aufnahmen taucht ein Füllwort immer wieder auf, etwa „also“, „ähm“, „quasi“ oder „sozusagen“.",
+    "aufgabe": "Achte heute in jedem Gespräch nur auf dieses eine Wort. Wenn du es kommen spürst, mach stattdessen eine kurze Pause. Am Abend: eine Minute aufnehmen und zählen.",
+    "techniken": ["bewusste-pause", "gezieltes-ueben"],
+    "reflexion": ["Wie oft kam das Wort in der Abendaufnahme vor?", "In welchen Momenten taucht es besonders oft auf?"]
+  },
+  {
+    "id": "p17-erlebnis-abt",
+    "titel": "Ein Erlebnis in drei Sätzen",
+    "bereich": "privat",
+    "typ": "alltag",
+    "situation": "Beim Abendessen oder am Telefon fragt dich jemand, wie dein Tag war. Meist zählst du dann auf, was alles passiert ist.",
+    "aufgabe": "Erzähl ein Erlebnis des Tages nach dem Muster und, aber, deshalb. Erst in drei Sätzen, dann darfst du ausschmücken.",
+    "techniken": ["und-aber-deshalb"],
+    "reflexion": ["Was war dein „aber“?", "Hat die kurze Version mehr Nachfragen ausgelöst als sonst?"]
+  },
+  {
+    "id": "p18-meinung-bbb",
+    "titel": "Meinung in einer Minute",
+    "bereich": "privat",
+    "typ": "alltag",
+    "situation": "Im Freundeskreis oder in der Familie kommt ein Thema auf, zu dem du eine Meinung hast: ein Film, eine Nachricht, eine Urlaubsidee.",
+    "aufgabe": "Sag deine Meinung bewusst nach BBB: Behauptung, Begründung, ein konkretes Beispiel, Behauptung noch einmal. Höchstens eine Minute, vorher eine Sekunde Pause.",
+    "techniken": ["bbb-prep", "bewusste-pause"],
+    "reflexion": ["Hast du die Behauptung am Ende wiederholt?", "Wie haben die anderen reagiert, eher auf die Begründung oder auf das Beispiel?"]
+  },
+  {
+    "id": "p19-aufnahme-vergleich",
+    "titel": "Hör dir selbst zu",
+    "bereich": "privat",
+    "typ": "alltag",
+    "situation": "Du weißt nicht genau, wie du klingst, wenn du frei sprichst. Das eigene Gefühl täuscht oft, beim Tempo wie bei Füllwörtern.",
+    "aufgabe": "Sprich eine Minute über ein Hobby oder einen Ort, den du magst, und nimm es auf. Hör es an, notier eine Stärke und eine Sache, die du ändern willst. Dann noch einmal aufnehmen.",
+    "techniken": ["gezieltes-ueben"],
+    "reflexion": ["Was hat dich an der Aufnahme überrascht?", "Was war im zweiten Durchgang besser?"]
+  },
+  {
+    "id": "p20-ruhig-ins-telefonat",
+    "titel": "Ruhig ins unangenehme Telefonat",
+    "bereich": "privat",
+    "typ": "alltag",
+    "situation": "Ein Anruf steht an, den du vor dir herschiebst: Reklamation, Behörde, ein Gespräch mit Familie, das heikel werden kann.",
+    "aufgabe": "Schreib dir vorher dein Ziel in einem Satz auf. Dann zweimal zyklisch seufzen, „Ich bin gespannt“ sagen und anrufen. Starte mit deinem Zielsatz.",
+    "techniken": ["ausatmen-beruhigen", "aufregung-umdeuten", "pyramidenprinzip"],
+    "reflexion": ["Hast du dein Ziel im ersten oder zweiten Satz genannt?", "Was war anders als bei ähnlichen Anrufen sonst?"]
   }
 ]

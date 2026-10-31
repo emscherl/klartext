@@ -1,10 +1,10 @@
 // Offline zuerst aus dem Cache, im Hintergrund wird jede Datei neu geladen (wie bei Recall).
 // Neue Inhalte in content/ kommen so ohne Versionswechsel beim nächsten Start an.
-const CACHE = 'klartext-v2';
+const CACHE = 'klartext-v3';
 const ASSETS = [
   './', 'index.html', 'style.css', 'manifest.webmanifest',
-  'src/app.js', 'src/dates.js', 'src/daily.js', 'src/srs.js', 'src/store.js', 'src/progress.js', 'src/feedback.js',
-  'content/techniken.json', 'content/challenges.json', 'content/tipps.json',
+  'src/app.js', 'src/dates.js', 'src/daily.js', 'src/srs.js', 'src/store.js', 'src/progress.js', 'src/feedback.js', 'src/plan.js', 'src/recorder.js',
+  'content/techniken.json', 'content/challenges.json', 'content/tipps.json', 'content/plan.json',
   'fonts/Geist-Variable.woff2', 'fonts/GeistMono-Variable.woff2',
   'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/icon-maskable-512.png', 'icons/apple-touch-icon.png',
 ];

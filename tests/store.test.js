@@ -75,3 +75,27 @@ test('Import verwirft ungültiges completedAt und kaputte Feedback-Einträge', (
   assert.equal(e.completedAt, null);
   assert.deepEqual(e.feedback, [{ text: 'ok' }]);
 });
+
+test('Plan bleibt über Export und Import erhalten', () => {
+  const s = sample();
+  s.plan = { start: '2026-11-02', thema: 'Mein Job', days: { '2026-11-02': { week: 1, done: true, note: 'langsamer' } }, checks: { 1: { date: '2026-11-02', fuellwoerter: 11, sekunden: 62, kernsatz: false, klarheit: 4, notiz: '' } } };
+  assert.deepEqual(importState(exportState(s)), s);
+});
+
+test('Sicherung aus Version 1 ohne Plan wird mit leerem Plan übernommen', () => {
+  const data = JSON.parse(exportState(sample()));
+  delete data.plan; data.version = 1;
+  assert.deepEqual(importState(JSON.stringify(data)).plan, { start: null, thema: '', days: {}, checks: {} });
+});
+
+test('Import verwirft ungültige Plandaten', () => {
+  const data = JSON.parse(exportState(sample()));
+  data.plan = { start: 'bald', days: { '2026-11-02': { week: 13, done: true }, 'x': { week: 1 }, '2026-11-03': { week: 1, done: 'ja' } },
+    checks: { 0: { fuellwoerter: 1 }, '1.5': {}, 2: { fuellwoerter: -3, sekunden: 0, kernsatz: 'ja', klarheit: 11 } } };
+  const p = importState(JSON.stringify(data)).plan;
+  assert.equal(p.start, null);
+  assert.deepEqual(Object.keys(p.days), ['2026-11-03']);
+  assert.equal(p.days['2026-11-03'].done, false);
+  assert.deepEqual(Object.keys(p.checks), ['2']);
+  assert.deepEqual(p.checks[2], { date: null, fuellwoerter: null, sekunden: null, kernsatz: null, klarheit: null, notiz: '' });
+});

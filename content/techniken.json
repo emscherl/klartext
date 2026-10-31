@@ -338,5 +338,172 @@
     "beispiel": "Sie kontrolliert nach (Verhalten), weil sie sich Sorgen um den Termin macht (innen). Er zieht sich zurück und meldet sich seltener (Verhalten), weil er sich bevormundet fühlt (innen). Dadurch wächst ihre Sorge, und sie kontrolliert mehr.",
     "uebung": "Zeichne einen Teufelskreis aus deinem Leben auf, in dem du selbst eine Rolle spielst. Wo könntest du aussteigen?",
     "merksatz": "Nicht Schuld suchen, sondern den Kreis sehen und an der eigenen Stelle aussteigen."
+  },
+  {
+    "id": "fuenfsatz",
+    "name": "Fünfsatz",
+    "kategorie": "Sprechen",
+    "urheber": "Hellmut Geißner (Sprechwissenschaft), aufbauend auf der antiken Gliederungslehre",
+    "quelle": "Geißner, H. (1986): Rhetorik und politische Bildung. 3. Auflage. Scriptor. Das Fünfsatz-Konzept führte Geißner Ende der 1960er-Jahre in die deutsche Redepädagogik ein.",
+    "kurz": "Ein Redebeitrag aus fünf Schritten: Einstieg, drei Gedankenschritte, Zielsatz. Entscheidend ist die Reihenfolge beim Vorbereiten: Der fünfte Satz, also das Ziel, wird zuerst festgelegt. Alles davor arbeitet auf diesen Satz hin.",
+    "schritte": [
+      "Zuerst den Zielsatz festlegen: Was soll der andere am Ende denken oder tun?",
+      "Einstieg wählen, der zum Thema hinführt (Anlass, Frage, Beobachtung).",
+      "Drei Gedankenschritte, die zum Ziel führen. Je nach Thema: drei Argumente, Vergangenheit – Gegenwart – Zukunft oder Situation – Problem – Lösung.",
+      "Mit dem Zielsatz schließen, als klare Bitte, Empfehlung oder nächster Schritt."
+    ],
+    "beispiel": "„Wir verlieren bei Angeboten gerade viel Zeit. Erstens schreiben wir jedes Angebot neu. Zweitens fehlen uns aktuelle Preise an einer Stelle. Drittens wartet der Vertrieb oft zwei Tage auf die Technik. Deshalb schlage ich vor, dass wir bis Monatsende eine Vorlage mit Preisliste bauen.“",
+    "uebung": "Bereite deine nächste Wortmeldung im Meeting als Fünfsatz vor: erst den Zielsatz aufschreiben, dann drei Stichworte davor.",
+    "merksatz": "Erst das Ziel, dann drei Schritte dorthin, am Ende das Ziel aussprechen."
+  },
+  {
+    "id": "bbb-prep",
+    "name": "Behauptung, Begründung, Beispiel (BBB)",
+    "kategorie": "Sprechen",
+    "urheber": "Ohne einzelnen Urheber; im Englischen als PREP (Point, Reason, Example, Point) verbreitet",
+    "quelle": "Als PREP u. a. in Toastmasters-Material und bei Abrahams, M. (2023): Think Faster, Talk Smarter. Simon Element. In der Sache eine Kurzform des Fünfsatzes (Geißner 1986). Eine wissenschaftliche Erstquelle gibt es nicht.",
+    "kurz": "Das kleinste brauchbare Gerüst für eine Meinung: Behauptung, Begründung, Beispiel, zum Schluss die Behauptung noch einmal. Passt in 30 bis 60 Sekunden und trägt fast jede spontane Antwort.",
+    "schritte": [
+      "Behauptung: deine Aussage in einem Satz.",
+      "Begründung: warum das so ist, ein Grund reicht.",
+      "Beispiel: ein konkreter Fall, eine Zahl oder ein Erlebnis.",
+      "Schluss: Behauptung wiederholen, gern mit anderen Worten."
+    ],
+    "beispiel": "„Wir sollten das Kick-off vor Ort machen. Bei neuen Teams entsteht Vertrauen schneller im selben Raum. Beim letzten Projekt hat ein Tag zusammen mehr geklärt als drei Wochen Videocalls. Also: ein Tag vor Ort zum Start.“",
+    "uebung": "Nimm dir drei Alltagsthemen und sprich zu jedem eine BBB-Antwort von höchstens einer Minute ins Handy.",
+    "merksatz": "Behauptung, weil, zum Beispiel, also."
+  },
+  {
+    "id": "was-na-und-was-jetzt",
+    "name": "Was? Na und? Was jetzt?",
+    "kategorie": "Sprechen",
+    "urheber": "Matt Abrahams (Stanford Graduate School of Business)",
+    "quelle": "Abrahams, M. (2023): Think Faster, Talk Smarter. How to Speak Successfully When You're Put on the Spot. Simon Element",
+    "kurz": "Eine Schiene für Antworten aus dem Stand: erst sagen, worum es geht, dann warum es für den Zuhörer wichtig ist, dann was als Nächstes passieren soll. Die mittlere Frage zwingt dich, aus Sicht des Gegenübers zu sprechen.",
+    "schritte": [
+      "Was? Die Sache, Idee oder der Stand in einem Satz.",
+      "Na und? Warum das für dein Gegenüber zählt: Nutzen, Risiko, Folge.",
+      "Was jetzt? Der nächste Schritt, eine Bitte oder eine Frage."
+    ],
+    "beispiel": "Chef fragt im Flur nach dem Stand: „Der Prototyp ist fertig. Damit können wir die Kundentermine im November halten. Ich brauche bis Freitag dein Okay für die Testkosten.“",
+    "uebung": "Beantworte heute jede Statusfrage, die du bekommst, mit genau drei Sätzen nach Was, Na und, Was jetzt.",
+    "merksatz": "Sache, Bedeutung für dich, nächster Schritt."
+  },
+  {
+    "id": "und-aber-deshalb",
+    "name": "Und, Aber, Deshalb (ABT)",
+    "kategorie": "Sprechen",
+    "urheber": "Randy Olson",
+    "quelle": "Olson, R. (2015): Houston, We Have a Narrative. Why Science Needs Story. University of Chicago Press",
+    "kurz": "Die kürzeste Form einer Geschichte: Ausgangslage mit „und“, Wendung mit „aber“, Folge mit „deshalb“. Das „aber“ erzeugt Spannung, das „deshalb“ gibt Richtung. Gut, um ein Erlebnis oder ein Projekt in einem Atemzug zu erzählen.",
+    "schritte": [
+      "Und: Ausgangslage, die beide Seiten teilen (wer, wo, was lief).",
+      "Aber: das Problem oder die Überraschung.",
+      "Deshalb: was daraus folgte oder was jetzt zu tun ist."
+    ],
+    "beispiel": "„Wir hatten den Termin beim Kunden gut vorbereitet und die Präsentation stand. Aber zehn Minuten vorher fiel der Beamer aus. Deshalb haben wir frei am Whiteboard erklärt, und genau das kam am besten an.“",
+    "uebung": "Erzähle heute ein Erlebnis vom Tag in drei Sätzen mit und, aber, deshalb. Danach dieselbe Geschichte ausführlicher, das Gerüst bleibt.",
+    "merksatz": "Und, aber, deshalb: Lage, Wendung, Folge."
+  },
+  {
+    "id": "loci-methode",
+    "name": "Loci-Methode (Gedächtnispalast)",
+    "kategorie": "Sprechen",
+    "urheber": "Antike Gedächtniskunst (überliefert bei Cicero und Quintilian)",
+    "quelle": "Yates, F. A. (1966): The Art of Memory. Routledge & Kegan Paul; Wirksamkeit: Dresler, M. et al. (2017): Mnemonic Training Reshapes Brain Networks to Support Superior Memory. Neuron 93(5), 1227–1235",
+    "kurz": "Du legst jeden Punkt deiner Rede an einen festen Ort auf einem vertrauten Weg, etwa durch deine Wohnung. Beim Sprechen gehst du den Weg im Kopf ab und findest die Punkte in der richtigen Reihenfolge wieder. In der Studie von Dresler und Kollegen verbesserten Ungeübte nach sechs Wochen Training (40 Einheiten à 30 Minuten) ihre Merkleistung deutlich.",
+    "schritte": [
+      "Einen Weg mit festen Stationen wählen, den du blind kennst (Haustür, Flur, Küche …).",
+      "Jeden Redepunkt in ein Bild übersetzen.",
+      "Jedes Bild an eine Station legen, übertrieben und gern absurd.",
+      "Beim Üben und Vortragen den Weg im Kopf abgehen."
+    ],
+    "beispiel": "Drei Punkte für ein Teammeeting: An der Haustür liegt ein Stapel Angebote (Vertrieb), im Flur steht ein Prototyp (Technik), in der Küche klebt ein Kalender mit rotem Kreis (Termin).",
+    "uebung": "Lege die drei Punkte deines nächsten Beitrags an drei Stationen deiner Wohnung und sprich ihn ohne Zettel.",
+    "merksatz": "Jeder Punkt hat einen Ort, die Rede ist ein Spaziergang."
+  },
+  {
+    "id": "bewusste-pause",
+    "name": "Bewusste Pause statt Füllwort",
+    "kategorie": "Sprechen",
+    "urheber": "Sprechwissenschaft; Forschung zu Füllwörtern u. a. von Herbert H. Clark und Nicholas Christenfeld",
+    "quelle": "Clark, H. H. & Fox Tree, J. E. (2002): Using uh and um in spontaneous speaking. Cognition 84(1), 73–111; Christenfeld, N. (1995): Does it hurt to say um? Journal of Nonverbal Behavior 19, 171–186",
+    "kurz": "„Äh“ und „ähm“ zeigen, dass du gerade planst. Sie sind normal und schaden einzeln kaum, die Forschung ist hier gelassener als viele Rhetorikratgeber. Gehäuft lenken sie ab. Eine stille Pause erfüllt denselben Zweck: Du gewinnst Zeit, der Zuhörer kann mitdenken. Ziel ist also weniger statt null.",
+    "schritte": [
+      "Aufnahme anhören und dein häufigstes Füllwort finden.",
+      "Nur dieses eine Füllwort eine Woche lang durch eine stille Pause ersetzen.",
+      "Pausen bewusst setzen: nach dem Kernsatz, vor einer Zahl, am Satzende.",
+      "Wieder aufnehmen und zählen, dann das nächste Füllwort."
+    ],
+    "beispiel": "Statt „Also, ähm, ich glaube, ähm, wir sollten …“: „Ich schlage vor … [Pause] … wir verschieben den Start um eine Woche.“",
+    "uebung": "Sprich eine Minute über deinen Tag. Jedes Mal, wenn du ein Füllwort merkst, mach stattdessen eine Sekunde Pause und sprich weiter.",
+    "merksatz": "Pause statt äh: Die Stille arbeitet für mich."
+  },
+  {
+    "id": "aufregung-umdeuten",
+    "name": "Aufregung umdeuten",
+    "kategorie": "Selbstklärung",
+    "urheber": "Alison Wood Brooks (Harvard Business School)",
+    "quelle": "Brooks, A. W. (2014): Get Excited. Reappraising Pre-Performance Anxiety as Excitement. Journal of Experimental Psychology: General 143(3), 1144–1158",
+    "kurz": "Nervosität und Vorfreude fühlen sich körperlich fast gleich an. Sich zu beruhigen klappt kurz vor dem Auftritt selten. Leichter ist es, die Erregung umzudeuten: „Ich bin gespannt.“ In Brooks' Experimenten wurden Teilnehmende, die das laut zu sich sagten, beim Reden als überzeugender bewertet. Die Nervosität verschwand dabei nicht, sie wurde nutzbar.",
+    "schritte": [
+      "Die Anspannung bemerken, ohne sie wegzudrücken.",
+      "Laut oder leise sagen: „Ich bin gespannt.“ oder „Ich freu mich drauf.“",
+      "Den Blick auf das richten, was gelingen kann, nicht auf das, was schiefgehen könnte."
+    ],
+    "beispiel": "Vor dem Gespräch mit dem Investor: Herz klopft, Hände kalt. Statt „Bleib ruhig“ sagst du dir: „Ich bin gespannt, was die zu unserem Plan sagen.“",
+    "uebung": "Sag vor deinem nächsten Gespräch, das dich nervös macht, einmal bewusst „Ich bin gespannt“ und notiere danach, wie der Einstieg lief.",
+    "merksatz": "Nicht beruhigen, umdeuten: Ich bin gespannt."
+  },
+  {
+    "id": "ausatmen-beruhigen",
+    "name": "Langes Ausatmen (zyklisches Seufzen)",
+    "kategorie": "Selbstklärung",
+    "urheber": "Melis Yilmaz Balban, David Spiegel, Andrew Huberman u. a. (Stanford)",
+    "quelle": "Balban, M. Y. et al. (2023): Brief structured respiration practices enhance mood and reduce physiological arousal. Cell Reports Medicine 4(1), 100895",
+    "kurz": "Ein langer Ausatem bremst die Erregung. Beim zyklischen Seufzen atmest du durch die Nase ein, setzt einen kurzen zweiten Atemzug obendrauf und atmest lange durch den Mund aus. In der Studie verbesserte das tägliche Üben über einen Monat die Stimmung und senkte die Atemfrequenz in Ruhe, etwas stärker als Achtsamkeitsmeditation. Vor dem Sprechen hilft es, ruhig und langsam anzufangen.",
+    "schritte": [
+      "Durch die Nase tief einatmen.",
+      "Ohne auszuatmen noch einmal kurz nachatmen, bis die Lunge ganz voll ist.",
+      "Langsam durch den Mund ausatmen, länger als das Einatmen.",
+      "Zwei- bis dreimal wiederholen, vor einem Gespräch reicht das."
+    ],
+    "beispiel": "Vor der Wortmeldung im großen Meeting: zweimal zyklisch seufzen, dann mit dem vorbereiteten ersten Satz einsteigen.",
+    "uebung": "Mach vor dem täglichen Sprechtraining drei Atemzüge zyklisches Seufzen und starte erst dann die Aufnahme.",
+    "merksatz": "Doppelt ein, lang aus, dann sprechen."
+  },
+  {
+    "id": "wenn-dann-plan",
+    "name": "Wenn-dann-Plan",
+    "kategorie": "Selbstklärung",
+    "urheber": "Peter M. Gollwitzer",
+    "quelle": "Gollwitzer, P. M. (1999): Implementation Intentions. Strong Effects of Simple Plans. American Psychologist 54(7), 493–503",
+    "kurz": "Gute Vorsätze scheitern im entscheidenden Moment. Ein Wenn-dann-Plan legt vorher fest, wann und wie du handelst: „Wenn X passiert, dann tue ich Y.“ Die Situation wird so selbst zum Auslöser, du musst nicht mehr daran denken.",
+    "schritte": [
+      "Das Ziel benennen (z. B. in Meetings mit dem Kernsatz beginnen).",
+      "Die konkrete Situation festlegen, in der es zählt.",
+      "Die Handlung so konkret formulieren, dass du sie sofort tun kannst.",
+      "Als Satz aufschreiben: „Wenn …, dann …“."
+    ],
+    "beispiel": "„Wenn mich im Meeting jemand nach meiner Meinung fragt, dann atme ich einmal aus und sage zuerst meinen Kernsatz.“",
+    "uebung": "Schreib für diese Woche einen Wenn-dann-Plan für eine Situation, in der du sonst den Faden verlierst.",
+    "merksatz": "Wenn die Situation kommt, weiß ich schon, was ich tue."
+  },
+  {
+    "id": "gezieltes-ueben",
+    "name": "Gezieltes Üben mit Aufnahme",
+    "kategorie": "Sprechen",
+    "urheber": "K. Anders Ericsson",
+    "quelle": "Ericsson, K. A., Krampe, R. T. & Tesch-Römer, C. (1993): The Role of Deliberate Practice in the Acquisition of Expert Performance. Psychological Review 100(3), 363–406",
+    "kurz": "Besser wird man nicht durch viel Reden, sondern durch Üben mit klarem Teilziel und sofortiger Rückmeldung. Die Handyaufnahme ist dein Trainer: Sie zeigt, was wirklich ankam. Pro Durchgang nur einen Punkt verbessern, dann wiederholen.",
+    "schritte": [
+      "Ein Teilziel für heute festlegen (z. B. Kernsatz im ersten Satz).",
+      "Kurz sprechen und aufnehmen, 1 bis 3 Minuten.",
+      "Anhören und nur am Teilziel messen.",
+      "Eine Sache notieren, die du morgen anders machst, und den Durchgang wiederholen."
+    ],
+    "beispiel": "Teilziel „weniger ‚also‘“: Aufnahme 1 hat sieben „also“, nach dem zweiten Durchgang sind es drei. Notiz für morgen: Pause nach dem ersten Satz.",
+    "uebung": "Nimm heute eine Minute zu einem Thema auf, hör sie an und wiederhole sie direkt mit einer einzigen Verbesserung.",
+    "merksatz": "Ein Ziel, aufnehmen, anhören, einmal besser."
   }
 ]
