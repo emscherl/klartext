@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { planPosition, weekDates, trainedDays, phaseOf, fillerRate, checkSeries, compareChecks, impulse, extendPlan, defaultPlan } from '../src/plan.js';
+import { planPosition, weekDates, trainedDays, phaseOf, fillerRate, checkSeries, compareChecks, impulse, extendPlan, defaultPlan, backupDue } from '../src/plan.js';
 
 test('ohne Start oder vor dem Start: Woche 0', () => {
   assert.deepEqual(planPosition(null, '2026-11-02'), { week: 0, day: 0, started: false, finished: false });
@@ -67,12 +67,13 @@ test('Füllwörter pro Minute', () => {
 
 test('Messreihe sortiert nach Woche, leere Messungen fallen raus, Vergleich rechnet Differenz', () => {
   const checks = {
-    4: { fuellwoerter: 6, sekunden: 60, kernsatz: true, klarheit: 6 },
-    1: { fuellwoerter: 12, sekunden: 60, kernsatz: false, klarheit: 4 },
-    2: { fuellwoerter: null, sekunden: 60, kernsatz: null, klarheit: null },
+    4: { fuellwoerter: 6, sekunden: 60, kernsatz: true, klarheit: 6, ruhe: 7 },
+    1: { fuellwoerter: 12, sekunden: 60, kernsatz: false, klarheit: 4, ruhe: 3 },
+    2: { fuellwoerter: null, sekunden: 60, kernsatz: null, klarheit: null, ruhe: null, gespraech: 'nur Notiz' },
   };
   assert.deepEqual(checkSeries(checks).map(r => r.week), [1, 4]);
-  assert.deepEqual(compareChecks(checks, 1, 4), { rate: { from: 12, to: 6, diff: -6 }, klarheit: { from: 4, to: 6, diff: 2 } });
+  assert.deepEqual(compareChecks(checks, 1, 4), { rate: { from: 12, to: 6, diff: -6 }, klarheit: { from: 4, to: 6, diff: 2 }, ruhe: { from: 3, to: 7, diff: 4 } });
+  assert.equal(checkSeries(checks)[1].ruhe, 7);
   assert.equal(compareChecks(checks, 1, 7), null);
 });
 
@@ -82,4 +83,11 @@ test('Impuls ist pro Tag fest, Alternativen unterscheiden sich vom Tagesimpuls',
   const main = impulse(list, '2026-11-02', 'themen');
   for (let n = 1; n <= 4; n++) assert.notEqual(impulse(list, '2026-11-02', 'themen', n), main);
   assert.equal(impulse([], '2026-11-02', 'themen'), null);
+});
+
+test('Sicherung ist nach 7 Tagen oder bei nie gesicherten Daten fällig', () => {
+  assert.equal(backupDue(null, '2026-11-10', false), null);
+  assert.deepEqual(backupDue(null, '2026-11-10', true), { days: null });
+  assert.equal(backupDue('2026-11-04', '2026-11-10', true), null);
+  assert.deepEqual(backupDue('2026-11-03', '2026-11-10', true), { days: 7 });
 });

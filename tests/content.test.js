@@ -69,18 +69,28 @@ test('12-Wochen-Plan: drei Phasen decken die Wochen 1 bis 12 genau einmal ab', (
   for (const p of plan.phasen) for (const f of ['titel', 'untertitel', 'ziel', 'check']) assert.ok(filled(p[f]), `Phase ${p.nr}.${f}`);
 });
 
-test('12-Wochen-Plan: jede Woche hat Ziel, Begründung, Übung und gültige Verweise', () => {
+test('12-Wochen-Plan: jede Woche hat Ziel, Begründung, geführte Schritte und gültige Verweise', () => {
   const tech = new Set(techniken.map(t => t.id)), tip = new Set(tipps.map(t => t.id));
+  const rails = new Set(plan.schienen.map(r => r.name));
   for (const w of plan.wochen) {
     for (const f of ['titel', 'ziel', 'warum', 'transfer']) assert.ok(filled(w[f]), `Woche ${w.nr}.${f}`);
-    assert.ok(w.uebung.length >= 2 && w.uebung.every(filled), `Woche ${w.nr}.uebung`);
+    assert.ok(w.schritte.length >= 2 && w.schritte.length <= 5, `Woche ${w.nr}: 2 bis 5 Schritte`);
     assert.ok(w.techniken.length >= 1, `Woche ${w.nr} ohne Technik`);
     for (const t of w.techniken) assert.ok(tech.has(t), `Woche ${w.nr} → Technik ${t}`);
     for (const t of w.tipps) assert.ok(tip.has(t), `Woche ${w.nr} → Tipp ${t}`);
-    for (const k of w.impulse) assert.ok(plan.impulse[k]?.length >= 20, `Woche ${w.nr} → Impulse ${k}`);
-    assert.ok(w.timer.every(s => Number.isInteger(s) && s > 0 && s <= 600), `Woche ${w.nr}.timer`);
+    for (const s of [...w.schritte, plan.aufwaermen]) checkStep(s, rails, `Woche ${w.nr}`);
   }
 });
+
+function checkStep(s, rails, where) {
+  const allowed = ['text', 'timer', 'impuls', 'aufnahme', 'anhoeren', 'schiene'];
+  assert.ok(filled(s.text), `${where}: Schritt ohne Text`);
+  for (const k of Object.keys(s)) assert.ok(allowed.includes(k), `${where}: unbekanntes Feld ${k}`);
+  if (s.timer !== undefined) assert.ok(Number.isInteger(s.timer) && s.timer > 0 && s.timer <= 600, `${where}: timer`);
+  if (s.impuls !== undefined) assert.ok(plan.impulse[s.impuls]?.length >= 20, `${where}: Impulse ${s.impuls}`);
+  if (s.schiene !== undefined) assert.ok(rails.has(s.schiene), `${where}: Schiene ${s.schiene}`);
+  for (const k of ['aufnahme', 'anhoeren']) if (s[k] !== undefined) assert.equal(s[k], true, `${where}: ${k}`);
+}
 
 test('12-Wochen-Plan: Ablauf, Messung und Redeschienen vollständig', () => {
   const tech = new Set(techniken.map(t => t.id));

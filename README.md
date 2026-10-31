@@ -4,13 +4,14 @@ Persönliches tägliches Kommunikationstraining als Web-App (PWA). Läuft am Rec
 
 ## Was die App kann
 
-- **12-Wochen-Plan:** Roadmap in drei Phasen (Grundlagen, Struktur, echte Gespräche) mit Phasenzielen, Wochenzielen und Checks. Jede Woche hat Übung, Begründung, Alltagsaufgabe, passende Techniken und Kniffe. Dazu Begriff, Thema oder Frage des Tages, Timer, Übungsaufnahme, „Heute geübt“ mit Notiz für morgen und eine Woche-verlängern-Funktion. Einmal pro Woche eine Messaufnahme zum gleichen Thema mit Füllwörtern pro Minute, Kernsatz und rotem Faden; die App vergleicht mit Woche 1. Redeschienen (BBB, Fünfsatz, Was? Na und? Was jetzt? …) zum Nachschlagen.
+- **12-Wochen-Plan:** Roadmap in drei Phasen (Grundlagen, Struktur, echte Gespräche) mit Phasen- und Wochenzielen. Das tägliche Training ist geführt: Schritt für Schritt mit Weiter und Zurück, jeder Schritt bringt sein Werkzeug mit (Begriff, Thema oder Frage des Tages, Timer, Aufnahme, Redeschiene). Am ersten Tag einer Woche stellt ein Einstiegsschritt die Woche vor, fehlt die Messaufnahme, kommt sie als eigener Schritt dazu. Die Übersicht zeigt nur die aktuelle Woche und die Phasen zum Aufklappen; Messwerte, Redeschienen und Einstellungen liegen auf eigenen Seiten. Messaufnahme einmal pro Woche mit Füllwörtern pro Minute, Kernsatz und rotem Faden, Vergleich mit Woche 1.
 - **Challenge des Tages:** jeden Tag eine neue Aufgabe, gemischt aus beruflichen und privaten Situationen. Entweder schriftlich (Antwort formulieren, danach eine mögliche Musterformulierung ansehen) oder im Alltag (erledigen, abschließen, kurz reflektieren). Passt sie nicht, gibt es per Klick eine Alternative.
 - **Techniken:** Bibliothek mit 30 etablierten Kommunikationstechniken, jeweils mit Erklärung, Schritten, Beispiel, Übung, Merksatz und Quelle. Challenges verlinken die passenden Techniken.
 - **Tipps & Kniffe:** 40 kurze, sofort anwendbare Tricks, einer davon täglich als Tipp des Tages.
 - **Wiederholung:** Techniken aus abgeschlossenen Challenges kommen automatisch in den Wiederholungsplan, Techniken und Tipps lassen sich auch von Hand aufnehmen. Bewertung mit Nochmal, Schwer, Gut, Leicht; die Abstände wachsen (1 Tag, 3, 7, dann ca. das 2,5-Fache).
 - **Fortschritt:** Serie, längste Serie, erledigte Challenges, Kalender der letzten vier Wochen, alle Antworten und Reflexionen zum Nachlesen und Weiterbearbeiten.
-- **Sicherung:** Export als JSON-Datei, Import ersetzt den Stand auf dem Gerät.
+- **Sicherung:** „Jetzt sichern“ öffnet am Handy das Teilen-Menü (iCloud Drive, Dateien, Google Drive), am Rechner gibt es einen Download. Nach 7 Tagen ohne Sicherung erinnert die Startseite daran. Import ersetzt den Stand auf dem Gerät.
+- **Verlauf:** Kurven über die 12 Planwochen für Füllwörter pro Minute, roten Faden und Ruhe, zum Antippen; dazu die Gespräche, die besser liefen.
 
 Bedienung am Rechner in der Wiederholung: Leertaste deckt auf, 1 bis 4 bewertet.
 
@@ -120,7 +121,7 @@ Nur Techniken mit belegbarer Quelle aufnehmen. Neue Kategorien erscheinen automa
 
 ### 12-Wochen-Plan (`content/plan.json`)
 
-Phasen (`phasen`: `nr`, `titel`, `untertitel`, `wochen`, `ziel`, `check`) und genau zwölf Wochen (`wochen`: `nr`, `titel`, `ziel`, `warum`, `uebung` als Liste, `timer` in Sekunden, `impulse` aus `begriffe` | `themen` | `fragen`, `techniken`, `tipps`, `transfer`). Dazu `ablauf` (täglicher Ablauf), `messung` (Standardthema, Kriterien), `schienen` (Redeschienen mit Verweis auf eine Technik) und `impulse` (Listen mit mindestens 20 Einträgen). Der Test prüft, dass die Phasen die Wochen 1 bis 12 genau einmal abdecken und alle Verweise gültig sind.
+Phasen (`phasen`: `nr`, `titel`, `untertitel`, `wochen`, `ziel`, `check`) und genau zwölf Wochen (`wochen`: `nr`, `titel`, `ziel`, `warum`, `schritte`, `techniken`, `tipps`, `transfer`). Jeder Schritt ist ein eigener Bildschirm im Training: `{ "text": "…", "impuls": "themen", "schiene": "BBB", "timer": 60, "aufnahme": true, "anhoeren": true }`, alles außer `text` optional. `impuls` ist `begriffe`, `themen` oder `fragen`, `schiene` der Name einer Redeschiene, `anhoeren` spielt die letzte Übungsaufnahme ab. Dazu `aufwaermen` (erster Schritt jedes Trainings, gleicher Aufbau), `ablauf` (täglicher Ablauf zum Nachlesen), `messung` (Standardthema, Kriterien), `schienen` (Redeschienen mit Verweis auf eine Technik) und `impulse` (Listen mit mindestens 20 Einträgen). Der Test prüft, dass die Phasen die Wochen 1 bis 12 genau einmal abdecken und alle Verweise gültig sind.
 
 ### Was beim Erweitern passiert
 

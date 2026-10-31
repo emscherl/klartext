@@ -78,7 +78,8 @@ test('Import verwirft ungültiges completedAt und kaputte Feedback-Einträge', (
 
 test('Plan bleibt über Export und Import erhalten', () => {
   const s = sample();
-  s.plan = { start: '2026-11-02', thema: 'Mein Job', days: { '2026-11-02': { week: 1, done: true, note: 'langsamer' } }, checks: { 1: { date: '2026-11-02', fuellwoerter: 11, sekunden: 62, kernsatz: false, klarheit: 4, notiz: '' } } };
+  s.plan = { start: '2026-11-02', thema: 'Mein Job', days: { '2026-11-02': { week: 1, done: true, note: 'langsamer' } }, checks: { 1: { date: '2026-11-02', fuellwoerter: 11, sekunden: 62, kernsatz: false, klarheit: 4, ruhe: 5, notiz: '', gespraech: 'Teammeeting' } } };
+  s.lastBackup = '2026-11-01';
   assert.deepEqual(importState(exportState(s)), s);
 });
 
@@ -97,5 +98,5 @@ test('Import verwirft ungültige Plandaten', () => {
   assert.deepEqual(Object.keys(p.days), ['2026-11-03']);
   assert.equal(p.days['2026-11-03'].done, false);
   assert.deepEqual(Object.keys(p.checks), ['2']);
-  assert.deepEqual(p.checks[2], { date: null, fuellwoerter: null, sekunden: null, kernsatz: null, klarheit: null, notiz: '' });
+  assert.deepEqual(p.checks[2], { date: null, fuellwoerter: null, sekunden: null, kernsatz: null, klarheit: null, ruhe: null, notiz: '', gespraech: '' });
 });
