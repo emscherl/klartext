@@ -4,15 +4,19 @@
 //   entries[YYYY-MM-DD] { date, challengeId, bereich, typ, skips, answer, reflection, done, completedAt, feedback: [] }
 //   cards[key]          { key: "technik:<id>" | "tipp:<id>", addedAt, due, interval, ease, reps, lapses, lastReview }
 //   reviewLog[YYYY-MM-DD] Anzahl Wiederholungen
+//   plan                { start: YYYY-MM-DD | null, thema, days[YYYY-MM-DD] { week, done, note },
+//                         checks[Woche] { date, fuellwoerter, sekunden, kernsatz, klarheit, notiz } }
+// Version 2 ergänzt plan; Sicherungen aus Version 1 werden ohne Plan übernommen.
 // feedback bleibt in Version 1 leer. Ein späterer Feedback-Dienst hängt seine Rückmeldungen
 // dort an ({ source, text, createdAt }), ohne dass sich das Format ändert.
 import { isDateKey } from './dates.js';
+import { defaultPlan, WEEKS } from './plan.js';
 
 export const STORAGE_KEY = 'klartext:v1';
-export const SCHEMA_VERSION = 1;
+export const SCHEMA_VERSION = 2;
 export const APP_ID = 'klartext';
 
-export const defaultState = () => ({ version: SCHEMA_VERSION, entries: {}, cards: {}, reviewLog: {} });
+export const defaultState = () => ({ version: SCHEMA_VERSION, entries: {}, cards: {}, reviewLog: {}, plan: defaultPlan() });
 
 export function createStore(storage) {
   return {
@@ -83,8 +87,35 @@ export function validate(data) {
   for (const [date, n] of Object.entries(obj(data.reviewLog))) {
     if (isDateKey(date) && Number.isFinite(n) && n >= 0) state.reviewLog[date] = n;
   }
+  state.plan = validatePlan(obj(data.plan));
   return state;
 }
+
+function validatePlan(p) {
+  const plan = defaultPlan();
+  if (isDateKey(p.start)) plan.start = p.start;
+  plan.thema = str(p.thema).slice(0, 200);
+  for (const [date, d] of Object.entries(obj(p.days))) {
+    if (!isDateKey(date) || !d || !isWeek(d.week)) continue;
+    plan.days[date] = { week: d.week, done: d.done === true, note: str(d.note) };
+  }
+  for (const [w, c] of Object.entries(obj(p.checks))) {
+    const week = Number(w);
+    if (!isWeek(week) || String(week) !== w || !c) continue;
+    plan.checks[week] = {
+      date: isDateKey(c.date) ? c.date : null,
+      fuellwoerter: int(c.fuellwoerter, 0, 999),
+      sekunden: int(c.sekunden, 1, 3600),
+      kernsatz: typeof c.kernsatz === 'boolean' ? c.kernsatz : null,
+      klarheit: int(c.klarheit, 1, 10),
+      notiz: str(c.notiz),
+    };
+  }
+  return plan;
+}
+
+const isWeek = w => Number.isInteger(w) && w >= 1 && w <= WEEKS;
+const int = (v, min, max) => (Number.isInteger(v) && v >= min && v <= max ? v : null);
 
 const obj = v => (v && typeof v === 'object' && !Array.isArray(v) ? v : {});
 const str = v => (typeof v === 'string' ? v : '');

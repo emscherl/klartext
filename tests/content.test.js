@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 
 const load = n => JSON.parse(readFileSync(new URL(`../content/${n}.json`, import.meta.url), 'utf8'));
-const techniken = load('techniken'), challenges = load('challenges'), tipps = load('tipps');
+const techniken = load('techniken'), challenges = load('challenges'), tipps = load('tipps'), plan = load('plan');
 const filled = v => typeof v === 'string' && v.trim().length > 0;
 const unique = list => new Set(list.map(x => x.id)).size === list.length;
 const ID = /^[a-z0-9-]+$/;
@@ -59,4 +59,36 @@ test('Tipps sind vollständig, Technik-Verweise gültig', () => {
     for (const f of ['titel', 'text', 'kategorie']) assert.ok(filled(t[f]), `${t.id}.${f}`);
     if (t.technik) assert.ok(ids.has(t.technik), `${t.id} → ${t.technik}`);
   }
+});
+
+test('12-Wochen-Plan: drei Phasen decken die Wochen 1 bis 12 genau einmal ab', () => {
+  assert.equal(plan.wochen.length, 12);
+  assert.deepEqual(plan.wochen.map(w => w.nr), Array.from({ length: 12 }, (_, i) => i + 1));
+  const covered = plan.phasen.flatMap(p => p.wochen).sort((a, b) => a - b);
+  assert.deepEqual(covered, Array.from({ length: 12 }, (_, i) => i + 1));
+  for (const p of plan.phasen) for (const f of ['titel', 'untertitel', 'ziel', 'check']) assert.ok(filled(p[f]), `Phase ${p.nr}.${f}`);
+});
+
+test('12-Wochen-Plan: jede Woche hat Ziel, Begründung, Übung und gültige Verweise', () => {
+  const tech = new Set(techniken.map(t => t.id)), tip = new Set(tipps.map(t => t.id));
+  for (const w of plan.wochen) {
+    for (const f of ['titel', 'ziel', 'warum', 'transfer']) assert.ok(filled(w[f]), `Woche ${w.nr}.${f}`);
+    assert.ok(w.uebung.length >= 2 && w.uebung.every(filled), `Woche ${w.nr}.uebung`);
+    assert.ok(w.techniken.length >= 1, `Woche ${w.nr} ohne Technik`);
+    for (const t of w.techniken) assert.ok(tech.has(t), `Woche ${w.nr} → Technik ${t}`);
+    for (const t of w.tipps) assert.ok(tip.has(t), `Woche ${w.nr} → Tipp ${t}`);
+    for (const k of w.impulse) assert.ok(plan.impulse[k]?.length >= 20, `Woche ${w.nr} → Impulse ${k}`);
+    assert.ok(w.timer.every(s => Number.isInteger(s) && s > 0 && s <= 600), `Woche ${w.nr}.timer`);
+  }
+});
+
+test('12-Wochen-Plan: Ablauf, Messung und Redeschienen vollständig', () => {
+  const tech = new Set(techniken.map(t => t.id));
+  assert.ok(plan.ablauf.length >= 3 && plan.ablauf.every(a => filled(a.titel) && filled(a.text)));
+  assert.ok(filled(plan.messung.standardthema) && filled(plan.messung.text) && plan.messung.kriterien.length >= 3);
+  for (const r of plan.schienen) {
+    assert.ok(filled(r.name) && filled(r.wann) && r.folge.length >= 2, r.name);
+    assert.ok(tech.has(r.technik), `${r.name} → ${r.technik}`);
+  }
+  for (const list of Object.values(plan.impulse)) assert.equal(new Set(list).size, list.length, 'doppelte Impulse');
 });

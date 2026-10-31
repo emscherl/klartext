@@ -4,9 +4,10 @@ Persönliches tägliches Kommunikationstraining als Web-App (PWA). Läuft am Rec
 
 ## Was die App kann
 
+- **12-Wochen-Plan:** Roadmap in drei Phasen (Grundlagen, Struktur, echte Gespräche) mit Phasenzielen, Wochenzielen und Checks. Jede Woche hat Übung, Begründung, Alltagsaufgabe, passende Techniken und Kniffe. Dazu Begriff, Thema oder Frage des Tages, Timer, Übungsaufnahme, „Heute geübt“ mit Notiz für morgen und eine Woche-verlängern-Funktion. Einmal pro Woche eine Messaufnahme zum gleichen Thema mit Füllwörtern pro Minute, Kernsatz und rotem Faden; die App vergleicht mit Woche 1. Redeschienen (BBB, Fünfsatz, Was? Na und? Was jetzt? …) zum Nachschlagen.
 - **Challenge des Tages:** jeden Tag eine neue Aufgabe, gemischt aus beruflichen und privaten Situationen. Entweder schriftlich (Antwort formulieren, danach eine mögliche Musterformulierung ansehen) oder im Alltag (erledigen, abschließen, kurz reflektieren). Passt sie nicht, gibt es per Klick eine Alternative.
-- **Techniken:** Bibliothek mit 20 etablierten Kommunikationstechniken, jeweils mit Erklärung, Schritten, Beispiel, Übung, Merksatz und Quelle. Challenges verlinken die passenden Techniken.
-- **Tipps & Kniffe:** 33 kurze, sofort anwendbare Tricks, einer davon täglich als Tipp des Tages.
+- **Techniken:** Bibliothek mit 30 etablierten Kommunikationstechniken, jeweils mit Erklärung, Schritten, Beispiel, Übung, Merksatz und Quelle. Challenges verlinken die passenden Techniken.
+- **Tipps & Kniffe:** 40 kurze, sofort anwendbare Tricks, einer davon täglich als Tipp des Tages.
 - **Wiederholung:** Techniken aus abgeschlossenen Challenges kommen automatisch in den Wiederholungsplan, Techniken und Tipps lassen sich auch von Hand aufnehmen. Bewertung mit Nochmal, Schwer, Gut, Leicht; die Abstände wachsen (1 Tag, 3, 7, dann ca. das 2,5-Fache).
 - **Fortschritt:** Serie, längste Serie, erledigte Challenges, Kalender der letzten vier Wochen, alle Antworten und Reflexionen zum Nachlesen und Weiterbearbeiten.
 - **Sicherung:** Export als JSON-Datei, Import ersetzt den Stand auf dem Gerät.
@@ -63,7 +64,7 @@ Rechner und Handy haben getrennte Datenstände. Übertragen geht über Fortschri
 npm test
 ```
 
-Abgedeckt: Tagesauswahl (gleicher Tag gleiche Challenge, keine Wiederholung an aufeinanderfolgenden Tagen über drei Jahre, jede Challenge kommt pro Runde genau einmal, Alternativen), Wiederholungslogik (Fälligkeit am Termin, wachsende Abstände, Zurücksetzen, Grenzen), Serie und Kennzahlen, Speichern/Neuladen, Export/Import samt Fehlerfällen sowie die Inhalte (Mindestumfang, Pflichtfelder, Quellen, gültige Verweise).
+Abgedeckt: Tagesauswahl (gleicher Tag gleiche Challenge, keine Wiederholung an aufeinanderfolgenden Tagen über drei Jahre, jede Challenge kommt pro Runde genau einmal, Alternativen), Wiederholungslogik (Fälligkeit am Termin, wachsende Abstände, Zurücksetzen, Grenzen), Serie und Kennzahlen, Speichern/Neuladen, Export/Import samt Fehlerfällen, der 12-Wochen-Plan (Wochen- und Tageszählung, Zeitumstellung, Verlängern, Messwerte) sowie die Inhalte (Mindestumfang, Pflichtfelder, Quellen, gültige Verweise).
 
 ## Inhalte erweitern
 
@@ -80,7 +81,7 @@ Regeln für alle Dateien:
 {
   "id": "kurzer-name",
   "name": "Anzeigename",
-  "kategorie": "Zuhören | Verstehen | Feedback | Konflikt | Verhandlung | Klarheit | Selbstbehauptung | Selbstklärung",
+  "kategorie": "Zuhören | Verstehen | Feedback | Konflikt | Verhandlung | Klarheit | Selbstbehauptung | Selbstklärung | Sprechen",
   "urheber": "Wer hat sie entwickelt",
   "quelle": "Buch oder Artikel mit Jahr und Verlag",
   "kurz": "Zwei, drei Sätze Erklärung",
@@ -117,6 +118,10 @@ Nur Techniken mit belegbarer Quelle aufnehmen. Neue Kategorien erscheinen automa
 { "id": "t34-kurzer-name", "titel": "Kurzer Titel", "kategorie": "Schreiben", "text": "Der Tipp in zwei, drei Sätzen", "technik": "optional: id-einer-technik" }
 ```
 
+### 12-Wochen-Plan (`content/plan.json`)
+
+Phasen (`phasen`: `nr`, `titel`, `untertitel`, `wochen`, `ziel`, `check`) und genau zwölf Wochen (`wochen`: `nr`, `titel`, `ziel`, `warum`, `uebung` als Liste, `timer` in Sekunden, `impulse` aus `begriffe` | `themen` | `fragen`, `techniken`, `tipps`, `transfer`). Dazu `ablauf` (täglicher Ablauf), `messung` (Standardthema, Kriterien), `schienen` (Redeschienen mit Verweis auf eine Technik) und `impulse` (Listen mit mindestens 20 Einträgen). Der Test prüft, dass die Phasen die Wochen 1 bis 12 genau einmal abdecken und alle Verweise gültig sind.
+
 ### Was beim Erweitern passiert
 
 - Die Tagesauswahl mischt alle Challenges zu Runden; jede kommt pro Runde einmal dran. Ändert sich die Anzahl der Challenges, wird die Reihenfolge sofort neu gemischt. Betroffen ist auch die heutige Challenge, solange du sie noch nicht angefangen hast, und der Tipp des Tages. Bereits begonnene oder erledigte Tage behalten ihre Challenge. Direkt nach einer Erweiterung kann deshalb eine kürzlich erledigte Challenge früher wiederkommen als sonst.
@@ -124,7 +129,7 @@ Nur Techniken mit belegbarer Quelle aufnehmen. Neue Kategorien erscheinen automa
 
 ## Daten
 
-Gespeichert wird im `localStorage` des Browsers unter dem Schlüssel `klartext:v1`. Die App lädt nichts von Dritten: Auch die Schriften (Geist und Geist Mono von Vercel, SIL Open Font License, siehe `fonts/OFL.txt`) liegen im Projekt. Browserdaten löschen löscht auch den Trainingsstand, deshalb regelmäßig exportieren. Sollte der gespeicherte Stand einmal unlesbar sein, startet die App leer und legt den Rohinhalt unter `klartext:v1:defekt` ab, statt ihn zu überschreiben.
+Gespeichert wird im `localStorage` des Browsers unter dem Schlüssel `klartext:v1`. Die App lädt nichts von Dritten: Auch die Schriften (Geist und Geist Mono von Vercel, SIL Open Font License, siehe `fonts/OFL.txt`) liegen im Projekt. Browserdaten löschen löscht auch den Trainingsstand, deshalb regelmäßig exportieren. Der Trainingsplan (Start, geübte Tage, Messwerte) gehört zum selben Stand und ist in der Sicherung enthalten. Sprachaufnahmen der Messungen liegen dagegen in IndexedDB (`klartext-aufnahmen`) und sind nicht Teil der Sicherung. Übungsaufnahmen werden gar nicht gespeichert. Sicherungen aus Version 1 lassen sich weiter importieren, sie starten ohne Plan. Sollte der gespeicherte Stand einmal unlesbar sein, startet die App leer und legt den Rohinhalt unter `klartext:v1:defekt` ab, statt ihn zu überschreiben.
 
 ## Spätere Erweiterung: Feedback auf Antworten
 
@@ -153,10 +158,12 @@ src/app.js                Oberfläche und Navigation
 src/daily.js              Tagesauswahl (deterministisch aus dem Datum)
 src/srs.js                Wiederholungsplan
 src/progress.js           Serie und Kennzahlen
+src/plan.js               12-Wochen-Plan: Woche aus Startdatum, Fortschritt, Messwerte, Impulse
+src/recorder.js           Sprachaufnahme (MediaRecorder) und Ablage der Messaufnahmen (IndexedDB)
 src/store.js              Speichern, Export, Import, Prüfung importierter Daten
 src/dates.js              Datumsrechnung in lokalen Kalendertagen
 src/feedback.js           Erweiterungspunkt für Feedback
-content/                  Techniken, Challenges, Tipps
+content/                  Techniken, Challenges, Tipps, 12-Wochen-Plan
 tests/                    automatische Tests (node --test)
 server.mjs                lokaler Server ohne Abhängigkeiten
 scripts/make-icons.mjs    erzeugt die PNG-Icons neu
