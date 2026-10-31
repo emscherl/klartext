@@ -126,7 +126,7 @@ function planRow(d) {
   if (pos.finished) return `<li><a class="row-btn" href="#/plan"><span class="name">12-Wochen-Plan<span class="sub">Abgeschlossen, Ergebnis ansehen</span></span><span class="meta mono dim">fertig</span></a></li>`;
   const w = C.plan.wochen[pos.week - 1];
   const doneToday = planDoneOn(d, pos.week);
-  return `<li><a class="row-btn" href="#/plan/woche/${pos.week}"><span class="name">Training: ${esc(w.titel)}<span class="sub">Woche ${pos.week} von ${WEEKS} · Tag ${pos.day} · ${trainedDays(S.plan.days, pos.week)}/7 geübt</span></span><span class="meta mono ${doneToday ? 'dim' : 'open'}">${doneToday ? 'erledigt' : 'offen'}</span></a></li>`;
+  return `<li><a class="row-btn" href="${doneToday ? '#/plan' : '#/plan/training/1'}"><span class="name">Training: ${esc(w.titel)}<span class="sub">Woche ${pos.week} von ${WEEKS} · Tag ${pos.day} · ${trainedDays(S.plan.days, pos.week)}/7 geübt</span></span><span class="meta mono ${doneToday ? 'dim' : 'open'}">${doneToday ? 'erledigt' : 'offen'}</span></a></li>`;
 }
 
 // ---------- Challenge ----------
@@ -370,78 +370,88 @@ async function importData(file) {
 }
 
 // ---------- 12-Wochen-Plan ----------
+// Aufbau: kurze Übersicht (#/plan), geführtes Tagestraining Schritt für Schritt (#/plan/training/<n>),
+// Nachschlagen in eigenen Unterseiten (Woche, Messung, Messwerte, Redeschienen, Einstellungen).
 const isWeekArg = a => /^\d{1,2}$/.test(a || '') && Number(a) >= 1 && Number(a) <= WEEKS;
 const IMPULS_LABEL = { begriffe: 'Begriff des Tages', themen: 'Thema des Tages', fragen: 'Frage des Tages' };
 const messThema = () => S.plan.thema || C.plan.messung.standardthema;
 const fmtNum = n => (n === null || n === undefined ? '–' : String(n).replace('.', ','));
 const fmtSec = s => (s >= 60 ? `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}` : `${s} s`);
-
-function viewPlan() {
-  const d = today();
-  const P = C.plan;
-  const pos = planPosition(S.plan.start, d);
-  topBar(P.titel, '#/');
-  if (!S.plan.start) {
-    app.innerHTML = `
-      <section class="stack" style="padding-top:12px">
-        <span class="label">${esc(P.aufwand)}</span>
-        <h2 class="headline">${esc(P.ziel)}</h2>
-        <p class="prose">${esc(P.grundidee)}</p>
-      </section>
-      ${roadmap(pos)}
-      <form id="plan-start" class="stack" autocomplete="off">
-        <label class="lab"><span class="label">Thema deiner wöchentlichen Messaufnahme</span>
-          <input class="field" name="thema" maxlength="200" value="${esc(S.plan.thema)}" placeholder="${esc(P.messung.standardthema)}"></label>
-        <p class="source">Jede Woche sprichst du eine Minute zu diesem Thema. Bleib dabei, nur so werden die Aufnahmen vergleichbar.</p>
-        <button class="btn primary wide" type="submit">Plan heute starten</button>
-      </form>`;
-    return;
-  }
-  const head = !pos.started
-    ? `<section class="stack" style="padding-top:12px"><span class="label">Startet bald</span><h2 class="headline">Woche 1 beginnt am ${esc(formatDe(S.plan.start, false))}.</h2></section>`
-    : pos.finished ? finishedSummary()
-    : currentWeekBlock(pos, d);
-  app.innerHTML = `
-    ${head}
-    ${roadmap(pos)}
-    ${measureTable()}
-    <section class="stack"><span class="label">Täglicher Ablauf · 10 bis 15 Minuten</span>
-      <ol class="steps">${P.ablauf.map(a => `<li><span><b>${esc(a.titel)}</b> <span class="dim mono">${esc(a.minuten)} Min.</span><br>${esc(a.text)}</span></li>`).join('')}</ol></section>
-    ${railsBlock()}
-    <section class="section">
-      <span class="label">Einstellungen</span>
-      <label class="lab"><span class="label">Thema der Messaufnahme</span>
-        <input class="field" id="plan-thema" maxlength="200" value="${esc(S.plan.thema)}" placeholder="${esc(P.messung.standardthema)}"></label>
-      <p>Gestartet am ${esc(formatDe(S.plan.start, false))}. Kam etwas dazwischen, verlängere die aktuelle Woche: Der Plan rückt dann um sieben Tage nach hinten, Geübtes bleibt erhalten.</p>
-      <div class="row">
-        ${pos.started && !pos.finished ? '<button class="btn grow" data-act="plan-extend">Woche verlängern</button>' : ''}
-        <button class="btn grow danger" data-act="plan-reset">Plan neu starten</button>
-      </div>
-    </section>`;
-}
+const rail = name => C.plan.schienen.find(r => r.name === name);
 
 // Ein Tag zählt nur für die Woche, in der er abgehakt wurde (wichtig nach „Woche verlängern“)
 const planDoneOn = (date, week) => !!S.plan.days[date]?.done && S.plan.days[date].week === week;
+const activeWeek = () => { const p = planPosition(S.plan.start, today()); return p.started && !p.finished ? p.week : 0; };
 
-function currentWeekBlock(pos, d) {
-  const w = C.plan.wochen[pos.week - 1];
-  const doneToday = planDoneOn(d, pos.week);
-  const ph = phaseOf(C.plan.phasen, pos.week);
-  const done = trainedDays(S.plan.days, pos.week);
-  const elapsed = (pos.week - 1) * 7 + pos.day;
-  return `
+function stepNav(back, next) {
+  return `<nav class="stepnav">${back ? `<a class="btn" href="${back}" aria-label="Zurück">←</a>` : '<span></span>'}${next}</nav>`;
+}
+
+// ----- Einstieg vor dem Start: drei Bildschirme statt einer langen Seite
+function viewOnboarding(i) {
+  const P = C.plan;
+  topBar(P.titel, i > 1 ? `#/plan/start/${i - 1}` : '#/', `<span class="count">${i}/3</span>`);
+  const body = i === 1 ? `
+      <span class="label">Dein Ziel</span>
+      <h2 class="headline">${esc(P.ziel)}</h2>
+      <p class="prose">${esc(P.grundidee)}</p>
+      <p class="prose dim">${esc(P.aufwand)}</p>`
+    : i === 2 ? `
+      <span class="label">So läuft es</span>
+      <h2 class="headline">Drei Phasen, jeden Tag ein kurzes Training.</h2>
+      <ol class="steps">${P.phasen.map(ph => `<li><span><b>${esc(ph.titel)}</b> <span class="dim mono">Woche ${ph.wochen[0]}–${ph.wochen[ph.wochen.length - 1]}</span><br><span class="dim">${esc(ph.untertitel)}</span></span></li>`).join('')}</ol>
+      <p class="prose dim">Die App führt dich jeden Tag durch Aufwärmen, Wochenübung und Auswertung. Einmal pro Woche nimmst du eine Minute zum gleichen Thema auf, so siehst du, was sich verändert.</p>`
+    : `
+      <span class="label">Deine Messaufnahme</span>
+      <h2 class="headline">Worüber sprichst du jede Woche eine Minute?</h2>
+      <form id="plan-start" class="stack" autocomplete="off">
+        <input class="field" name="thema" maxlength="200" value="${esc(S.plan.thema)}" placeholder="${esc(P.messung.standardthema)}" aria-label="Thema der Messaufnahme">
+        <p class="source">Ohne Eingabe gilt der Vorschlag. Bleib dabei, nur so werden die Aufnahmen vergleichbar.</p>
+      </form>`;
+  app.innerHTML = `<div class="bar"><i style="width:${(i / 3) * 100}%"></i></div>
+    <section class="stack step">${body}</section>
+    ${stepNav(i > 1 ? `#/plan/start/${i - 1}` : '', i < 3
+      ? `<a class="btn primary grow" href="#/plan/start/${i + 1}">Weiter</a>`
+      : '<button class="btn primary grow" type="submit" form="plan-start">Plan heute starten</button>')}`;
+}
+
+// ----- Übersicht
+function viewPlan() {
+  if (!S.plan.start) return viewOnboarding(1);
+  const d = today();
+  const pos = planPosition(S.plan.start, d);
+  topBar(C.plan.titel, '#/');
+  let head;
+  if (!pos.started) head = `<section class="stack" style="padding-top:12px"><span class="label">Startet bald</span><h2 class="headline">Woche 1 beginnt am ${esc(formatDe(S.plan.start, false))}.</h2></section>`;
+  else if (pos.finished) head = finishedSummary();
+  else {
+    const ph = phaseOf(C.plan.phasen, pos.week);
+    const w = C.plan.wochen[pos.week - 1];
+    const done = planDoneOn(d, pos.week);
+    const elapsed = (pos.week - 1) * 7 + pos.day;
+    head = `
     <section class="hero">
       <div class="big">${pos.week}</div>
-      <div class="hero-meta"><strong>Woche von ${WEEKS}</strong><span class="mono dim">Phase ${ph.nr}: ${esc(ph.titel)} · Tag ${pos.day}</span></div>
+      <div class="hero-meta"><strong>Woche von ${WEEKS}</strong><span class="mono dim">Phase ${ph.nr} · ${esc(ph.titel)} · Tag ${pos.day}</span></div>
     </section>
     <div class="bar" title="${elapsed} von ${WEEKS * 7} Tagen"><i style="width:${(elapsed / (WEEKS * 7)) * 100}%"></i></div>
     <section class="stack">
-      <span class="label">Diese Woche</span>
-      <ul class="rows"><li><a class="row-btn" href="#/plan/woche/${pos.week}"><span class="name">${esc(w.titel)}<span class="sub">${esc(w.ziel)}</span></span><span class="meta mono ${doneToday ? 'dim' : 'open'}">${doneToday ? 'heute erledigt' : 'heute offen'}</span></a></li></ul>
+      <a class="today-card" href="#/plan/woche/${pos.week}"><span class="label">Diese Woche</span><b>${esc(w.titel)}</b><span class="dim">${esc(w.ziel)}</span></a>
       ${weekDots(pos.week)}
-      <p class="source">${done} von 7 Tagen geübt${S.plan.checks[pos.week] ? ' · Messaufnahme erledigt' : ' · Messaufnahme offen'}</p>
-      <a class="btn ${doneToday ? '' : 'primary'} wide" href="#/plan/woche/${pos.week}">${doneToday ? 'Woche ansehen' : 'Heute trainieren'}</a>
+      <p class="source">${trainedDays(S.plan.days, pos.week)} von 7 Tagen geübt · ${S.plan.checks[pos.week]?.date ? 'Messung erledigt' : `<a class="inline" href="#/plan/messung/${pos.week}">Messung offen</a>`}</p>
+      ${done
+        ? '<p class="status"><i></i>Heute geübt.</p><a class="btn wide" href="#/plan/training/1">Nochmal üben</a>'
+        : `<a class="btn primary wide" href="#/plan/training/1">Heute trainieren <span class="mono">${trainingSteps(pos.week, d).length} Schritte</span></a>`}
     </section>`;
+  }
+  app.innerHTML = `
+    ${head}
+    ${roadmap(pos)}
+    <section class="stack"><span class="label">Mehr</span><ul class="rows">
+      <li><a class="row-btn" href="#/plan/messwerte"><span class="name">Messwerte</span><span class="meta mono dim">${checkSeries(S.plan.checks).length}</span></a></li>
+      <li><a class="row-btn" href="#/plan/schienen"><span class="name">Redeschienen<span class="sub">BBB, Fünfsatz und Co. zum Nachschlagen</span></span></a></li>
+      <li><a class="row-btn" href="#/plan/einstellungen"><span class="name">Einstellungen<span class="sub">Messthema, Woche verlängern, neu starten</span></span></a></li>
+    </ul></section>`;
 }
 
 function weekDots(week) {
@@ -450,38 +460,22 @@ function weekDots(week) {
   return `<div class="days week">${weekDates(S.plan.start, week).map(k => `<i class="${planDoneOn(k, week) ? 'on' : ''} ${k === d ? 'today' : ''}" title="${esc(formatDe(k))}"></i>`).join('')}</div>`;
 }
 
+// Phasen zum Aufklappen, die laufende ist offen
 function roadmap(pos) {
-  return `<section class="stack" style="gap:28px"><span class="label">Roadmap</span>${C.plan.phasen.map(ph => {
+  return `<section class="stack"><span class="label">Roadmap</span><div class="phases">${C.plan.phasen.map(ph => {
     const last = ph.wochen[ph.wochen.length - 1];
-    const status = !pos.started ? 'kommt' : pos.finished || pos.week > last ? 'erledigt' : pos.week >= ph.wochen[0] ? 'läuft' : 'kommt';
-    return `<div class="phase ${status === 'läuft' ? 'now' : ''}">
-      <div class="phase-head"><span class="label">Phase ${ph.nr} · Woche ${ph.wochen[0]}–${last} · ${status}</span>
-        <h3>${esc(ph.titel)}: ${esc(ph.untertitel)}</h3><p class="prose dim">Ziel: ${esc(ph.ziel)}</p></div>
+    const status = !pos.started ? '' : pos.finished || pos.week > last ? 'erledigt' : pos.week >= ph.wochen[0] ? 'läuft' : '';
+    return `<details class="phase" ${status === 'läuft' || (!pos.started && ph.nr === 1) ? 'open' : ''}>
+      <summary><span class="name"><span class="mono dim">${ph.nr}</span> ${esc(ph.titel)}<span class="sub">${esc(ph.untertitel)} · Woche ${ph.wochen[0]}–${last}</span></span><span class="meta mono ${status === 'läuft' ? 'open' : 'dim'}">${status}</span></summary>
+      <p class="source">Ziel: ${esc(ph.ziel)}</p>
       <ul class="rows">${ph.wochen.map(n => {
-        const w = C.plan.wochen[n - 1];
         const cur = pos.started && !pos.finished && pos.week === n;
-        const past = pos.started && (pos.finished || pos.week > n);
-        const meta = cur ? 'aktuell' : past || trainedDays(S.plan.days, n) ? `${trainedDays(S.plan.days, n)}/7` : '';
-        return `<li><a class="row-btn" href="#/plan/woche/${n}"><span class="name"><span class="mono dim wk">${String(n).padStart(2, '0')}</span> ${esc(w.titel)}</span><span class="meta mono ${cur ? 'open' : 'dim'}">${meta}${S.plan.checks[n] ? ' · ◉' : ''}</span></a></li>`;
+        const t = trainedDays(S.plan.days, n);
+        return `<li><a class="row-btn compact" href="#/plan/woche/${n}"><span class="name"><span class="mono dim wk">${String(n).padStart(2, '0')}</span>${esc(C.plan.wochen[n - 1].titel)}</span><span class="meta mono ${cur ? 'open' : 'dim'}">${cur ? 'jetzt' : t ? `${t}/7` : ''}</span></a></li>`;
       }).join('')}
-        <li><a class="row-btn" href="#/plan/messung/${last}"><span class="name check-row">Check: ${esc(ph.check)}</span><span class="meta mono ${S.plan.checks[last] ? 'dim' : ''}">${S.plan.checks[last] ? 'gemessen' : ''}</span></a></li>
-      </ul></div>`;
-  }).join('')}<p class="source">◉ = Messaufnahme eingetragen</p></section>`;
-}
-
-function measureTable() {
-  const rows = checkSeries(S.plan.checks);
-  if (!rows.length) return `<section class="stack"><span class="label">Messwerte</span><p class="source">Noch keine Messaufnahme. Die erste gehört in Woche 1, sie ist dein Ausgangswert.</p></section>`;
-  const cmp = rows.length > 1 ? compareChecks(S.plan.checks, rows[0].week, rows[rows.length - 1].week) : null;
-  const maxRate = Math.max(1, ...rows.map(r => r.rate || 0));
-  return `<section class="stack"><span class="label">Messwerte · ${esc(messThema())}</span>
-    <table class="measure"><thead><tr><th>Woche</th><th>Füllwörter/Min.</th><th>Kernsatz</th><th>Roter Faden</th></tr></thead><tbody>
-    ${rows.map(r => `<tr><td class="mono"><a href="#/plan/messung/${r.week}">${r.week}</a></td>
-      <td><span class="mbar"><i style="width:${r.rate === null ? 0 : (r.rate / maxRate) * 100}%"></i></span><span class="mono">${fmtNum(r.rate)}</span></td>
-      <td class="mono">${r.kernsatz === null ? '–' : r.kernsatz ? 'ja' : 'nein'}</td><td class="mono">${r.klarheit ?? '–'}${r.klarheit ? '/10' : ''}</td></tr>`).join('')}
-    </tbody></table>
-    ${cmp ? `<p class="source">Woche ${rows[0].week} → ${rows[rows.length - 1].week}: ${cmp.rate ? `Füllwörter pro Minute ${fmtNum(cmp.rate.from)} → ${fmtNum(cmp.rate.to)}` : ''}${cmp.rate && cmp.klarheit ? ', ' : ''}${cmp.klarheit ? `roter Faden ${cmp.klarheit.from} → ${cmp.klarheit.to}` : ''}.</p>` : ''}
-  </section>`;
+        <li><a class="row-btn compact" href="#/plan/messung/${last}"><span class="name check-row">Check: ${esc(ph.check)}</span><span class="meta mono dim">${S.plan.checks[last]?.date ? '✓' : ''}</span></a></li>
+      </ul></details>`;
+  }).join('')}</div></section>`;
 }
 
 function finishedSummary() {
@@ -489,110 +483,206 @@ function finishedSummary() {
   return `<section class="done">
       <span class="label">Plan abgeschlossen</span>
       <h2>Zwölf Wochen geschafft.</h2>
-      <p>${Object.values(S.plan.days).filter(x => x.done).length} Trainingstage, ${Object.keys(S.plan.checks).length} Messaufnahmen.${cmp?.rate ? ` Füllwörter pro Minute: ${fmtNum(cmp.rate.from)} in Woche 1, ${fmtNum(cmp.rate.to)} in Woche 12.` : ''}</p>
-      <p>Wähle eine Woche, die du wiederholen willst, oder starte eine neue Runde.</p>
+      <p>${Object.values(S.plan.days).filter(x => x.done).length} Trainingstage, ${checkSeries(S.plan.checks).length} Messungen.${cmp?.rate ? ` Füllwörter pro Minute: ${fmtNum(cmp.rate.from)} in Woche 1, ${fmtNum(cmp.rate.to)} in Woche 12.` : ''}</p>
+      <p>Wähle eine Woche, die du wiederholen willst, oder starte unter Einstellungen eine neue Runde.</p>
     </section>`;
 }
 
-function railsBlock() {
-  return `<section class="stack"><span class="label">Redeschienen zum Nachschlagen</span><ul class="rows">${C.plan.schienen.map(r => `
-    <li><a class="row-btn" href="#/technik/${esc(r.technik)}"><span class="name">${esc(r.name)}<span class="sub">${r.folge.map(esc).join(' → ')}</span><span class="sub">${esc(r.wann)}</span></span></a></li>`).join('')}</ul></section>`;
+// ----- Geführtes Tagestraining
+// Die Schrittfolge bleibt über den Tag stabil, damit Zurück, Neuladen und Links auf einen Schritt funktionieren.
+function trainingSteps(week, d) {
+  const w = C.plan.wochen[week - 1];
+  const otherDays = Object.entries(S.plan.days).filter(([k, x]) => k !== d && x.done && x.week === week).length;
+  const steps = [];
+  if (!otherDays) steps.push({ kind: 'intro' });
+  const c = S.plan.checks[week];
+  if (!c?.date || c.date === d) steps.push({ kind: 'messung' });
+  steps.push({ kind: 'warmup', s: C.plan.aufwaermen });
+  w.schritte.forEach((s, i) => steps.push({ kind: 'step', s, i, n: w.schritte.length }));
+  steps.push({ kind: 'abschluss' });
+  return steps;
 }
 
-function viewWeek(n) {
+function viewTraining(i) {
   const d = today();
-  const w = C.plan.wochen[n - 1];
-  const ph = phaseOf(C.plan.phasen, n);
-  const pos = planPosition(S.plan.start, d);
-  const isNow = pos.started && !pos.finished && pos.week === n;
-  const day = S.plan.days[d]?.week === n ? S.plan.days[d] : null;
-  topBar(`Woche ${n}`, '#/plan', `<span class="count">${n}/${WEEKS}</span>`);
-  app.innerHTML = `
-    <section class="stack" style="padding-top:12px">
-      <span class="label">Phase ${ph.nr}: ${esc(ph.titel)}${isNow ? ` · Tag ${pos.day}` : ''}</span>
+  const week = activeWeek();
+  if (!week) return viewPlan();
+  const steps = trainingSteps(week, d);
+  i = Math.min(Math.max(1, i), steps.length);
+  const st = steps[i - 1];
+  const w = C.plan.wochen[week - 1];
+  const ph = phaseOf(C.plan.phasen, week);
+  topBar(`Training · Woche ${week}`, '#/plan', `<span class="count">${i}/${steps.length}</span>`);
+  const last = i === steps.length;
+  let body = '';
+  if (st.kind === 'intro') {
+    body = `
+      <span class="label">Neue Woche · Phase ${ph.nr}: ${esc(ph.titel)}</span>
       <h2 class="headline">${esc(w.titel)}</h2>
       <p class="prose task"><b>Wochenziel:</b> ${esc(w.ziel)}</p>
       <p class="prose dim">${esc(w.warum)}</p>
-      ${S.plan.start && pos.started ? weekDots(n) : ''}
-    </section>
-    <section class="stack"><span class="label">Übung</span><ol class="steps">${w.uebung.map(s => `<li>${esc(s)}</li>`).join('')}</ol></section>
-    ${w.impulse.map(kind => impulseBlock(kind, d)).join('')}
-    ${w.timer.length ? `<section class="stack"><span class="label">Timer</span>
-      <div class="timer"><span id="timer" class="mono">${timer.id ? fmtSec(timerLeft()) : fmtSec(w.timer[0])}</span>
-      <div class="row">${w.timer.map(t => `<button class="btn" data-act="timer" data-sec="${t}">${fmtSec(t)}</button>`).join('')}${timer.id ? '<button class="btn danger" data-act="timer-stop">Stopp</button>' : ''}</div></div></section>` : ''}
-    ${practiceRecorder()}
-    <section class="stack"><span class="label">Im Alltag</span><p class="prose">${esc(w.transfer)}</p></section>
-    <section class="stack"><span class="label">Techniken dieser Woche</span>
-      <div class="chips">${w.techniken.map(id => `<a class="chip" href="#/technik/${esc(id)}">${esc(tech(id)?.name || id)}</a>`).join('')}</div></section>
-    ${w.tipps.length ? `<section class="stack"><span class="label">Kniffe</span><ul class="rows">${w.tipps.map(tip).filter(Boolean).map(t => `<li class="tip"><h3>${esc(t.titel)}</h3><p>${esc(t.text)}</p></li>`).join('')}</ul></section>` : ''}
-    ${isNow ? `<form id="plan-day" class="stack" autocomplete="off">
-      <label class="lab"><span class="label">Heute notiert: Was machst du morgen besser?</span>
-        <textarea class="field" name="note" rows="3" placeholder="Eine Sache reicht.">${esc(day?.note)}</textarea></label>
-      ${day?.done ? '<p class="status"><i></i>Heute geübt. Notizen werden automatisch gespeichert.</p><button type="button" class="link center" data-act="plan-undo">Doch nicht geübt</button>'
-        : '<button class="btn primary wide" type="submit">Heute geübt</button>'}
-    </form>` : !pos.started ? `<p class="source">${S.plan.start ? 'Der Plan startet bald.' : 'Vorschau. Starte den Plan, um Trainingstage abzuhaken.'}</p>`
-      : `<p class="source">${pos.finished || pos.week > n ? 'Diese Woche liegt hinter dir. Du kannst die Übungen jederzeit wiederholen.' : 'Diese Woche kommt noch.'}</p>`}
-    <a class="btn wide" href="#/plan/messung/${n}">${S.plan.checks[n] ? 'Messaufnahme ansehen' : 'Messaufnahme dieser Woche'}</a>
-    <div class="row">${n > 1 ? `<a class="link" href="#/plan/woche/${n - 1}">← Woche ${n - 1}</a>` : ''}<span class="grow"></span>${n < WEEKS ? `<a class="link" href="#/plan/woche/${n + 1}">Woche ${n + 1} →</a>` : ''}</div>`;
+      ${ph.wochen[0] === week ? `<p class="source">Ziel der Phase: ${esc(ph.ziel)}</p>` : ''}
+      <div class="chips">${w.techniken.map(id => `<a class="chip" href="#/technik/${esc(id)}">${esc(tech(id)?.name || id)}</a>`).join('')}</div>`;
+  } else if (st.kind === 'messung') {
+    body = `
+      <span class="label">Messaufnahme der Woche · 1 Minute</span>
+      <h2 class="headline">${esc(messThema())}</h2>
+      <p class="prose dim">Ohne Vorbereitung eine Minute zu deinem Thema. Danach anhören und die Werte eintragen. Keine Zeit gerade? Mit Weiter überspringen, die Messung bleibt in der Übersicht offen.</p>
+      ${checkRecorder(week)}
+      ${checkForm(week)}`;
+  } else if (st.kind === 'warmup') {
+    body = `
+      <span class="label">Aufwärmen · 2 Minuten</span>
+      <p class="step-text">${esc(st.s.text)}</p>
+      ${toolBlocks(st.s, d)}`;
+  } else if (st.kind === 'step') {
+    body = `
+      <span class="label">Übung · Schritt ${st.i + 1} von ${st.n}</span>
+      <p class="step-text">${esc(st.s.text)}</p>
+      ${toolBlocks(st.s, d)}`;
+  } else {
+    const day = S.plan.days[d]?.week === week ? S.plan.days[d] : null;
+    const tipId = w.tipps.length ? w.tipps[(trainedDays(S.plan.days, week)) % w.tipps.length] : null;
+    const t = tipId && tip(tipId);
+    body = `
+      <span class="label">Auswerten</span>
+      <h2 class="headline">Was machst du morgen besser?</h2>
+      <form id="plan-day" class="stack" autocomplete="off">
+        <textarea class="field" name="note" rows="3" placeholder="Eine Sache reicht.">${esc(day?.note)}</textarea>
+      </form>
+      <div class="stack"><span class="label">Heute im Alltag</span><p class="prose">${esc(w.transfer)}</p></div>
+      ${t ? `<div class="tip" style="padding:0"><span class="label">Kniff</span><h3>${esc(t.titel)}</h3><p>${esc(t.text)}</p></div>` : ''}`;
+  }
+  app.innerHTML = `<div class="bar"><i style="width:${(i / steps.length) * 100}%"></i></div>
+    <section class="stack step">${body}</section>
+    ${stepNav(i > 1 ? `#/plan/training/${i - 1}` : '', last
+      ? `<button class="btn primary grow" type="submit" form="plan-day">${planDoneOn(d, week) ? 'Fertig' : 'Training abschließen'}</button>`
+      : `<a class="btn primary grow" href="#/plan/training/${i + 1}">Weiter</a>`)}`;
+  if (st.kind === 'messung') hydrateAudio(week);
+}
+
+// Werkzeuge eines Schritts: Redeschiene, Impuls, Anhören, Timer, Aufnahme
+function toolBlocks(s, d) {
+  const r = s.schiene && rail(s.schiene);
+  return [
+    r ? `<div class="rail"><span class="label">${esc(r.name)}</span><ol>${r.folge.map(f => `<li>${esc(f)}</li>`).join('')}</ol></div>` : '',
+    s.impuls ? impulseBlock(s.impuls, d) : '',
+    s.anhoeren ? (rec.practiceUrl ? `<div class="stack"><span class="label">Deine letzte Aufnahme</span><audio controls src="${rec.practiceUrl}"></audio></div>` : '<p class="source">Keine Übungsaufnahme vorhanden. Nimm im nächsten Durchgang auf oder hör die Aufnahme im Handy an.</p>') : '',
+    s.timer ? timerBlock(s.timer) : '',
+    s.aufnahme ? practiceRecorder() : '',
+  ].join('');
+}
+
+function timerBlock(sec) {
+  const running = !!timer.id;
+  return `<div class="timer"><span id="timer" class="mono">${fmtSec(running ? timerLeft() : sec)}</span>
+    ${running ? '<button class="btn" data-act="timer-stop">Stopp</button>' : `<button class="btn" data-act="timer" data-sec="${sec}">Timer starten</button>`}</div>`;
 }
 
 function impulseBlock(kind, d) {
   const n = ui.impulseSkip[kind] || 0;
-  const text = impulse(C.plan.impulse[kind], d, kind, n);
-  return `<section class="stack"><span class="label">${IMPULS_LABEL[kind]}</span>
-    <p class="quote impulse">${esc(text)}</p>
-    <button class="link" style="align-self:flex-start" data-act="impulse" data-kind="${kind}">Anderes ziehen</button></section>`;
+  return `<div class="impulse-box"><span class="label">${IMPULS_LABEL[kind]}</span>
+    <p class="quote impulse">${esc(impulse(C.plan.impulse[kind], d, kind, n))}</p>
+    <button class="link" data-act="impulse" data-kind="${kind}">Anderes ziehen</button></div>`;
 }
 
 function practiceRecorder() {
-  if (!recordingSupported()) return `<section class="stack"><span class="label">Aufnahme</span><p class="source">Nimm dich mit der Sprachmemo-App deines Handys auf. Dieser Browser kann nicht selbst aufnehmen.</p></section>`;
+  if (!recordingSupported()) return '<p class="source">Nimm dich mit der Sprachmemo-App deines Handys auf.</p>';
   const live = rec.session && rec.target === 'uebung';
-  return `<section class="stack"><span class="label">Übungsaufnahme</span>
-    <div class="row recorder">${live
+  return `<div class="row recorder">${live
       ? `<button class="btn primary danger" data-act="rec-stop">${I.stop}Stopp <span id="rec-time" class="mono">0 s</span></button>`
-      : `<button class="btn" data-act="rec-start" data-target="uebung">${I.mic}Aufnehmen</button>`}
-      ${rec.practiceUrl && !live ? `<audio controls src="${rec.practiceUrl}"></audio>` : ''}</div>
-    <p class="source">Zum direkten Anhören. Wird nicht gespeichert, die nächste Aufnahme ersetzt sie.</p></section>`;
+      : `<button class="btn" data-act="rec-start" data-target="uebung">${I.mic}${rec.practiceUrl ? 'Neu aufnehmen' : 'Aufnehmen'}</button>`}
+    ${rec.practiceUrl && !live ? `<audio controls src="${rec.practiceUrl}"></audio>` : ''}</div>`;
 }
 
-function viewCheck(n) {
-  const c = S.plan.checks[n] || {};
-  const ph = C.plan.phasen.find(p => p.wochen[p.wochen.length - 1] === n);
-  const live = rec.session && rec.target === `messung-${n}`;
-  const cmp = n > 1 ? compareChecks(S.plan.checks, 1, n) : null;
-  topBar(`Messung Woche ${n}`, `#/plan/woche/${n}`);
+function viewTrainingDone() {
+  const week = activeWeek();
+  topBar('Training', '#/plan');
+  if (!week || !planDoneOn(today(), week)) return viewPlan();
+  const n = trainedDays(S.plan.days, week);
+  app.innerHTML = `
+    <section class="done">
+      <span class="label">Woche ${week} · ${esc(C.plan.wochen[week - 1].titel)}</span>
+      <h2>Geschafft.</h2>
+      <p>${n} von 7 Tagen in dieser Woche geübt.${n >= 5 ? ' Das Wochenziel an Trainingstagen ist erreicht.' : ''}</p>
+    </section>
+    ${weekDots(week)}
+    ${S.plan.checks[week]?.date ? '' : `<a class="btn wide" href="#/plan/messung/${week}">Messaufnahme nachholen</a>`}
+    <a class="btn primary wide" href="#/">Zur Startseite</a>`;
+}
+
+// ----- Woche zum Nachschlagen
+function viewWeek(n) {
+  const d = today();
+  const w = C.plan.wochen[n - 1];
+  const ph = phaseOf(C.plan.phasen, n);
+  const isNow = activeWeek() === n;
+  topBar(`Woche ${n}`, '#/plan', `<span class="count">${n}/${WEEKS}</span>`);
+  const tags = s => [s.impuls && IMPULS_LABEL[s.impuls].replace(' des Tages', ''), s.schiene, s.timer && `Timer ${fmtSec(s.timer)}`, s.aufnahme && 'Aufnahme'].filter(Boolean);
   app.innerHTML = `
     <section class="stack" style="padding-top:12px">
-      <span class="label">Messaufnahme · 1 Minute</span>
-      <h2 class="headline">${esc(messThema())}</h2>
-      <p class="prose dim">${esc(C.plan.messung.text)}</p>
-      ${ph ? `<p class="prose task"><b>Check Phase ${ph.nr}:</b> ${esc(ph.check)}</p>` : ''}
+      <span class="label">Phase ${ph.nr}: ${esc(ph.titel)}</span>
+      <h2 class="headline">${esc(w.titel)}</h2>
+      <p class="prose task"><b>Wochenziel:</b> ${esc(w.ziel)}</p>
+      ${isNow ? weekDots(n) : ''}
+      ${isNow ? `<a class="btn ${planDoneOn(d, n) ? '' : 'primary'} wide" href="#/plan/training/1">${planDoneOn(d, n) ? 'Nochmal üben' : 'Heute trainieren'}</a>` : ''}
     </section>
-    ${recordingSupported() ? `<section class="stack"><span class="label">Aufnahme</span>
-      <div class="row recorder">${live
-        ? `<button class="btn primary danger" data-act="rec-stop">${I.stop}Stopp <span id="rec-time" class="mono">0 s</span></button>`
-        : `<button class="btn" data-act="rec-start" data-target="messung-${n}">${I.mic}${rec.saved[n] ? 'Neu aufnehmen' : 'Aufnehmen'}</button>`}
-        <audio controls data-week="${n}" hidden></audio></div>
-      ${n > 1 ? `<div class="stack" data-compare hidden><span class="label">Woche 1 zum Vergleich</span><audio controls data-week="1"></audio></div>` : ''}
-      <p class="source">Aufnahmen bleiben nur auf diesem Gerät und sind nicht in der Sicherung enthalten.</p>
-      ${rec.saved[n] ? `<button class="link" style="align-self:flex-start" data-act="rec-delete" data-week="${n}">Aufnahme löschen</button>` : ''}
-    </section>` : '<p class="source">Nimm dich mit der Sprachmemo-App deines Handys auf und trag die Werte hier ein.</p>'}
-    <form id="plan-check" class="stack" autocomplete="off" data-week="${n}">
+    <section class="stack"><span class="label">Tägliche Übung</span><ol class="steps">${w.schritte.map(s => `<li><span>${esc(s.text)}${tags(s).length ? `<br><span class="mono dim tags">${tags(s).map(esc).join(' · ')}</span>` : ''}</span></li>`).join('')}</ol></section>
+    <details class="more"><summary>Warum diese Woche</summary><div><p class="prose">${esc(w.warum)}</p><p class="prose"><b>Im Alltag:</b> ${esc(w.transfer)}</p></div></details>
+    <details class="more"><summary>Techniken und Kniffe</summary><div>
+      <div class="chips">${w.techniken.map(id => `<a class="chip" href="#/technik/${esc(id)}">${esc(tech(id)?.name || id)}</a>`).join('')}</div>
+      ${w.tipps.map(tip).filter(Boolean).map(t => `<div class="tip" style="padding:6px 0"><h3>${esc(t.titel)}</h3><p>${esc(t.text)}</p></div>`).join('')}
+    </div></details>
+    <a class="btn wide" href="#/plan/messung/${n}">${S.plan.checks[n]?.date ? 'Messaufnahme ansehen' : 'Messaufnahme dieser Woche'}</a>
+    <div class="row">${n > 1 ? `<a class="link" href="#/plan/woche/${n - 1}">← Woche ${n - 1}</a>` : ''}<span class="grow"></span>${n < WEEKS ? `<a class="link" href="#/plan/woche/${n + 1}">Woche ${n + 1} →</a>` : ''}</div>`;
+}
+
+// ----- Messung
+function checkRecorder(n) {
+  if (!recordingSupported()) return '<p class="source">Nimm dich mit der Sprachmemo-App deines Handys auf und trag die Werte hier ein.</p>';
+  const live = rec.session && rec.target === `messung-${n}`;
+  return `<div class="stack">
+    <div class="row recorder">${live
+      ? `<button class="btn primary danger" data-act="rec-stop">${I.stop}Stopp <span id="rec-time" class="mono">0 s</span></button>`
+      : `<button class="btn" data-act="rec-start" data-target="messung-${n}">${I.mic}${rec.saved[n] ? 'Neu aufnehmen' : 'Aufnehmen'}</button>`}
+      <audio controls data-week="${n}" hidden></audio></div>
+    ${n > 1 ? `<div class="stack" data-compare hidden><span class="label">Woche 1 zum Vergleich</span><audio controls data-week="1"></audio></div>` : ''}
+    ${rec.saved[n] ? `<button class="link" style="align-self:flex-start" data-act="rec-delete" data-week="${n}">Aufnahme löschen</button>` : ''}
+  </div>`;
+}
+
+function checkForm(n) {
+  const c = S.plan.checks[n] || {};
+  return `<form id="plan-check" class="stack" autocomplete="off" data-week="${n}">
       <div class="row">
-        <label class="lab grow"><span class="label">Füllwörter (Anzahl)</span><input class="field mono" name="fuellwoerter" type="number" inputmode="numeric" min="0" max="999" value="${c.fuellwoerter ?? ''}"></label>
-        <label class="lab grow"><span class="label">Dauer (Sekunden)</span><input class="field mono" name="sekunden" type="number" inputmode="numeric" min="1" max="3600" value="${c.sekunden ?? 60}"></label>
+        <label class="lab grow"><span class="label">Füllwörter</span><input class="field mono" name="fuellwoerter" type="number" inputmode="numeric" min="0" max="999" value="${c.fuellwoerter ?? ''}" placeholder="Anzahl"></label>
+        <label class="lab grow"><span class="label">Dauer (Sek.)</span><input class="field mono" name="sekunden" type="number" inputmode="numeric" min="1" max="3600" value="${c.sekunden ?? 60}"></label>
       </div>
       <p class="source">Füllwörter pro Minute: <b class="mono" id="rate">${fmtNum(fillerRate({ fuellwoerter: c.fuellwoerter, sekunden: c.sekunden ?? 60 }))}</b></p>
       <div class="stack"><span class="label">Kernsatz im ersten Satz?</span>
         <div class="chips">${[['ja', true], ['nein', false]].map(([l, v]) => `<button type="button" class="chip ${c.kernsatz === v ? 'on' : ''}" data-act="check-set" data-field="kernsatz" data-value="${v}">${l}</button>`).join('')}</div></div>
       <div class="stack"><span class="label">Roter Faden (1 bis 10)</span>
         <div class="chips">${Array.from({ length: 10 }, (_, i) => i + 1).map(v => `<button type="button" class="chip num ${c.klarheit === v ? 'on' : ''}" data-act="check-set" data-field="klarheit" data-value="${v}">${v}</button>`).join('')}</div></div>
-      <label class="lab"><span class="label">Notiz</span><textarea class="field" name="notiz" rows="3" placeholder="Was fällt dir auf, verglichen mit früher?">${esc(c.notiz)}</textarea></label>
-      ${c.date ? `<p class="status"><i></i>Gespeichert am ${esc(formatDe(c.date, false))}.</p>` : ''}
-    </form>
+    </form>`;
+}
+
+function viewCheck(n) {
+  const c = S.plan.checks[n] || {};
+  const ph = C.plan.phasen.find(p => p.wochen[p.wochen.length - 1] === n);
+  const cmp = n > 1 ? compareChecks(S.plan.checks, 1, n) : null;
+  topBar(`Messung Woche ${n}`, `#/plan/woche/${n}`);
+  app.innerHTML = `
+    <section class="stack" style="padding-top:12px">
+      <span class="label">Messaufnahme · 1 Minute</span>
+      <h2 class="headline">${esc(messThema())}</h2>
+      ${ph ? `<p class="prose task"><b>Check Phase ${ph.nr}:</b> ${esc(ph.check)}</p>` : ''}
+    </section>
+    ${checkRecorder(n)}
+    ${checkForm(n)}
+    <label class="lab"><span class="label">Notiz</span><textarea class="field" id="check-notiz" data-week="${n}" rows="3" placeholder="Was fällt dir auf, verglichen mit früher?">${esc(c.notiz)}</textarea></label>
     ${cmp && (cmp.rate || cmp.klarheit) ? `<section class="stack"><span class="label">Seit Woche 1</span><p class="prose">${cmp.rate ? `Füllwörter pro Minute: ${fmtNum(cmp.rate.from)} → ${fmtNum(cmp.rate.to)}. ` : ''}${cmp.klarheit ? `Roter Faden: ${cmp.klarheit.from} → ${cmp.klarheit.to}.` : ''}</p></section>` : ''}
-    <ul class="prompts">${C.plan.messung.kriterien.map(k => `<li>${esc(k)}</li>`).join('')}</ul>`;
-  hydrateAudio();
+    <details class="more"><summary>So misst du</summary><div><p class="prose dim">${esc(C.plan.messung.text)}</p><ul class="prompts">${C.plan.messung.kriterien.map(k => `<li>${esc(k)}</li>`).join('')}</ul><p class="source">Aufnahmen bleiben nur auf diesem Gerät und sind nicht in der Sicherung enthalten.</p></div></details>`;
+  hydrateAudio(n);
 }
 
 function setCheck(week, field, value) {
@@ -600,6 +690,48 @@ function setCheck(week, field, value) {
   c[field] = value;
   c.date = today();
   save();
+}
+
+// ----- Unterseiten
+function viewMeasures() {
+  topBar('Messwerte', '#/plan');
+  const rows = checkSeries(S.plan.checks);
+  if (!rows.length) { app.innerHTML = `<div class="empty"><p>Noch keine Messung. Die erste machst du im Training von Woche 1, sie ist dein Ausgangswert.</p></div>`; return; }
+  const cmp = rows.length > 1 ? compareChecks(S.plan.checks, rows[0].week, rows[rows.length - 1].week) : null;
+  const maxRate = Math.max(1, ...rows.map(r => r.rate || 0));
+  app.innerHTML = `<section class="stack" style="padding-top:12px"><span class="label">${esc(messThema())}</span>
+    ${cmp?.rate || cmp?.klarheit ? `<h2 class="headline">${cmp.rate ? `${fmtNum(cmp.rate.from)} → ${fmtNum(cmp.rate.to)} Füllwörter pro Minute` : `Roter Faden ${cmp.klarheit.from} → ${cmp.klarheit.to}`}</h2><p class="source">Woche ${rows[0].week} bis Woche ${rows[rows.length - 1].week}${cmp.rate && cmp.klarheit ? `, roter Faden ${cmp.klarheit.from} → ${cmp.klarheit.to}` : ''}.</p>` : ''}
+    <table class="measure"><thead><tr><th>Woche</th><th>Füllw./Min.</th><th>Kernsatz</th><th>Faden</th></tr></thead><tbody>
+    ${rows.map(r => `<tr><td class="mono"><a href="#/plan/messung/${r.week}">${r.week}</a></td>
+      <td><span class="mbar"><i style="width:${r.rate === null ? 0 : (r.rate / maxRate) * 100}%"></i></span><span class="mono">${fmtNum(r.rate)}</span></td>
+      <td class="mono">${r.kernsatz === null ? '–' : r.kernsatz ? 'ja' : 'nein'}</td><td class="mono">${r.klarheit ?? '–'}</td></tr>`).join('')}
+    </tbody></table></section>`;
+}
+
+function viewRails() {
+  topBar('Redeschienen', '#/plan');
+  app.innerHTML = `<p class="prose dim" style="padding-top:12px">Feste Abfolgen, an denen du dich beim Sprechen entlanghangelst. Antippen für die Technik dahinter.</p>
+    <ul class="rows">${C.plan.schienen.map(r => `
+    <li><a class="row-btn" href="#/technik/${esc(r.technik)}"><span class="name">${esc(r.name)}<span class="sub">${r.folge.map(esc).join(' → ')}</span><span class="sub">${esc(r.wann)}</span></span></a></li>`).join('')}</ul>`;
+}
+
+function viewPlanSettings() {
+  const pos = planPosition(S.plan.start, today());
+  topBar('Einstellungen', '#/plan');
+  app.innerHTML = `
+    <section class="section" style="padding-top:12px">
+      <label class="lab"><span class="label">Thema der Messaufnahme</span>
+        <input class="field" id="plan-thema" maxlength="200" value="${esc(S.plan.thema)}" placeholder="${esc(C.plan.messung.standardthema)}"></label>
+    </section>
+    ${S.plan.start ? `<section class="section">
+      <span class="label">Plan</span>
+      <p>Gestartet am ${esc(formatDe(S.plan.start, false))}. Kam etwas dazwischen, verlängere die aktuelle Woche: Der Plan rückt um sieben Tage nach hinten, Geübtes bleibt erhalten.</p>
+      <div class="row">
+        ${pos.started && !pos.finished ? '<button class="btn grow" data-act="plan-extend">Woche verlängern</button>' : ''}
+        <button class="btn grow danger" data-act="plan-reset">Plan neu starten</button>
+      </div></section>` : ''}
+    <section class="section"><span class="label">Täglicher Ablauf</span>
+      <ol class="steps">${C.plan.ablauf.map(a => `<li><span><b>${esc(a.titel)}</b> <span class="dim mono">${esc(a.minuten)} Min.</span><br>${esc(a.text)}</span></li>`).join('')}</ol></section>`;
 }
 
 // ---------- Timer ----------
@@ -617,7 +749,7 @@ function tick() {
   if (timer.id && el) el.textContent = fmtSec(timerLeft());
   if (timer.id && timerLeft() === 0) {
     stopTimer(); navigator.vibrate?.(200); toast('Zeit um.');
-    if (location.hash.startsWith('#/plan/woche')) render();
+    if (location.hash.startsWith('#/plan/training')) render();
   }
   const r = $('#rec-time');
   if (r && rec.session) r.textContent = fmtSec(Math.round((Date.now() - rec.session.startedAt) / 1000));
@@ -662,8 +794,8 @@ async function recStop() {
 function cancelRecording() { if (rec.session) { rec.session.cancel(); rec.session = null; rec.target = ''; } }
 function dropUrl(week) { if (rec.urls[week]) { URL.revokeObjectURL(rec.urls[week]); delete rec.urls[week]; } }
 
-// Gespeicherte Aufnahmen nachladen, sobald die Messansicht steht
-async function hydrateAudio() {
+// Gespeicherte Aufnahmen nachladen, sobald die Messansicht steht. current = Woche der angezeigten Messung
+async function hydrateAudio(current) {
   for (const el of document.querySelectorAll('audio[data-week]')) {
     const week = Number(el.dataset.week);
     try {
@@ -672,7 +804,7 @@ async function hydrateAudio() {
         if (!r?.blob) { if (rec.saved[week]) { delete rec.saved[week]; render(); } continue; }
         rec.urls[week] = URL.createObjectURL(r.blob);
       }
-      if (!rec.saved[week]) { rec.saved[week] = true; if (week === Number(location.hash.split('/')[3])) { render(); return; } }
+      if (!rec.saved[week]) { rec.saved[week] = true; if (week === current) { render(); return; } }
       el.src = rec.urls[week];
       el.hidden = false;
       el.closest('[data-compare]')?.removeAttribute('hidden');
@@ -685,7 +817,13 @@ function render() {
   if (!C) return;
   const [, route = '', arg, arg2] = location.hash.split('/');
   if (route !== 'wiederholen') { ui.session = 0; ui.revealed = false; }
-  if (location.hash !== shownRoute) { stopTimer(); cancelRecording(); ui.impulseSkip = {}; shownRoute = location.hash; }
+  if (location.hash !== shownRoute) {
+    stopTimer(); cancelRecording();
+    // Impulse bleiben innerhalb eines Trainings gleich, auch wenn man zwischen den Schritten wechselt
+    const key = h => h.replace(/\/training\/\d+$/, '/training');
+    if (key(location.hash) !== key(shownRoute)) ui.impulseSkip = {};
+    shownRoute = location.hash;
+  }
   switch (route) {
     // Nur heute oder Tage mit vorhandenem Eintrag, damit sich über die URL keine Tage abschließen lassen
     case 'challenge': return arg && !(isDateKey(arg) && (arg === today() || S.entries[arg])) ? viewHome() : viewChallenge(arg || today());
@@ -694,9 +832,16 @@ function render() {
     case 'tipps': return viewTips();
     case 'wiederholen': return viewReview();
     case 'verlauf': return viewProgress();
-    case 'plan': return arg === 'woche' && isWeekArg(arg2) ? viewWeek(Number(arg2))
-      : arg === 'messung' && isWeekArg(arg2) ? viewCheck(Number(arg2))
-      : viewPlan();
+    case 'plan':
+      if (arg === 'woche' && isWeekArg(arg2)) return viewWeek(Number(arg2));
+      if (arg === 'messung' && isWeekArg(arg2)) return viewCheck(Number(arg2));
+      if (arg === 'training') return /^\d+$/.test(arg2 || '') ? viewTraining(Number(arg2)) : viewTraining(1);
+      if (arg === 'geschafft') return viewTrainingDone();
+      if (arg === 'start' && !S.plan.start) return viewOnboarding(Math.min(3, Math.max(1, Number(arg2) || 1)));
+      if (arg === 'messwerte') return viewMeasures();
+      if (arg === 'schienen') return viewRails();
+      if (arg === 'einstellungen') return viewPlanSettings();
+      return viewPlan();
     default: return viewHome();
   }
 }
@@ -749,9 +894,6 @@ document.addEventListener('click', e => {
   } else if (act === 'check-set') {
     const v = el.dataset.field === 'kernsatz' ? el.dataset.value === 'true' : Number(el.dataset.value);
     setCheck(Number(el.closest('form').dataset.week), el.dataset.field, v); render();
-  } else if (act === 'plan-undo') {
-    const day = S.plan.days[today()];
-    if (day) { day.done = false; save(); render(); }
   } else if (act === 'plan-extend') {
     if (!confirm('Aktuelle Woche verlängern? Der Plan rückt um sieben Tage nach hinten.')) return;
     S.plan = extendPlan(S.plan); save(); render(); toast('Woche verlängert.');
@@ -788,19 +930,16 @@ document.addEventListener('input', e => {
     viewTechniques();
     const q = $('#tech-q'); q.focus(); q.setSelectionRange(pos, pos);
   } else if (e.target.form?.id === 'ch') onChallengeInput(e.target.form, e.target.name, e.target.value);
+  else if (e.target.id === 'check-notiz') setCheck(Number(e.target.dataset.week), 'notiz', e.target.value);
   else if (e.target.id === 'plan-thema') { S.plan.thema = e.target.value.slice(0, 200); save(); }
   else if (e.target.form?.id === 'plan-day') { const d = planDay(today()); if (d) { d.note = e.target.value; save(); } }
   else if (e.target.form?.id === 'plan-check') {
     const f = e.target.form, week = Number(f.dataset.week), { name, value } = e.target;
-    if (name === 'notiz') setCheck(week, 'notiz', value);
-    else {
-      const n = value === '' ? null : Math.round(Number(value));
-      const ok = n === null || (Number.isInteger(n) && n >= (name === 'sekunden' ? 1 : 0) && n <= (name === 'sekunden' ? 3600 : 999));
-      if (!ok) return;
-      setCheck(week, name, n);
-      const c = S.plan.checks[week];
-      $('#rate').textContent = fmtNum(fillerRate(c));
-    }
+    const n = value === '' ? null : Math.round(Number(value));
+    const ok = n === null || (Number.isInteger(n) && n >= (name === 'sekunden' ? 1 : 0) && n <= (name === 'sekunden' ? 3600 : 999));
+    if (!ok) return;
+    setCheck(week, name, n);
+    $('#rate').textContent = fmtNum(fillerRate(S.plan.checks[week]));
   }
 });
 
@@ -813,13 +952,13 @@ document.addEventListener('submit', e => {
   else if (e.target.id === 'plan-start') {
     e.preventDefault();
     S.plan = { ...defaultPlan(), thema: e.target.thema.value.trim().slice(0, 200), start: today() };
-    save(); location.hash = '#/plan/woche/1'; toast('Los geht\'s. Mach heute als Erstes die Messaufnahme.');
+    save(); location.hash = '#/plan/training/1';
   } else if (e.target.id === 'plan-day') {
     e.preventDefault();
     const d = planDay(today());
     if (!d) return;
-    d.done = true; d.note = e.target.note.value; save(); render();
-    toast(`Geübt. ${trainedDays(S.plan.days, d.week)} von 7 Tagen in dieser Woche.`);
+    d.done = true; d.note = e.target.note.value; save();
+    location.hash = '#/plan/geschafft';
   }
 });
 

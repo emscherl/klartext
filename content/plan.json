@@ -4,10 +4,27 @@
   "grundidee": "Erst denken, dann reden. Wer seinen Kernsatz kennt und eine feste Struktur als Schiene nutzt, hat den Kopf frei für den Inhalt und darf sich dabei Zeit lassen.",
   "aufwand": "10 bis 15 Minuten täglich, mit Sprachaufnahme am Handy oder direkt in der App.",
   "ablauf": [
-    { "minuten": "2", "titel": "Aufwärmen", "text": "Zwei Atemzüge zyklisches Seufzen, dann der Begriff des Tages: 20 Sekunden langsam darüber sprechen, mit einem Bild im Kopf." },
-    { "minuten": "8", "titel": "Wochenübung", "text": "Die Übung der aktuellen Woche, mit Aufnahme." },
-    { "minuten": "3", "titel": "Auswerten", "text": "Aufnahme anhören und eine Sache notieren, die du morgen besser machst." }
+    {
+      "minuten": "2",
+      "titel": "Aufwärmen",
+      "text": "Zwei Atemzüge zyklisches Seufzen, dann der Begriff des Tages: 20 Sekunden langsam darüber sprechen, mit einem Bild im Kopf."
+    },
+    {
+      "minuten": "8",
+      "titel": "Wochenübung",
+      "text": "Die Übung der aktuellen Woche, mit Aufnahme."
+    },
+    {
+      "minuten": "3",
+      "titel": "Auswerten",
+      "text": "Aufnahme anhören und eine Sache notieren, die du morgen besser machst."
+    }
   ],
+  "aufwaermen": {
+    "text": "Zweimal zyklisch seufzen: durch die Nase einatmen, kurz nachatmen, lang durch den Mund aus. Dann 20 Sekunden langsam über den Begriff sprechen, mit einem Bild im Kopf.",
+    "impuls": "begriffe",
+    "timer": 20
+  },
   "messung": {
     "standardthema": "Was ich beruflich mache und was mir daran wichtig ist",
     "text": "Einmal pro Woche eine Messaufnahme: eine Minute zum immer gleichen Thema, ohne Vorbereitung. Danach anhören und vier Werte eintragen. Nur so siehst du, ob sich wirklich etwas verändert, denn das eigene Gefühl täuscht beim Sprechen oft.",
@@ -50,16 +67,27 @@
       "titel": "Langsam sprechen, Pausen setzen",
       "ziel": "Referenzaufnahme gemacht und ausgewertet. An mindestens 5 Tagen geübt, dabei nach jedem Satz eine bewusste Pause.",
       "warum": "Tempo und Pausen sind die Grundlage: Wer langsamer spricht, gewinnt Zeit zum Planen. Die Messaufnahme dieser Woche ist dein Ausgangswert für alle späteren Vergleiche, mach sie deshalb gleich am ersten Tag.",
-      "uebung": [
-        "Zwei Atemzüge zyklisches Seufzen.",
-        "Begriff des Tages: 20 Sekunden bewusst langsam darüber sprechen, dabei ein Bild im Kopf halten.",
-        "Thema des Tages: 1 Minute sprechen, nach jedem Satz 1 bis 2 Sekunden Pause.",
-        "Aufnahme anhören: Wo waren Pausen, wo hast du sie mit Füllwörtern gefüllt?"
+      "schritte": [
+        {
+          "text": "Thema des Tages: 1 Minute sprechen. Nach jedem Satz 1 bis 2 Sekunden Pause.",
+          "impuls": "themen",
+          "timer": 60,
+          "aufnahme": true
+        },
+        {
+          "text": "Aufnahme anhören: Wo waren Pausen, wo hast du sie mit Füllwörtern gefüllt?",
+          "anhoeren": true
+        }
       ],
-      "timer": [20, 60],
-      "impulse": ["begriffe", "themen"],
-      "techniken": ["bewusste-pause", "ausatmen-beruhigen", "gezieltes-ueben"],
-      "tipps": ["t32-pause-statt-aeh", "t39-ein-gedanke-pro-satz"],
+      "techniken": [
+        "bewusste-pause",
+        "ausatmen-beruhigen",
+        "gezieltes-ueben"
+      ],
+      "tipps": [
+        "t32-pause-statt-aeh",
+        "t39-ein-gedanke-pro-satz"
+      ],
       "transfer": "In einem echten Gespräch pro Tag nach deinem ersten Satz bewusst eine Pause machen."
     },
     {
@@ -67,16 +95,31 @@
       "titel": "Den Kernsatz finden",
       "ziel": "Täglich zu 3 Themen nach 30 Sekunden Bedenkzeit je einen Kernsatz gesagt, der ohne Luftholen auskommt.",
       "warum": "Wer um den heißen Brei redet, hat den Gedanken meist noch nicht zu Ende gedacht. Der Kernsatz ist der fertige Gedanke. Alles Weitere in den nächsten Wochen baut auf ihm auf.",
-      "uebung": [
-        "Thema des Tages ziehen.",
-        "30 Sekunden still nachdenken (Timer).",
-        "EINEN Satz sagen, der deine Meinung auf den Punkt bringt. Aufnehmen.",
-        "Mit zwei weiteren Themen wiederholen."
+      "schritte": [
+        {
+          "text": "Thema ziehen und 30 Sekunden still nachdenken.",
+          "impuls": "themen",
+          "timer": 30
+        },
+        {
+          "text": "Jetzt EINEN Satz sagen, der deine Meinung auf den Punkt bringt.",
+          "aufnahme": true,
+          "schiene": "Kernsatz zuerst"
+        },
+        {
+          "text": "Noch zwei Themen: neues Thema ziehen, 30 Sekunden denken, ein Satz.",
+          "impuls": "themen",
+          "timer": 30,
+          "aufnahme": true
+        }
       ],
-      "timer": [30],
-      "impulse": ["themen"],
-      "techniken": ["pyramidenprinzip"],
-      "tipps": ["t34-ein-satz-test", "t27-ziel-in-einem-satz"],
+      "techniken": [
+        "pyramidenprinzip"
+      ],
+      "tipps": [
+        "t34-ein-satz-test",
+        "t27-ziel-in-einem-satz"
+      ],
       "transfer": "Vor jeder Mail und jeder Wortmeldung kurz den Ein-Satz-Test machen."
     },
     {
@@ -84,16 +127,33 @@
       "titel": "Behauptung, Begründung, Beispiel",
       "ziel": "Täglich 3 Themen nach BBB, jede Antwort unter 60 Sekunden, die Behauptung am Ende wiederholt.",
       "warum": "BBB ist das kleinste Gerüst für eine Meinung. Es passt in eine Minute und trägt fast jede spontane Antwort. Merkhilfe in Bildern: Ausrufezeichen (Behauptung), Pfeil (Begründung), Lupe (Beispiel).",
-      "uebung": [
-        "Thema ziehen, kurz den Kernsatz überlegen.",
-        "Behauptung, Begründung, Beispiel, Schluss: höchstens 1 Minute, mit Aufnahme.",
-        "Anhören: Ist das Beispiel konkret? Kam die Behauptung am Ende wieder?",
-        "Mit zwei weiteren Themen wiederholen."
+      "schritte": [
+        {
+          "text": "Thema ziehen. Dann Behauptung, Begründung, Beispiel, Schluss: höchstens 1 Minute.",
+          "impuls": "themen",
+          "schiene": "BBB",
+          "timer": 60,
+          "aufnahme": true
+        },
+        {
+          "text": "Anhören: Ist das Beispiel konkret? Kam die Behauptung am Ende wieder?",
+          "anhoeren": true
+        },
+        {
+          "text": "Zwei weitere Themen nach BBB.",
+          "impuls": "themen",
+          "schiene": "BBB",
+          "timer": 60,
+          "aufnahme": true
+        }
       ],
-      "timer": [60],
-      "impulse": ["themen"],
-      "techniken": ["bbb-prep", "bewusste-pause"],
-      "tipps": ["t25-ein-grund-reicht"],
+      "techniken": [
+        "bbb-prep",
+        "bewusste-pause"
+      ],
+      "tipps": [
+        "t25-ein-grund-reicht"
+      ],
       "transfer": "Einmal am Tag in einem echten Gespräch eine Meinung bewusst nach BBB sagen."
     },
     {
@@ -101,16 +161,29 @@
       "titel": "Füllwörter durch Pausen ersetzen",
       "ziel": "Dein häufigstes Füllwort gefunden und gezielt ersetzt. In der Messaufnahme weniger Füllwörter pro Minute als in Woche 1.",
       "warum": "Einzelne „ähs“ sind normal und schaden kaum, gehäuft lenken sie ab. Statt alle auf einmal zu bekämpfen, ersetzt du eine Woche lang nur ein einziges Füllwort durch eine Pause. Das ist machbar und messbar.",
-      "uebung": [
-        "Erste Aufnahme der Woche anhören und Füllwörter nach Art zählen.",
-        "Das häufigste auswählen.",
-        "Täglich 1 Minute zum Thema des Tages, nur auf dieses eine Wort achten.",
-        "Zählen und mit dem Vortag vergleichen."
+      "schritte": [
+        {
+          "text": "Dein Füllwort der Woche: Hör die Messaufnahme an und zähl die Füllwörter nach Art. Das häufigste nimmst du dir diese Woche vor."
+        },
+        {
+          "text": "1 Minute zum Thema des Tages. Achte nur auf dein Füllwort und ersetze es durch eine kurze Pause.",
+          "impuls": "themen",
+          "timer": 60,
+          "aufnahme": true
+        },
+        {
+          "text": "Anhören und zählen: weniger als gestern?",
+          "anhoeren": true
+        }
       ],
-      "timer": [60],
-      "impulse": ["themen"],
-      "techniken": ["bewusste-pause", "gezieltes-ueben"],
-      "tipps": ["t32-pause-statt-aeh", "t35-kurz-ueberlegen"],
+      "techniken": [
+        "bewusste-pause",
+        "gezieltes-ueben"
+      ],
+      "tipps": [
+        "t32-pause-statt-aeh",
+        "t35-kurz-ueberlegen"
+      ],
       "transfer": "In Gesprächen nur auf dein Füllwort achten und es durch eine kurze Pause ersetzen."
     },
     {
@@ -118,16 +191,34 @@
       "titel": "Fünfsatz für Wortmeldungen",
       "ziel": "An jedem Arbeitstag eine Wortmeldung als Fünfsatz vorbereitet, mindestens zwei davon tatsächlich in einem Meeting gehalten.",
       "warum": "Der Fünfsatz trägt Beiträge von 1 bis 2 Minuten. Der Trick: Den fünften Satz, das Ziel, überlegst du zuerst. Dann ergibt sich die Struktur fast von selbst.",
-      "uebung": [
-        "Zielsatz festlegen: Was soll der andere am Ende denken oder tun?",
-        "Einstieg und drei Gedankenschritte als Stichworte notieren.",
-        "Frei sprechen, höchstens 2 Minuten, mit Aufnahme.",
-        "Anhören: Führt jeder Schritt zum Ziel?"
+      "schritte": [
+        {
+          "text": "Thema ziehen und zuerst den Zielsatz festlegen: Was soll der andere am Ende denken oder tun?",
+          "impuls": "themen",
+          "schiene": "Fünfsatz"
+        },
+        {
+          "text": "Einstieg und drei Gedankenschritte als Stichworte notieren."
+        },
+        {
+          "text": "Frei sprechen, höchstens 2 Minuten.",
+          "schiene": "Fünfsatz",
+          "timer": 120,
+          "aufnahme": true
+        },
+        {
+          "text": "Anhören: Führt jeder Schritt zum Ziel?",
+          "anhoeren": true
+        }
       ],
-      "timer": [120],
-      "impulse": ["themen"],
-      "techniken": ["fuenfsatz", "pyramidenprinzip"],
-      "tipps": ["t36-struktur-ankuendigen", "t37-wegweiser"],
+      "techniken": [
+        "fuenfsatz",
+        "pyramidenprinzip"
+      ],
+      "tipps": [
+        "t36-struktur-ankuendigen",
+        "t37-wegweiser"
+      ],
       "transfer": "Deine nächste Meeting-Wortmeldung als Fünfsatz vorbereiten und halten."
     },
     {
@@ -135,16 +226,30 @@
       "titel": "Erzählen mit Spannungsbogen",
       "ziel": "Täglich ein Erlebnis erzählt: erst in drei Sätzen mit und, aber, deshalb, dann in 2 Minuten.",
       "warum": "Geschichten bleiben hängen, wenn sie eine Wendung haben. Und, aber, deshalb ist die Kurzform. Für die lange Version: Situation, Problem, Wendepunkt, Ergebnis, als Bilderfolge im Kopf abgehen.",
-      "uebung": [
-        "Ein Erlebnis aus den letzten Tagen wählen.",
-        "In drei Sätzen erzählen: und, aber, deshalb.",
-        "Dieselbe Geschichte in 2 Minuten: Situation, Problem, Wendepunkt, Ergebnis. Mit Aufnahme.",
-        "Anhören: Ist der Wendepunkt klar zu hören?"
+      "schritte": [
+        {
+          "text": "Ein Erlebnis aus den letzten Tagen in drei Sätzen erzählen: und, aber, deshalb.",
+          "schiene": "Und, Aber, Deshalb",
+          "timer": 30,
+          "aufnahme": true
+        },
+        {
+          "text": "Dieselbe Geschichte in 2 Minuten, als Bilderfolge im Kopf.",
+          "schiene": "Geschichte",
+          "timer": 120,
+          "aufnahme": true
+        },
+        {
+          "text": "Anhören: Ist der Wendepunkt klar zu hören?",
+          "anhoeren": true
+        }
       ],
-      "timer": [30, 120],
-      "impulse": [],
-      "techniken": ["und-aber-deshalb"],
-      "tipps": ["t33-zahlen-einordnen"],
+      "techniken": [
+        "und-aber-deshalb"
+      ],
+      "tipps": [
+        "t33-zahlen-einordnen"
+      ],
       "transfer": "Auf „Wie war dein Tag?“ einmal mit einer kurzen Geschichte statt einer Aufzählung antworten."
     },
     {
@@ -152,16 +257,34 @@
       "titel": "Antworten aus dem Stand",
       "ziel": "Täglich 3 zufällige Fragen beantwortet. Jede Antwort beginnt nach einer kurzen Pause mit dem Kernsatz.",
       "warum": "Spontane Fragen sind der Ernstfall. Mit einer festen Schiene musst du nicht über die Form nachdenken: erst Pause, dann Kernsatz, dann BBB oder Was? Na und? Was jetzt?",
-      "uebung": [
-        "Frage des Tages ziehen (oder dir von jemandem stellen lassen).",
-        "Einmal ausatmen, Pause.",
-        "Kernsatz, dann BBB oder Was? Na und? Was jetzt?, höchstens 1 Minute.",
-        "Zwei weitere Fragen ziehen und wiederholen."
+      "schritte": [
+        {
+          "text": "Frage ziehen. Einmal ausatmen, kurze Pause.",
+          "impuls": "fragen"
+        },
+        {
+          "text": "Erst der Kernsatz, dann die Schiene. Höchstens 1 Minute.",
+          "schiene": "Was? Na und? Was jetzt?",
+          "timer": 60,
+          "aufnahme": true
+        },
+        {
+          "text": "Zwei weitere Fragen, gleiche Schiene oder BBB.",
+          "impuls": "fragen",
+          "timer": 60,
+          "aufnahme": true
+        }
       ],
-      "timer": [60],
-      "impulse": ["fragen"],
-      "techniken": ["was-na-und-was-jetzt", "bbb-prep", "aufregung-umdeuten"],
-      "tipps": ["t35-kurz-ueberlegen", "t40-rueckfrage-denkzeit", "t38-rettungsanker"],
+      "techniken": [
+        "was-na-und-was-jetzt",
+        "bbb-prep",
+        "aufregung-umdeuten"
+      ],
+      "tipps": [
+        "t35-kurz-ueberlegen",
+        "t40-rueckfrage-denkzeit",
+        "t38-rettungsanker"
+      ],
       "transfer": "Statusfragen im Alltag mit drei Sätzen beantworten: Was? Na und? Was jetzt?"
     },
     {
@@ -169,16 +292,36 @@
       "titel": "Mini-Präsentation ohne Zettel",
       "ziel": "3 Minuten frei über ein Thema gesprochen, nur mit drei Stationen im Kopf. Zwei Aufnahmen, die zweite ohne längeren Hänger.",
       "warum": "Hier kommt alles aus Phase 2 zusammen: Fünfsatz als Gerüst, drei Punkte, die du dir mit der Loci-Methode an Orte legst. Stichworte und Symbole reichen als Stütze.",
-      "uebung": [
-        "Thema wählen und Zielsatz festlegen.",
-        "Drei Punkte als Bilder an drei Stationen eines vertrauten Wegs legen.",
-        "3 Minuten frei sprechen, mit Aufnahme.",
-        "Anhören, eine Sache verbessern, ein zweites Mal aufnehmen."
+      "schritte": [
+        {
+          "text": "Thema wählen und den Zielsatz festlegen.",
+          "impuls": "themen",
+          "schiene": "Fünfsatz"
+        },
+        {
+          "text": "Drei Punkte als Bilder an drei Stationen eines vertrauten Wegs legen, etwa Haustür, Flur, Küche."
+        },
+        {
+          "text": "3 Minuten frei sprechen, ohne Zettel.",
+          "timer": 180,
+          "aufnahme": true
+        },
+        {
+          "text": "Anhören, eine Sache verbessern und ein zweites Mal aufnehmen.",
+          "anhoeren": true,
+          "timer": 180,
+          "aufnahme": true
+        }
       ],
-      "timer": [180],
-      "impulse": ["themen"],
-      "techniken": ["loci-methode", "fuenfsatz", "ausatmen-beruhigen"],
-      "tipps": ["t36-struktur-ankuendigen", "t38-rettungsanker"],
+      "techniken": [
+        "loci-methode",
+        "fuenfsatz",
+        "ausatmen-beruhigen"
+      ],
+      "tipps": [
+        "t36-struktur-ankuendigen",
+        "t38-rettungsanker"
+      ],
       "transfer": "Einen kurzen Beitrag in einem echten Meeting ohne Zettel halten."
     },
     {
@@ -186,16 +329,27 @@
       "titel": "Gespräche bewusst beginnen",
       "ziel": "An 5 Tagen ein Gespräch bewusst begonnen (Kollegin, Bekannte, Verkäufer), den ersten Satz vorher überlegt.",
       "warum": "Der Einstieg ist oft der schwerste Moment. Ein vorher überlegter erster Satz nimmt den Druck raus. Ein Wenn-dann-Plan sorgt dafür, dass du es im Alltag wirklich tust.",
-      "uebung": [
-        "Einen Wenn-dann-Plan für die Woche schreiben (z. B. „Wenn ich in die Kaffeeküche komme, dann frage ich …“).",
-        "Vor dem Gespräch den ersten Satz überlegen, gern als offene Frage.",
-        "Gespräch führen.",
-        "Danach notieren: Wie kam der Einstieg an?"
+      "schritte": [
+        {
+          "text": "Wenn-dann-Plan für heute festlegen: Wo und mit wem beginnst du ein Gespräch? Zum Beispiel: „Wenn ich in die Kaffeeküche komme, dann frage ich …“"
+        },
+        {
+          "text": "Den ersten Satz überlegen, gern als offene Frage, und einmal laut sagen.",
+          "impuls": "fragen",
+          "aufnahme": true
+        },
+        {
+          "text": "Später im Alltag: das Gespräch führen. Wie der Einstieg ankam, notierst du morgen beim Auswerten."
+        }
       ],
-      "timer": [],
-      "impulse": ["fragen"],
-      "techniken": ["wenn-dann-plan", "aktives-zuhoeren"],
-      "tipps": ["t10-offen-beginnen", "t30-namen-nutzen"],
+      "techniken": [
+        "wenn-dann-plan",
+        "aktives-zuhoeren"
+      ],
+      "tipps": [
+        "t10-offen-beginnen",
+        "t30-namen-nutzen"
+      ],
       "transfer": "Diese Woche ist die Übung selbst der Transfer."
     },
     {
@@ -203,16 +357,30 @@
       "titel": "Wichtige Gespräche vorbereiten",
       "ziel": "Mindestens zwei wichtige Gespräche mit Ziel, Kernsatz und 2 bis 3 Punkten vorbereitet und danach kurz ausgewertet.",
       "warum": "Vorbereitung ist der stärkste Hebel für Klarheit unter Druck. Drei Fragen genügen: Was ist mein Ziel? Was ist mein Kernsatz? Welche 2 bis 3 Punkte will ich bringen? Direkt vorher hilft Atmen und Umdeuten gegen die Nervosität.",
-      "uebung": [
-        "Für ein anstehendes Gespräch Ziel, Kernsatz und 2 bis 3 Punkte aufschreiben.",
-        "Den Einstieg einmal laut sprechen, mit Aufnahme.",
-        "Direkt vor dem Gespräch: zweimal zyklisch seufzen, „Ich bin gespannt“.",
-        "Danach: Ziel erreicht? Was hat gefehlt?"
+      "schritte": [
+        {
+          "text": "Für ein anstehendes Gespräch aufschreiben: Was ist mein Ziel? Was ist mein Kernsatz? Welche 2 bis 3 Punkte?",
+          "schiene": "Fünfsatz"
+        },
+        {
+          "text": "Den Einstieg einmal laut sprechen.",
+          "timer": 60,
+          "aufnahme": true
+        },
+        {
+          "text": "Direkt vor dem Gespräch: zweimal zyklisch seufzen und „Ich bin gespannt“ sagen. Danach kurz prüfen: Ziel erreicht? Was hat gefehlt?"
+        }
       ],
-      "timer": [60],
-      "impulse": [],
-      "techniken": ["fuenfsatz", "pyramidenprinzip", "aufregung-umdeuten", "ausatmen-beruhigen"],
-      "tipps": ["t27-ziel-in-einem-satz", "t28-wer-was-bis-wann"],
+      "techniken": [
+        "fuenfsatz",
+        "pyramidenprinzip",
+        "aufregung-umdeuten",
+        "ausatmen-beruhigen"
+      ],
+      "tipps": [
+        "t27-ziel-in-einem-satz",
+        "t28-wer-was-bis-wann"
+      ],
       "transfer": "Diese Woche ist die Übung selbst der Transfer."
     },
     {
@@ -220,16 +388,29 @@
       "titel": "Zuhören und nachfragen",
       "ziel": "In jedem längeren Gespräch mindestens einmal paraphrasiert und eine offene Frage gestellt.",
       "warum": "Gute Kommunikation ist zur Hälfte Zuhören. Paraphrasieren („Du meinst also …“) und offene Fragen nehmen Druck raus, geben dir Denkzeit und machen deine Antworten treffender.",
-      "uebung": [
-        "Morgens festlegen, in welchem Gespräch du heute bewusst zuhörst.",
-        "Im Gespräch: einmal paraphrasieren, eine offene Frage mit Was oder Wie stellen.",
-        "Erst danach deine eigene Sicht sagen.",
-        "Abends notieren: Was hast du durch das Nachfragen erfahren?"
+      "schritte": [
+        {
+          "text": "Festlegen, in welchem Gespräch du heute bewusst zuhörst."
+        },
+        {
+          "text": "Im Gespräch: einmal paraphrasieren („Du meinst also …“) und eine offene Frage mit Was oder Wie stellen. Erst danach deine Sicht."
+        },
+        {
+          "text": "Zum Üben jetzt: Frage ziehen und laut eine gute Folgefrage formulieren, als hätte dir jemand gerade geantwortet.",
+          "impuls": "fragen",
+          "aufnahme": true
+        }
       ],
-      "timer": [],
-      "impulse": [],
-      "techniken": ["aktives-zuhoeren", "oars", "kalibrierte-fragen"],
-      "tipps": ["t12-richtig-verstanden", "t10-offen-beginnen", "t06-stille-aushalten"],
+      "techniken": [
+        "aktives-zuhoeren",
+        "oars",
+        "kalibrierte-fragen"
+      ],
+      "tipps": [
+        "t12-richtig-verstanden",
+        "t10-offen-beginnen",
+        "t06-stille-aushalten"
+      ],
       "transfer": "Diese Woche ist die Übung selbst der Transfer."
     },
     {
@@ -237,44 +418,198 @@
       "titel": "Reflexion und Abschluss",
       "ziel": "Nach Gesprächen 2 Minuten reflektiert, Abschlussaufnahme mit Woche 1 verglichen, eine Rückmeldung von außen eingeholt und den Plan für danach festgelegt.",
       "warum": "Die eigene Wahrnehmung hat blinde Flecken. Der Vergleich der Aufnahmen zeigt, was sich messbar getan hat, die Rückmeldung einer anderen Person zeigt, was ankommt. Beides zusammen entscheidet, woran du danach weiterarbeitest.",
-      "uebung": [
-        "Nach wichtigen Gesprächen 2 Minuten notieren: Was lief gut? Wo habe ich den Faden verloren?",
-        "Abschluss-Messaufnahme machen und mit Woche 1 vergleichen.",
-        "Eine Person, die dich oft sprechen hört, um einen Vorschlag für die Zukunft bitten (Feedforward).",
-        "Eine Woche aus dem Plan auswählen, die du wiederholst."
+      "schritte": [
+        {
+          "text": "Nach dem letzten wichtigen Gespräch 2 Minuten notieren: Was lief gut? Wo habe ich den Faden verloren?",
+          "timer": 120
+        },
+        {
+          "text": "Eine Person, die dich oft sprechen hört, um einen Vorschlag für die Zukunft bitten (Feedforward)."
+        },
+        {
+          "text": "Eine Woche aus dem Plan auswählen, die du nach dem Abschluss wiederholst."
+        }
       ],
-      "timer": [60],
-      "impulse": [],
-      "techniken": ["gezieltes-ueben", "feedforward", "johari-fenster"],
-      "tipps": ["t21-lob-konkret"],
+      "techniken": [
+        "gezieltes-ueben",
+        "feedforward",
+        "johari-fenster"
+      ],
+      "tipps": [
+        "t21-lob-konkret"
+      ],
       "transfer": "Diese Woche ist die Übung selbst der Transfer."
     }
   ],
   "schienen": [
-    { "name": "Kernsatz zuerst", "folge": ["Kernsatz", "Details"], "wann": "Immer, besonders wenn du unterbrochen werden könntest", "technik": "pyramidenprinzip" },
-    { "name": "BBB", "folge": ["Behauptung", "Begründung", "Beispiel", "Schluss"], "wann": "Eine Meinung in 30 bis 60 Sekunden", "technik": "bbb-prep" },
-    { "name": "Was? Na und? Was jetzt?", "folge": ["Sache", "Bedeutung für dich", "Nächster Schritt"], "wann": "Statusfragen, Antworten aus dem Stand", "technik": "was-na-und-was-jetzt" },
-    { "name": "Fünfsatz", "folge": ["Einstieg", "Schritt 1", "Schritt 2", "Schritt 3", "Zielsatz"], "wann": "Wortmeldungen und Vorschläge, Ziel zuerst überlegen", "technik": "fuenfsatz" },
-    { "name": "Zeitachse", "folge": ["Früher", "Heute", "Morgen"], "wann": "Spontane Antworten zu Entwicklungen", "technik": "fuenfsatz" },
-    { "name": "Problem und Lösung", "folge": ["Situation", "Problem", "Lösung"], "wann": "Vorschläge und Präsentationen", "technik": "fuenfsatz" },
-    { "name": "Und, Aber, Deshalb", "folge": ["Lage", "Wendung", "Folge"], "wann": "Eine Geschichte oder ein Projekt in einem Atemzug", "technik": "und-aber-deshalb" },
-    { "name": "Geschichte", "folge": ["Situation", "Problem", "Wendepunkt", "Ergebnis"], "wann": "Längere Erzählung, als Bilderfolge im Kopf", "technik": "und-aber-deshalb" }
+    {
+      "name": "Kernsatz zuerst",
+      "folge": [
+        "Kernsatz",
+        "Details"
+      ],
+      "wann": "Immer, besonders wenn du unterbrochen werden könntest",
+      "technik": "pyramidenprinzip"
+    },
+    {
+      "name": "BBB",
+      "folge": [
+        "Behauptung",
+        "Begründung",
+        "Beispiel",
+        "Schluss"
+      ],
+      "wann": "Eine Meinung in 30 bis 60 Sekunden",
+      "technik": "bbb-prep"
+    },
+    {
+      "name": "Was? Na und? Was jetzt?",
+      "folge": [
+        "Sache",
+        "Bedeutung für dich",
+        "Nächster Schritt"
+      ],
+      "wann": "Statusfragen, Antworten aus dem Stand",
+      "technik": "was-na-und-was-jetzt"
+    },
+    {
+      "name": "Fünfsatz",
+      "folge": [
+        "Einstieg",
+        "Schritt 1",
+        "Schritt 2",
+        "Schritt 3",
+        "Zielsatz"
+      ],
+      "wann": "Wortmeldungen und Vorschläge, Ziel zuerst überlegen",
+      "technik": "fuenfsatz"
+    },
+    {
+      "name": "Zeitachse",
+      "folge": [
+        "Früher",
+        "Heute",
+        "Morgen"
+      ],
+      "wann": "Spontane Antworten zu Entwicklungen",
+      "technik": "fuenfsatz"
+    },
+    {
+      "name": "Problem und Lösung",
+      "folge": [
+        "Situation",
+        "Problem",
+        "Lösung"
+      ],
+      "wann": "Vorschläge und Präsentationen",
+      "technik": "fuenfsatz"
+    },
+    {
+      "name": "Und, Aber, Deshalb",
+      "folge": [
+        "Lage",
+        "Wendung",
+        "Folge"
+      ],
+      "wann": "Eine Geschichte oder ein Projekt in einem Atemzug",
+      "technik": "und-aber-deshalb"
+    },
+    {
+      "name": "Geschichte",
+      "folge": [
+        "Situation",
+        "Problem",
+        "Wendepunkt",
+        "Ergebnis"
+      ],
+      "wann": "Längere Erzählung, als Bilderfolge im Kopf",
+      "technik": "und-aber-deshalb"
+    }
   ],
   "impulse": {
     "begriffe": [
-      "Leuchtturm", "Kaffee", "Brücke", "Zugfahrt", "Gewitter", "Werkstatt", "Fahrrad", "Marktplatz", "Schlüssel", "Bergsee",
-      "Bäckerei", "Uhr", "Landkarte", "Baustelle", "Garten", "Bibliothek", "Feuerwerk", "Hafen", "Wanderschuh", "Küche",
-      "Regenschirm", "Bahnhof", "Schreibtisch", "Winter", "Kompass", "Schachbrett", "Wald", "Fenster", "Musik", "Treppe",
-      "Zelt", "Sonnenaufgang", "Werkzeugkasten", "Briefkasten", "Fluss", "Flughafen", "Kerze", "Fußballplatz", "Notizbuch", "Altstadt"
+      "Leuchtturm",
+      "Kaffee",
+      "Brücke",
+      "Zugfahrt",
+      "Gewitter",
+      "Werkstatt",
+      "Fahrrad",
+      "Marktplatz",
+      "Schlüssel",
+      "Bergsee",
+      "Bäckerei",
+      "Uhr",
+      "Landkarte",
+      "Baustelle",
+      "Garten",
+      "Bibliothek",
+      "Feuerwerk",
+      "Hafen",
+      "Wanderschuh",
+      "Küche",
+      "Regenschirm",
+      "Bahnhof",
+      "Schreibtisch",
+      "Winter",
+      "Kompass",
+      "Schachbrett",
+      "Wald",
+      "Fenster",
+      "Musik",
+      "Treppe",
+      "Zelt",
+      "Sonnenaufgang",
+      "Werkzeugkasten",
+      "Briefkasten",
+      "Fluss",
+      "Flughafen",
+      "Kerze",
+      "Fußballplatz",
+      "Notizbuch",
+      "Altstadt"
     ],
     "themen": [
-      "Homeoffice", "Sport", "Social Media", "Pünktlichkeit", "Das Fahrrad als Verkehrsmittel", "Vier-Tage-Woche", "Urlaub ohne Handy",
-      "Ehrenamt", "Bargeld", "Lebenslanges Lernen", "Meetings", "Kochen am Abend", "Großstadt oder Land", "Künstliche Intelligenz im Alltag",
-      "Feedback im Job", "Ordnung am Schreibtisch", "Bücher oder Podcasts", "Frühaufsteher", "Teamevents", "Elektromobilität",
-      "Pausen im Arbeitstag", "Reisen mit der Bahn", "Regionale Produkte", "Ziele für das nächste Jahr", "Gute Chefs", "E-Mail-Flut",
-      "Smalltalk", "Fehlerkultur", "Ehrlichkeit im Beruf", "Sport im Verein", "Erreichbarkeit nach Feierabend", "Neue Gewohnheiten",
-      "Ein Ort, den ich mag", "Ein Buch, das ich empfehle", "Was einen guten Kunden ausmacht", "Wie ich Entscheidungen treffe",
-      "Gründen oder angestellt sein", "Was mich motiviert", "Digitale Behördengänge", "Der beste Rat, den ich bekommen habe"
+      "Homeoffice",
+      "Sport",
+      "Social Media",
+      "Pünktlichkeit",
+      "Das Fahrrad als Verkehrsmittel",
+      "Vier-Tage-Woche",
+      "Urlaub ohne Handy",
+      "Ehrenamt",
+      "Bargeld",
+      "Lebenslanges Lernen",
+      "Meetings",
+      "Kochen am Abend",
+      "Großstadt oder Land",
+      "Künstliche Intelligenz im Alltag",
+      "Feedback im Job",
+      "Ordnung am Schreibtisch",
+      "Bücher oder Podcasts",
+      "Frühaufsteher",
+      "Teamevents",
+      "Elektromobilität",
+      "Pausen im Arbeitstag",
+      "Reisen mit der Bahn",
+      "Regionale Produkte",
+      "Ziele für das nächste Jahr",
+      "Gute Chefs",
+      "E-Mail-Flut",
+      "Smalltalk",
+      "Fehlerkultur",
+      "Ehrlichkeit im Beruf",
+      "Sport im Verein",
+      "Erreichbarkeit nach Feierabend",
+      "Neue Gewohnheiten",
+      "Ein Ort, den ich mag",
+      "Ein Buch, das ich empfehle",
+      "Was einen guten Kunden ausmacht",
+      "Wie ich Entscheidungen treffe",
+      "Gründen oder angestellt sein",
+      "Was mich motiviert",
+      "Digitale Behördengänge",
+      "Der beste Rat, den ich bekommen habe"
     ],
     "fragen": [
       "Was war diese Woche dein wichtigstes Ergebnis?",
