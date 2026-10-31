@@ -100,3 +100,9 @@ test('Import verwirft ungültige Plandaten', () => {
   assert.deepEqual(Object.keys(p.checks), ['2']);
   assert.deepEqual(p.checks[2], { date: null, fuellwoerter: null, sekunden: null, kernsatz: null, klarheit: null, ruhe: null, notiz: '', gespraech: '' });
 });
+
+test('Selbstcheck bleibt erhalten, ungültige Indizes fallen raus', () => {
+  const data = JSON.parse(exportState(sample()));
+  data.entries['2026-10-29'].selbstcheck = [2, 0, 2, -1, 'x', 99];
+  assert.deepEqual(importState(JSON.stringify(data)).entries['2026-10-29'].selbstcheck, [0, 2]);
+});

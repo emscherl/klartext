@@ -32,6 +32,7 @@ const key = week => `woche-${week}`;
 export const saveRecording = (week, rec) => tx('readwrite', s => s.put(rec, key(week)));
 export const loadRecording = week => tx('readonly', s => s.get(key(week)));
 export const deleteRecording = week => tx('readwrite', s => s.delete(key(week)));
+export const clearRecordings = () => tx('readwrite', s => s.clear());
 export const recordedWeeks = () => tx('readonly', s => s.getAllKeys()).then(keys => (keys || []).map(k => Number(String(k).replace('woche-', ''))).filter(Number.isInteger));
 
 // Startet eine Aufnahme. Rückgabe: { stop(): Promise<{ blob, type, seconds }> , cancel() }

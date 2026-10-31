@@ -1,7 +1,7 @@
 // Lokale Datenhaltung (localStorage) sowie Export und Import als JSON-Sicherung.
 //
 // Zustand:
-//   entries[YYYY-MM-DD] { date, challengeId, bereich, typ, skips, answer, reflection, done, completedAt, feedback: [] }
+//   entries[YYYY-MM-DD] { date, challengeId, bereich, typ, skips, answer, reflection, done, completedAt, feedback: [], selbstcheck?: [Index] }
 //   cards[key]          { key: "technik:<id>" | "tipp:<id>", addedAt, due, interval, ease, reps, lapses, lastReview }
 //   reviewLog[YYYY-MM-DD] Anzahl Wiederholungen
 //   lastBackup          YYYY-MM-DD der letzten Sicherung oder null
@@ -71,6 +71,7 @@ export function validate(data) {
       done: e.done === true,
       completedAt: typeof e.completedAt === 'string' && !Number.isNaN(Date.parse(e.completedAt)) ? e.completedAt : null,
       feedback: Array.isArray(e.feedback) ? e.feedback.filter(f => f && typeof f.text === 'string') : [],
+      ...(Array.isArray(e.selbstcheck) ? { selbstcheck: [...new Set(e.selbstcheck.filter(i => Number.isInteger(i) && i >= 0 && i < 20))].sort((x, y) => x - y) } : {}),
     };
   }
   for (const [key, c] of Object.entries(obj(data.cards))) {

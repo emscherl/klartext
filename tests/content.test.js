@@ -102,3 +102,11 @@ test('12-Wochen-Plan: Ablauf, Messung und Redeschienen vollständig', () => {
   }
   for (const list of Object.values(plan.impulse)) assert.equal(new Set(list).size, list.length, 'doppelte Impulse');
 });
+
+test('Kriterien der Challenges sind ausgefüllt, höchstens 20, nur bei schriftlichen', () => {
+  for (const c of challenges.filter(c => c.kriterien)) {
+    assert.equal(c.typ, 'schriftlich', c.id);
+    assert.ok(c.kriterien.length >= 2 && c.kriterien.length <= 20 && c.kriterien.every(filled), c.id);
+  }
+  assert.ok(challenges.filter(c => c.typ === 'schriftlich').every(c => c.kriterien?.length), 'jede schriftliche Challenge hat Kriterien');
+});

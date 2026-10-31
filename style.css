@@ -331,3 +331,17 @@ body:has(.stepnav) #toast { bottom: calc(96px + env(safe-area-inset-bottom, 0px)
 .chart .hit.on { fill: var(--chart); fill-opacity: .12; }
 .talk { display: grid; grid-template-columns: 34px 1fr; gap: 8px; padding: 12px 0; }
 .talk p { margin: 0; line-height: 1.5; }
+
+/* Feedback zur Challenge */
+.hints { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.hints li { display: grid; grid-template-columns: 22px 1fr; gap: 8px; padding: 12px 0; border-bottom: 1px solid var(--line); line-height: 1.5; }
+.hints i { font-style: normal; font-family: var(--mono); font-size: 13px; text-align: center; }
+.hints li.ok i { color: var(--good); }
+.hints li.warn i { color: var(--hard); }
+.hints .sub { display: block; font-size: 13px; color: var(--muted); margin-top: 2px; }
+.checklist { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.checklist li { border-bottom: 1px solid var(--line); }
+.checklist .check { color: var(--fg); align-items: flex-start; padding: 10px 0; line-height: 1.45; }
+.checklist .check input { margin-top: 2px; flex: none; }
+.checklist .check:has(input:checked) span { color: var(--muted); }
+.fb .link { align-self: flex-start; min-height: 32px; font-size: 13px; }

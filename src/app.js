@@ -4,9 +4,10 @@ import { pickForDay, alternativeForDay } from './daily.js';
 import { GRADES, GRADE_LABELS, cardKey, newCard, gradeCard, nextInterval, dueCards } from './srs.js';
 import { createStore, exportState, importState } from './store.js';
 import { currentStreak, longestStreak, stats } from './progress.js';
-import { provider as feedbackProvider } from './feedback.js';
+import { provider as feedbackProvider, claudePrompt, claudeUrl } from './feedback.js';
+import { analyze } from './selfcheck.js';
 import { WEEKS, defaultPlan, planPosition, weekDates, trainedDays, phaseOf, fillerRate, checkSeries, compareChecks, impulse, extendPlan, backupDue } from './plan.js';
-import { recordingSupported, startRecording, saveRecording, loadRecording, deleteRecording } from './recorder.js';
+import { recordingSupported, startRecording, saveRecording, loadRecording, deleteRecording, clearRecordings } from './recorder.js';
 
 const store = createStore(localStorage);
 let S = store.load();
@@ -157,9 +158,34 @@ function viewChallenge(date) {
         : `<button class="btn primary wide" type="submit">${written ? 'Abschließen' : 'Gemacht, abschließen'}</button>`}
       ${!e.done && isToday ? '<button type="button" class="link center" data-act="skip">Passt heute nicht? Andere Challenge</button>' : ''}
     </form>
-    ${e.done && c.musterantwort ? `<details class="more"><summary>Eine mögliche Formulierung</summary><div><p class="quote">${esc(c.musterantwort)}</p><p class="source">Nur ein Beispiel. Deine Worte dürfen anders klingen.</p></div></details>` : ''}
-    ${e.feedback?.length ? `<section class="stack"><span class="label">Feedback</span>${e.feedback.map(f => `<p class="quote">${esc(f.text)}</p>`).join('')}</section>` : ''}
+    ${e.done ? feedbackBlock(c, e, date) : ''}
     ${e.done && feedbackProvider ? `<button class="btn wide" data-act="feedback" data-date="${date}">Feedback holen</button>` : ''}`;
+}
+
+// Nach dem Abschließen: automatische Hinweise, Checkliste, Musterformulierung, Claude fragen, gespeichertes Feedback
+function feedbackBlock(c, e, date) {
+  const written = c.typ === 'schriftlich';
+  const hints = written ? analyze(e.answer, c.aufgabe) : [];
+  const ticked = new Set(e.selbstcheck || []);
+  const crit = c.kriterien || [];
+  return `
+    ${hints.length ? `<section class="stack"><span class="label">Automatische Hinweise</span>
+      <ul class="hints">${hints.map(h => {
+        const t = h.tipp && tip(h.tipp);
+        return `<li class="${h.ok ? 'ok' : 'warn'}"><i aria-hidden="true">${h.ok ? '✓' : '!'}</i><span>${esc(h.text)}${t ? `<span class="sub">Kniff: ${esc(t.titel)}. ${esc(t.text)}</span>` : ''}</span></li>`;
+      }).join('')}</ul>
+      <p class="source">Textregeln, kein inhaltliches Urteil.</p></section>` : ''}
+    ${crit.length ? `<section class="stack"><div class="list-head"><span class="label">Selbstcheck: Hast du das umgesetzt?</span><span class="mono dim" style="font-size:12px">${ticked.size}/${crit.length}</span></div>
+      <ul class="checklist">${crit.map((k, i) => `<li><label class="check"><input type="checkbox" data-act="selfcheck" data-date="${date}" data-i="${i}" ${ticked.has(i) ? 'checked' : ''}><span>${esc(k)}</span></label></li>`).join('')}</ul></section>` : ''}
+    ${c.musterantwort ? `<section class="stack"><span class="label">Zum Vergleich: eine mögliche Formulierung</span><p class="quote">${esc(c.musterantwort)}</p><p class="source">Nur ein Beispiel. Deine Worte dürfen anders klingen.</p></section>` : ''}
+    <section class="stack"><span class="label">Feedback von Claude</span>
+      <p class="prose dim">Claude öffnet sich mit einer fertigen Anfrage: Situation, Aufgabe, Techniken, Kriterien und ${written ? 'deine Antwort' : 'deine Notiz'}. Erst beim Tippen verlässt etwas das Gerät.</p>
+      <a class="btn primary wide" href="https://claude.ai/new" target="_blank" rel="noopener" data-act="claude" data-date="${date}">Feedback von Claude holen</a>
+      ${e.feedback?.length ? e.feedback.map((f, i) => `<div class="stack fb"><p class="quote">${esc(f.text)}</p><button class="link" data-act="feedback-del" data-date="${date}" data-i="${i}">Entfernen</button></div>`).join('') : ''}
+      <details class="more"><summary>Antwort von Claude hier speichern</summary><div>
+        <textarea class="field" id="feedback-paste" rows="5" placeholder="Feedback aus Claude hier einfügen"></textarea>
+        <button class="btn wide" data-act="feedback-save" data-date="${date}">Speichern</button></div></details>
+    </section>`;
 }
 
 function onChallengeInput(form, field, value) {
@@ -956,7 +982,31 @@ document.addEventListener('click', e => {
   else if (act === 'export') exportData();
   else if (act === 'install' && installPrompt) installPrompt.prompt().then(() => installPrompt.userChoice).then(r => { if (r.outcome === 'accepted') { installPrompt = null; render(); } });
   else if (act === 'feedback') requestFeedback(el.dataset.date);
-  else if (act === 'chart-pt') {
+  else if (act === 'claude') {
+    const entry = S.entries[el.dataset.date];
+    const c = challenge(entry.challengeId);
+    const prompt = claudePrompt({ challenge: c, entry, techniques: c.techniken.map(tech).filter(Boolean) });
+    el.href = claudeUrl(prompt); // vor der Navigation setzen, damit der aktuelle Text drin ist
+    navigator.clipboard?.writeText(prompt).then(() => toast('Anfrage auch kopiert. Falls das Feld in Claude leer ist: einfügen.')).catch(() => {});
+  } else if (act === 'feedback-save') {
+    const text = $('#feedback-paste').value.trim();
+    if (!text) return toast('Füg zuerst das Feedback ein.');
+    S.entries[el.dataset.date].feedback.push({ source: 'Claude', text, createdAt: new Date().toISOString() });
+    save(); render(); toast('Feedback gespeichert.');
+  } else if (act === 'feedback-del') {
+    if (!confirm('Dieses Feedback entfernen?')) return;
+    S.entries[el.dataset.date].feedback.splice(Number(el.dataset.i), 1);
+    save(); render();
+  } else if (act === 'selfcheck') {
+    const entry = S.entries[el.dataset.date];
+    const i = Number(el.dataset.i);
+    const set = new Set(entry.selbstcheck || []);
+    if (el.checked) set.add(i); else set.delete(i);
+    entry.selbstcheck = [...set].sort((a, b) => a - b);
+    save();
+    const head = el.closest('section').querySelector('.list-head .mono');
+    if (head) head.textContent = `${set.size}/${head.textContent.split('/')[1]}`;
+  } else if (act === 'chart-pt') {
     const box = el.closest('.chart');
     const read = box.querySelector('.chart-read');
     read.textContent = el.dataset.label;
@@ -979,8 +1029,15 @@ document.addEventListener('click', e => {
     if (!confirm('Aktuelle Woche verlängern? Der Plan rückt um sieben Tage nach hinten.')) return;
     S.plan = extendPlan(S.plan); save(); render(); toast('Woche verlängert.');
   } else if (act === 'plan-reset') {
-    if (!confirm('Plan neu starten? Trainingstage und Messwerte werden gelöscht, Aufnahmen bleiben auf dem Gerät, bis du sie einzeln löschst.')) return;
-    S.plan = { ...defaultPlan(), thema: S.plan.thema }; save(); render(); toast('Plan zurückgesetzt.');
+    if (!confirm('Plan neu starten? Trainingstage, Messwerte und alle Sprachaufnahmen des Plans werden gelöscht. Dein Messthema bleibt.')) return;
+    S.plan = { ...defaultPlan(), thema: S.plan.thema }; save();
+    Object.keys(rec.urls).forEach(w => dropUrl(Number(w)));
+    rec.saved = {};
+    if (rec.practiceUrl) { URL.revokeObjectURL(rec.practiceUrl); rec.practiceUrl = ''; }
+    (recordingSupported() ? clearRecordings() : Promise.resolve())
+      .then(() => toast('Plan und Aufnahmen gelöscht.'))
+      .catch(() => toast('Plan zurückgesetzt. Aufnahmen konnten nicht gelöscht werden.'))
+      .finally(render);
   }
 });
 
