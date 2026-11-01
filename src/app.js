@@ -1,8 +1,8 @@
 // Oberfläche: Hash-Routing, Rendern als Template-Strings, Ereignisse per Delegation.
-import { todayKey, addDays, formatDe, isDateKey } from './dates.js';
+import { todayKey, addDays, diffDays, formatDe, isDateKey } from './dates.js';
 import { pickForDay, alternativeForDay } from './daily.js';
 import { GRADES, GRADE_LABELS, cardKey, newCard, gradeCard, nextInterval, dueCards } from './srs.js';
-import { createStore, exportState, importState } from './store.js';
+import { createStore, exportState, importState, STORAGE_KEY } from './store.js';
 import { currentStreak, longestStreak, stats } from './progress.js';
 import { provider as feedbackProvider, claudePrompt, claudeUrl } from './feedback.js';
 import { analyze } from './selfcheck.js';
@@ -12,7 +12,7 @@ import { recordingSupported, startRecording, saveRecording, loadRecording, delet
 const store = createStore(localStorage);
 let S = store.load();
 let C = null; // Inhalte aus content/
-const ui = { revealed: false, session: 0, techQuery: '', tipCat: '', impulseSkip: {} };
+const ui = { revealed: false, session: 0, techQuery: '', tipCat: '', impulseSkip: {}, flow: null, prev: '' };
 let installPrompt = null; // vom Browser angebotene Installation (Chrome, Edge, Android)
 
 // ---------- Hilfsfunktionen ----------
@@ -25,6 +25,8 @@ const I = {
   chart: svg('<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>'),
   mic: svg('<rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/>'),
   stop: svg('<rect x="6" y="6" width="12" height="12" rx="2"/>'),
+  next: svg('<path d="M9 5l7 7-7 7"/>'),
+  bulb: svg('<path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/>'),
 };
 const plural = (n, one, many) => `${n} ${n === 1 ? one : many}`;
 const today = () => todayKey();
@@ -54,7 +56,7 @@ function challengeFor(date) {
 function ensureEntry(date) {
   if (!S.entries[date]) {
     const c = challengeFor(date);
-    S.entries[date] = { date, challengeId: c.id, bereich: c.bereich, typ: c.typ, skips: 0, answer: '', reflection: '', done: false, completedAt: null, feedback: [] };
+    S.entries[date] = { date, challengeId: c.id, bereich: c.bereich, typ: c.typ, skips: 0, learned: false, answer: '', reflection: '', done: false, completedAt: null, feedback: [] };
   }
   return S.entries[date];
 }
@@ -71,82 +73,183 @@ const dueList = () => dueCards(liveCards(), today());
 
 // ---------- Kopfzeile ----------
 function topBar(title, back, right = '') {
-  $('#top').innerHTML = `<a class="icon-btn" href="${back}" aria-label="Zurück">${I.back}</a><h1>${esc(title)}</h1>${right || '<span class="spacer"></span>'}`;
+  $('#top').innerHTML = `<a class="icon-btn" href="${esc(back)}" aria-label="Zurück">${I.back}</a><h1>${esc(title)}</h1>${right || '<span class="spacer"></span>'}`;
 }
 
 // ---------- Start ----------
+// Alles auf eine iPhone-Höhe: Heute-Karte mit den Aufgaben des Tages und einem klaren nächsten Schritt,
+// darunter Tipp des Tages und Bibliothek
 function viewHome() {
   const d = today();
   $('#top').innerHTML = `<span class="mark">klartext<i></i></span><a class="icon-btn" href="#/verlauf" aria-label="Fortschritt">${I.chart}</a>`;
-  const c = challengeFor(d) || { titel: 'Challenge nicht mehr im Inhalt', bereich: 'beruflich', typ: 'schriftlich' };
-  const e = S.entries[d];
-  const streak = currentStreak(S.entries, d);
-  const due = dueList().length;
   const t = pickForDay(C.tipps, d, 'tipp');
   const tipSaved = !!S.cards[cardKey('tipp', t.id)];
-  const done = Object.values(S.entries).filter(x => x.done).length;
+  const streak = currentStreak(S.entries, d);
+  const items = todayItems(d);
+  const next = items.find(x => x.open && x.main);
+  app.classList.add('home');
   app.innerHTML = `
-    <section class="hero">
-      <div class="big">${streak}</div>
-      <div class="hero-meta"><strong>${streak === 1 ? 'Tag' : 'Tage'} in Folge</strong><span class="mono dim">${plural(done, 'Challenge', 'Challenges')} · ${due} fällig</span></div>
-    </section>
     ${backupNotice()}
-    <section class="stack">
-      <span class="label">${esc(formatDe(d))}</span>
-      <ul class="rows">
-        ${planRow(d)}
-        <li><a class="row-btn" href="#/challenge"><span class="name">${esc(c.titel)}<span class="sub">${BEREICH[c.bereich]} · ${TYP[c.typ]}</span></span><span class="meta mono ${e?.done ? 'dim' : 'open'}">${e?.done ? 'erledigt' : 'offen'}</span></a></li>
-        <li><a class="row-btn" href="#/wiederholen"><span class="name">Wiederholung<span class="sub">${plural(liveCards().length, 'Karte', 'Karten')} im Plan</span></span><span class="meta mono ${due ? 'open' : 'dim'}">${due ? `${due} fällig` : liveCards().length ? 'erledigt' : 'leer'}</span></a></li>
-      </ul>
-      <a class="btn ${e?.done ? '' : 'primary'} wide" href="${e?.done && due ? '#/wiederholen' : '#/challenge'}">${e?.done ? (due ? 'Wiederholen' : 'Heutige Challenge ansehen') : 'Challenge starten'}</a>
+    <section class="home-today">
+      <div class="today-head"><span class="label">Heute · ${esc(formatDe(d, false).replace(/ \d{4}$/, ''))}</span><span class="mono streak ${streak ? 'on' : ''}">${streak ? `${plural(streak, 'Tag', 'Tage')} in Folge` : 'Serie starten'}</span></div>
+      <ul class="today-list">${items.map(x => `<li><a href="${x.href}" class="${x.wait ? 'wait' : x.open ? 'open' : 'fin'}"><i aria-hidden="true"></i><span class="name">${esc(x.title)}<span class="sub">${esc(x.sub)}</span></span><span class="meta mono">${esc(x.meta)}</span></a></li>`).join('')}</ul>
+      ${next ? `<a class="btn primary wide" href="${next.href}">${esc(next.cta)}</a>` : '<p class="status"><i></i>Alles für heute erledigt.</p>'}
     </section>
-    <section class="stack tip-day">
-      <span class="label">Tipp des Tages</span>
-      <div class="tip" style="padding:0">
-        <h3>${esc(t.titel)}</h3>
-        <p>${esc(t.text)}</p>
-        <div class="row">${t.technik ? `<a class="link" href="#/technik/${esc(t.technik)}">${esc(tech(t.technik)?.name)}</a>` : ''}
-          <button class="link ${tipSaved ? 'on' : ''}" data-act="save-tip" data-id="${esc(t.id)}">${tipSaved ? 'In Wiederholung' : '+ Merken'}</button></div>
-      </div>
+    <section class="tipcard">
+      <span class="label">${I.bulb}Tipp des Tages</span>
+      <h3>${esc(t.titel)}</h3>
+      <p>${esc(t.text)}</p>
+      <div class="row">${t.technik ? `<a class="link" href="#/technik/${esc(t.technik)}">${esc(tech(t.technik)?.name)}</a>` : ''}
+        <button class="link ${tipSaved ? 'on' : ''}" data-act="save-tip" data-id="${esc(t.id)}">${tipSaved ? 'In Wiederholung' : '+ Merken'}</button></div>
     </section>
-    <section class="stack">
-      <span class="label">Bibliothek</span>
-      <ul class="rows">
-        <li><a class="row-btn" href="#/techniken"><span class="name">Techniken</span><span class="meta mono dim">${C.techniken.length}</span></a></li>
-        <li><a class="row-btn" href="#/tipps"><span class="name">Tipps &amp; Kniffe</span><span class="meta mono dim">${C.tipps.length}</span></a></li>
-        <li><a class="row-btn" href="#/verlauf"><span class="name">Fortschritt &amp; Verlauf</span><span class="meta mono dim">${done}</span></a></li>
-      </ul>
-    </section>`;
+    <nav class="lib" aria-label="Bibliothek">
+      <a href="#/techniken"><b class="mono">${C.techniken.length}</b><span>Techniken</span></a>
+      <a href="#/tipps"><b class="mono">${C.tipps.length}</b><span>Tipps</span></a>
+      <a href="#/verlauf"><b class="mono">${Object.values(S.entries).filter(x => x.done).length}</b><span>Verlauf</span></a>
+    </nav>`;
 }
 
-function planRow(d) {
+// Aufgaben des Tages: Training, Challenge, Wiederholung. main = kommt für den großen Knopf in Frage,
+// wait = noch nichts zu tun (Plan startet später, keine Karten), weder offen noch erledigt.
+function todayItems(d) {
+  const items = [];
   const pos = planPosition(S.plan.start, d);
-  if (!pos.started) {
-    const sub = S.plan.start ? `Beginnt am ${formatDe(S.plan.start, false)}` : 'Klar, strukturiert und ruhig sprechen';
-    return `<li><a class="row-btn" href="#/plan"><span class="name">12-Wochen-Plan<span class="sub">${esc(sub)}</span></span><span class="meta mono open">${S.plan.start ? 'bald' : 'starten'}</span></a></li>`;
+  if (!S.plan.start || !pos.started) {
+    items.push({ title: '12-Wochen-Plan', sub: S.plan.start ? `Beginnt am ${formatDe(S.plan.start, false)}` : 'Klar, strukturiert und ruhig sprechen', meta: S.plan.start ? 'bald' : 'starten', href: '#/plan', open: !S.plan.start, wait: !!S.plan.start, main: false });
+  } else if (pos.finished) {
+    items.push({ title: '12-Wochen-Plan', sub: 'Abgeschlossen, Ergebnis ansehen', meta: 'fertig', href: '#/plan', open: false });
+  } else {
+    const done = planDoneOn(d, pos.week);
+    items.push({ title: `Training: ${C.plan.wochen[pos.week - 1].titel}`, sub: `Woche ${pos.week} von ${WEEKS} · ${trainedDays(S.plan.days, pos.week)}/7 geübt`, meta: done ? 'erledigt' : 'offen', href: done ? '#/plan' : '#/plan/training/1', open: !done, main: true, cta: 'Training starten' });
   }
-  if (pos.finished) return `<li><a class="row-btn" href="#/plan"><span class="name">12-Wochen-Plan<span class="sub">Abgeschlossen, Ergebnis ansehen</span></span><span class="meta mono dim">fertig</span></a></li>`;
-  const w = C.plan.wochen[pos.week - 1];
-  const doneToday = planDoneOn(d, pos.week);
-  return `<li><a class="row-btn" href="${doneToday ? '#/plan' : '#/plan/training/1'}"><span class="name">Training: ${esc(w.titel)}<span class="sub">Woche ${pos.week} von ${WEEKS} · Tag ${pos.day} · ${trainedDays(S.plan.days, pos.week)}/7 geübt</span></span><span class="meta mono ${doneToday ? 'dim' : 'open'}">${doneToday ? 'erledigt' : 'offen'}</span></a></li>`;
+  const c = challengeFor(d) || { titel: 'Challenge nicht mehr im Inhalt', techniken: [] };
+  const e = S.entries[d];
+  const started = e && (e.learned || e.answer || e.reflection);
+  items.push({ title: c.titel, sub: `Challenge · ${c.techniken.map(id => tech(id)?.name.split(/[:(]/)[0].trim()).filter(Boolean).join(', ')}`, meta: e?.done ? 'erledigt' : 'offen', href: '#/challenge', open: !e?.done, main: true, cta: started ? 'Challenge fortsetzen' : 'Challenge starten' });
+  const due = dueList().length;
+  const cards = liveCards();
+  const nextDue = cards.map(x => x.due).sort()[0];
+  items.push({ title: 'Wiederholung', sub: cards.length ? plural(cards.length, 'Karte', 'Karten') : 'Noch keine Karten', meta: due ? `${due} fällig` : nextDue ? relDay(nextDue) : '', href: '#/wiederholen', open: due > 0, wait: !cards.length, main: true, cta: `${plural(due, 'Karte', 'Karten')} wiederholen` });
+  return items;
+}
+
+// Abstand zu heute in Worten: heute, morgen, in 3 Tagen, sonst Datum
+function relDay(key) {
+  const n = diffDays(today(), key);
+  return n <= 0 ? 'heute' : n === 1 ? 'morgen' : n < 7 ? `in ${n} Tagen` : `am ${key.slice(8, 10)}.${key.slice(5, 7)}.`;
 }
 
 // ---------- Challenge ----------
+// Geführter Ablauf: Situation → Technik lernen → Quiz → eigene Antwort.
+// Wer Lernen und Quiz durchlaufen hat (entry.learned), landet beim nächsten Öffnen direkt bei der Antwort.
+const STEPS = [['situation', 'Situation'], ['lernen', 'Lernen'], ['quiz', 'Quiz'], ['antwort', 'Antwort']];
+const stepIndex = step => STEPS.findIndex(([k]) => k === step);
+
+function flowFor(date, c, e) {
+  if (ui.flow?.date !== date || ui.flow.cid !== c.id) {
+    const start = e.done || e.learned || e.answer || e.reflection ? 'antwort' : 'situation';
+    ui.flow = { date, cid: c.id, step: start, i: 0, pick: null, max: stepIndex(start) };
+  }
+  return ui.flow;
+}
+
+// Index außerhalb des Bereichs (z. B. Technik ohne Quizfrage): zum nächsten sinnvollen Schritt
+function normalizeFlow(f, techs) {
+  if (f.step === 'lernen' && !techs[f.i]) Object.assign(f, { step: 'quiz', i: 0, pick: null });
+  if (f.step === 'quiz' && !techs.filter(t => t.quiz)[f.i]) Object.assign(f, { step: 'antwort', i: 0, pick: null });
+  f.max = Math.max(f.max, stepIndex(f.step));
+  if (f.step === 'antwort' && S.entries[f.date]?.done !== true && !S.entries[f.date]?.learned) { ensureEntry(f.date).learned = true; save(); }
+}
+
+function goStep(step, i = 0) {
+  Object.assign(ui.flow, { step, i, pick: null });
+  render();
+  scrollTo(0, 0);
+}
+
+function stepper(f) {
+  const cur = stepIndex(f.step);
+  return `<ol class="stepper" aria-label="Ablauf">${STEPS.map(([k, label], n) => `<li class="${n === cur ? 'cur' : n <= f.max ? 'past' : ''}"${n === cur ? ' aria-current="step"' : ''}>${n <= f.max && n !== cur
+    ? `<button data-act="step" data-step="${k}">${label}</button>` : `<span>${label}</span>`}</li>`).join('')}</ol>`;
+}
+
 function viewChallenge(date) {
   const isToday = date === today();
   const c = challengeFor(date);
   if (!c) { topBar('Challenge', '#/'); app.innerHTML = '<div class="empty"><p>Diese Challenge gibt es nicht mehr im Inhalt.</p></div>'; return; }
-  const e = S.entries[date] || { answer: '', reflection: '', done: false, feedback: [] };
-  const written = c.typ === 'schriftlich';
+  const e = S.entries[date] || { answer: '', reflection: '', done: false, learned: false, feedback: [] };
+  const techs = c.techniken.map(tech).filter(Boolean);
+  const f = flowFor(date, c, e);
+  normalizeFlow(f, techs);
   topBar(isToday ? 'Heute' : formatDe(date, false), isToday ? '#/' : '#/verlauf');
-  app.innerHTML = `
-    <section class="stack" style="padding-top:12px">
+  const body = { situation: stepSituation, lernen: stepLearn, quiz: stepQuiz, antwort: stepAnswer }[f.step];
+  app.innerHTML = stepper(f) + body(c, e, techs, f, isToday);
+}
+
+const known = t => !!S.cards[cardKey('technik', t.id)];
+
+function stepSituation(c, e, techs, f, isToday) {
+  return `
+    <section class="stack">
       <span class="label">${BEREICH[c.bereich]} · ${TYP[c.typ]}</span>
       <h2 class="headline">${esc(c.titel)}</h2>
       <p class="prose">${esc(c.situation)}</p>
       <p class="prose task">${esc(c.aufgabe)}</p>
-      <div class="chips">${c.techniken.map(id => `<a class="chip" href="#/technik/${esc(id)}">${esc(tech(id)?.name || id)}</a>`).join('')}</div>
     </section>
+    <section class="stack">
+      <span class="label">Dafür lernst du zuerst</span>
+      <ul class="rows">${techs.map(t => `<li class="plain"><span class="name">${esc(t.name)}<span class="sub">${esc(t.kategorie)}</span></span>${known(t) ? '<span class="meta mono">im Plan</span>' : ''}</li>`).join('')}</ul>
+      <button class="btn primary wide" data-act="go" data-step="lernen">${techs.length > 1 ? 'Techniken lernen' : 'Technik lernen'}</button>
+      ${techs.length && techs.every(known) ? `<button class="link center known" data-act="go" data-step="quiz">Kenne ich ${techs.length > 1 ? 'alle' : 'schon'}, direkt zum Quiz</button>` : ''}
+      ${!e.done && isToday ? '<button type="button" class="link center" data-act="skip">Passt heute nicht? Andere Challenge</button>' : ''}
+    </section>`;
+}
+
+function stepLearn(c, e, techs, f) {
+  const t = techs[f.i];
+  const last = f.i === techs.length - 1;
+  const next = `data-act="go" data-step="${last ? 'quiz' : 'lernen'}" data-i="${last ? 0 : f.i + 1}"`;
+  return `
+    <section class="stack">
+      <span class="label">Technik ${techs.length > 1 ? `${f.i + 1} von ${techs.length} · ` : ''}${esc(t.kategorie)}</span>
+      <h2 class="headline">${esc(t.name)}</h2>
+      ${known(t) ? `<button class="link known" ${next}>Kenne ich schon, überspringen</button>` : ''}
+    </section>
+    <section class="stack"><span class="label">Das Prinzip</span><p class="prose">${esc(t.kurz)}</p></section>
+    <section class="stack"><span class="label">So geht's</span><ol class="steps">${t.schritte.map(x => `<li>${esc(x)}</li>`).join('')}</ol></section>
+    <section class="stack"><span class="label">Beispiel</span><p class="quote">${esc(t.beispiel)}</p></section>
+    <section class="stack"><span class="label">Merksatz</span><p class="prose merk">${esc(t.merksatz)}</p></section>
+    <button class="btn primary wide" ${next}>${last ? 'Weiter zum Quiz' : 'Nächste Technik'}</button>`;
+}
+
+function stepQuiz(c, e, techs, f) {
+  const qs = techs.filter(t => t.quiz);
+  const t = qs[f.i];
+  const q = t.quiz;
+  const picked = f.pick !== null;
+  const last = f.i === qs.length - 1;
+  return `
+    <section class="stack">
+      <span class="label">Frage ${qs.length > 1 ? `${f.i + 1} von ${qs.length} · ` : ''}${esc(t.name)}</span>
+      <h2 class="question">${esc(q.frage)}</h2>
+      <div class="opts">${q.optionen.map((o, n) => `<button class="opt ${picked ? (n === q.richtig ? 'right' : n === f.pick ? 'wrong' : 'off') : ''}" data-act="pick" data-n="${n}" ${picked ? 'disabled' : ''}>${esc(o)}${picked && n === q.richtig ? '<small>Richtige Antwort</small>' : picked && n === f.pick ? '<small>Deine Wahl</small>' : ''}</button>`).join('')}</div>
+      ${picked ? `<p role="status" class="verdict-line ${f.pick === q.richtig ? 'ok' : 'bad'}"><b>${f.pick === q.richtig ? 'Richtig.' : 'Nicht ganz.'}</b> ${esc(q.erklaerung)}</p>
+        <button class="btn primary wide" data-act="go" data-step="${last ? 'antwort' : 'quiz'}" data-i="${last ? 0 : f.i + 1}">${last ? 'Jetzt selbst anwenden' : 'Nächste Frage'}</button>` : ''}
+    </section>`;
+}
+
+function stepAnswer(c, e, techs, f, isToday) {
+  const written = c.typ === 'schriftlich';
+  const date = f.date;
+  return `
+    <section class="stack">
+      <span class="label">${BEREICH[c.bereich]} · ${TYP[c.typ]}</span>
+      <h2 class="headline sm">${esc(c.titel)}</h2>
+      <p class="prose task">${esc(c.aufgabe)}</p>
+      <details class="more"><summary>Situation nachlesen</summary><div><p class="prose">${esc(c.situation)}</p></div></details>
+    </section>
+    ${c.anwendung?.length ? `<section class="stack howto"><span class="label">So gehst du hier vor</span><ol class="steps">${c.anwendung.map(x => `<li>${esc(x)}</li>`).join('')}</ol>
+      <div class="chips">${techs.map(t => `<a class="chip" href="#/technik/${esc(t.id)}">${esc(t.name)}</a>`).join('')}</div></section>` : ''}
     <form id="ch" class="stack" autocomplete="off" data-date="${date}">
       ${written ? `<label class="lab"><span class="label">Deine Antwort</span>
         <textarea class="field" name="answer" rows="6" placeholder="Formuliere hier, was du sagen oder schreiben würdest …">${esc(e.answer)}</textarea></label>` : ''}
@@ -216,9 +319,11 @@ function skipChallenge() {
   if ((e.answer || e.reflection) && !confirm('Deine Notizen zu dieser Challenge gehen verloren. Trotzdem wechseln?')) return;
   e.skips += 1;
   const c = alternativeForDay(C.challenges, d, e.skips, 'challenge');
-  Object.assign(e, { challengeId: c.id, bereich: c.bereich, typ: c.typ, answer: '', reflection: '' });
+  Object.assign(e, { challengeId: c.id, bereich: c.bereich, typ: c.typ, learned: false, answer: '', reflection: '' });
+  ui.flow = null;
   save();
   render();
+  scrollTo(0, 0);
 }
 
 // ---------- Techniken ----------
@@ -237,7 +342,7 @@ function viewTechniques() {
 
 function viewTechnique(id) {
   const t = tech(id);
-  topBar('Technik', '#/techniken');
+  topBar('Technik', /^#\/(challenge|karten|wiederholen|plan)/.test(ui.prev) ? ui.prev : '#/techniken');
   if (!t) { app.innerHTML = '<div class="empty"><p>Diese Technik gibt es nicht.</p></div>'; return; }
   const card = S.cards[cardKey('technik', id)];
   const used = C.challenges.filter(c => c.techniken.includes(id));
@@ -286,12 +391,9 @@ function viewReview() {
       <section class="done">
         <span class="label">${ui.session ? 'Runde beendet' : 'Nichts fällig'}</span>
         <h2>${ui.session ? `${plural(ui.session, 'Karte', 'Karten')} wiederholt.` : 'Alles auf Stand.'}</h2>
-        <p>${cards.length ? `Nächste Abfrage: ${esc(formatDe(cards[0].due))}.` : 'Noch keine Karten im Plan. Schließ eine Challenge ab oder nimm Techniken und Tipps auf, dann kommen sie hier in wachsenden Abständen wieder.'}</p>
+        <p>${cards.length ? `Nächste Abfrage ${esc(relDay(cards[0].due))}.` : 'Noch keine Karten im Plan. Schließ eine Challenge ab oder nimm Techniken und Tipps auf, dann kommen sie hier in wachsenden Abständen wieder.'}</p>
       </section>
-      ${cards.length ? `<section class="stack"><span class="label">Im Plan</span><ul class="rows">${cards.map(c => {
-        const { type, item } = cardContent(c.key);
-        return `<li><a class="row-btn" href="${type === 'technik' ? `#/technik/${esc(item.id)}` : '#/tipps'}"><span class="name">${esc(item.name || item.titel)}<span class="sub">${type === 'technik' ? 'Technik' : 'Tipp'}</span></span><span class="meta mono dim">${esc(c.due.slice(8, 10) + '.' + c.due.slice(5, 7) + '.')}</span></a></li>`;
-      }).join('')}</ul></section>` : ''}`;
+      ${cardGroups(cards)}`;
     return;
   }
   const card = due[0];
@@ -309,7 +411,30 @@ function viewReview() {
     ${ui.revealed
       ? `<div class="grades">${GRADES.map((g, i) => `<button class="grade g${i}" data-act="grade" data-grade="${g}"><span class="dot"></span><b>${GRADE_LABELS[g]}</b><small>${fmtInterval(nextInterval(card, g))}</small></button>`).join('')}</div>`
       : '<button class="btn primary wide" data-act="reveal">Aufdecken</button>'}
-    <p class="keys">Leertaste deckt auf · 1–4 bewertet</p>`;
+    <p class="keys">Leertaste deckt auf · 1–4 bewertet</p>
+    <a class="link center" href="#/karten">Alle Karten ansehen</a>`;
+}
+
+function viewCards() {
+  topBar('Deine Karten', '#/wiederholen');
+  const cards = liveCards().sort((a, b) => (a.due < b.due ? -1 : a.due > b.due ? 1 : a.key < b.key ? -1 : 1));
+  app.innerHTML = cards.length ? cardGroups(cards) : '<div class="empty"><p>Noch keine Karten. Schließ eine Challenge ab oder nimm Techniken und Tipps auf.</p></div>';
+}
+
+// Karten nach Fälligkeit gruppiert, Termine relativ statt als Datum
+function cardGroups(cards) {
+  if (!cards.length) return '';
+  const d = today();
+  const groups = [
+    ['Fällig', cards.filter(c => c.due <= d)],
+    ['Nächste 7 Tage', cards.filter(c => c.due > d && diffDays(d, c.due) <= 7)],
+    ['Später', cards.filter(c => diffDays(d, c.due) > 7)],
+  ].filter(([, list]) => list.length);
+  return `<section class="stack"><div class="list-head"><span class="label">Deine Karten</span><span class="mono dim small">${plural(cards.length, 'Karte', 'Karten')}</span></div>
+    ${groups.map(([title, list]) => `<div class="group"><span class="group-title">${title}<span class="mono dim">${list.length}</span></span><ul class="rows">${list.map(c => {
+      const { type, item } = cardContent(c.key);
+      return `<li><a class="row-btn compact" href="${type === 'technik' ? `#/technik/${esc(item.id)}` : '#/tipps'}"><span class="name">${esc(item.name || item.titel)}<span class="sub">${type === 'technik' ? 'Technik' : 'Tipp'}</span></span><span class="meta mono dim">${esc(relDay(c.due))}</span></a></li>`;
+    }).join('')}</ul></div>`).join('')}</section>`;
 }
 
 const fmtInterval = d => (d === 1 ? '1 Tag' : d < 30 ? `${d} Tage` : d < 365 ? `${Math.round(d / 30)} Mon.` : '1 Jahr');
@@ -405,7 +530,7 @@ function backupNotice() {
   const due = backupDue(S.lastBackup, today(), hasData());
   if (!due) return '';
   return `<section class="notice backup">
-      <p><b>Sicherung fällig.</b> ${due.days === null ? 'Du hast noch nie gesichert.' : `Letzte Sicherung vor ${due.days} Tagen.`} Deine Daten liegen nur auf diesem Gerät.</p>
+      <p><b>Sicherung fällig.</b> ${due.days === null ? 'Noch nie gesichert.' : `Zuletzt vor ${due.days} Tagen.`}</p>
       <button class="btn" data-act="export">Jetzt sichern</button>
     </section>`;
 }
@@ -485,15 +610,16 @@ function viewPlan() {
     const done = planDoneOn(d, pos.week);
     const elapsed = (pos.week - 1) * 7 + pos.day;
     head = `
-    <section class="hero">
-      <div class="big">${pos.week}</div>
-      <div class="hero-meta"><strong>Woche von ${WEEKS}</strong><span class="mono dim">Phase ${ph.nr} · ${esc(ph.titel)} · Tag ${pos.day}</span></div>
+    <section class="stack plan-head">
+      <div class="list-head"><span class="label">Woche ${pos.week} von ${WEEKS} · Tag ${pos.day}</span><span class="mono dim small">Phase ${ph.nr}: ${esc(ph.titel)}</span></div>
+      <div class="bar" title="${elapsed} von ${WEEKS * 7} Tagen"><i style="width:${(elapsed / (WEEKS * 7)) * 100}%"></i></div>
     </section>
-    <div class="bar" title="${elapsed} von ${WEEKS * 7} Tagen"><i style="width:${(elapsed / (WEEKS * 7)) * 100}%"></i></div>
-    <section class="stack">
-      <a class="today-card" href="#/plan/woche/${pos.week}"><span class="label">Diese Woche</span><b>${esc(w.titel)}</b><span class="dim">${esc(w.ziel)}</span></a>
+    <section class="home-today">
+      <span class="label">Diese Woche</span>
+      <h2>${esc(w.titel)}</h2>
+      <p class="sub wrap">${esc(w.ziel)}</p>
       ${weekDots(pos.week)}
-      <p class="source">${trainedDays(S.plan.days, pos.week)} von 7 Tagen geübt · ${S.plan.checks[pos.week]?.date ? 'Messung erledigt' : `<a class="inline" href="#/plan/messung/${pos.week}">Messung offen</a>`}</p>
+      <p class="source">${trainedDays(S.plan.days, pos.week)} von 7 Tagen geübt · ${S.plan.checks[pos.week]?.date ? 'Messung erledigt' : `<a class="inline" href="#/plan/messung/${pos.week}">Messung offen</a>`} · <a class="inline" href="#/plan/woche/${pos.week}">Wochendetails</a></p>
       ${done
         ? '<p class="status"><i></i>Heute geübt.</p><a class="btn wide" href="#/plan/training/1">Nochmal üben</a>'
         : `<a class="btn primary wide" href="#/plan/training/1">Heute trainieren <span class="mono">${trainingSteps(pos.week, d).length} Schritte</span></a>`}
@@ -502,11 +628,11 @@ function viewPlan() {
   app.innerHTML = `
     ${head}
     ${roadmap(pos)}
-    <section class="stack"><span class="label">Mehr</span><ul class="rows">
-      <li><a class="row-btn" href="#/plan/messwerte"><span class="name">Messwerte</span><span class="meta mono dim">${checkSeries(S.plan.checks).length}</span></a></li>
-      <li><a class="row-btn" href="#/plan/schienen"><span class="name">Redeschienen<span class="sub">BBB, Fünfsatz und Co. zum Nachschlagen</span></span></a></li>
-      <li><a class="row-btn" href="#/plan/einstellungen"><span class="name">Einstellungen<span class="sub">Messthema, Woche verlängern, neu starten</span></span></a></li>
-    </ul></section>`;
+    <nav class="lib" aria-label="Mehr zum Plan">
+      <a href="#/plan/messwerte"><b class="mono">${checkSeries(S.plan.checks).length}</b><span>Messwerte</span></a>
+      <a href="#/plan/schienen"><b class="mono">${C.plan.schienen.length}</b><span>Redeschienen</span></a>
+      <a href="#/plan/einstellungen"><b>${I.next}</b><span>Einstellungen</span></a>
+    </nav>`;
 }
 
 function weekDots(week) {
@@ -515,12 +641,12 @@ function weekDots(week) {
   return `<div class="days week">${weekDates(S.plan.start, week).map(k => `<i class="${planDoneOn(k, week) ? 'on' : ''} ${k === d ? 'today' : ''}" title="${esc(formatDe(k))}"></i>`).join('')}</div>`;
 }
 
-// Phasen zum Aufklappen, die laufende ist offen
+// Phasen zum Aufklappen, alle zu; vor dem Start ist Phase 1 offen, die laufende ist markiert
 function roadmap(pos) {
   return `<section class="stack"><span class="label">Roadmap</span><div class="phases">${C.plan.phasen.map(ph => {
     const last = ph.wochen[ph.wochen.length - 1];
     const status = !pos.started ? '' : pos.finished || pos.week > last ? 'erledigt' : pos.week >= ph.wochen[0] ? 'läuft' : '';
-    return `<details class="phase" ${status === 'läuft' || (!pos.started && ph.nr === 1) ? 'open' : ''}>
+    return `<details class="phase" ${!pos.started && ph.nr === 1 ? 'open' : ''}>
       <summary><span class="name"><span class="mono dim">${ph.nr}</span> ${esc(ph.titel)}<span class="sub">${esc(ph.untertitel)} · Woche ${ph.wochen[0]}–${last}</span></span><span class="meta mono ${status === 'läuft' ? 'open' : 'dim'}">${status}</span></summary>
       <p class="source">Ziel: ${esc(ph.ziel)}</p>
       <ul class="rows">${ph.wochen.map(n => {
@@ -917,6 +1043,7 @@ function render() {
   if (!C) return;
   const [, route = '', arg, arg2] = location.hash.split('/');
   if (route !== 'wiederholen') { ui.session = 0; ui.revealed = false; }
+  app.classList.remove('home');
   if (location.hash !== shownRoute) {
     stopTimer(); cancelRecording();
     // Impulse bleiben innerhalb eines Trainings gleich, auch wenn man zwischen den Schritten wechselt
@@ -931,6 +1058,7 @@ function render() {
     case 'technik': return viewTechnique(arg);
     case 'tipps': return viewTips();
     case 'wiederholen': return viewReview();
+    case 'karten': return viewCards();
     case 'verlauf': return viewProgress();
     case 'plan':
       if (arg === 'woche' && isWeekArg(arg2)) return viewWeek(Number(arg2));
@@ -947,11 +1075,11 @@ function render() {
 }
 
 let shownRoute = location.hash;
-addEventListener('hashchange', () => { render(); scrollTo(0, 0); });
+addEventListener('hashchange', e => { ui.prev = new URL(e.oldURL).hash; render(); scrollTo(0, 0); });
 
 // Installierte App und Browser-Tab gleichzeitig offen: Änderungen des anderen Fensters übernehmen statt überschreiben
 addEventListener('storage', e => {
-  if (e.key !== 'klartext:v1') return;
+  if (e.key !== STORAGE_KEY) return;
   S = store.load();
   if (!document.activeElement?.matches('textarea')) render();
 });
@@ -982,6 +1110,9 @@ document.addEventListener('click', e => {
   else if (act === 'export') exportData();
   else if (act === 'install' && installPrompt) installPrompt.prompt().then(() => installPrompt.userChoice).then(r => { if (r.outcome === 'accepted') { installPrompt = null; render(); } });
   else if (act === 'feedback') requestFeedback(el.dataset.date);
+  else if (act === 'go') goStep(el.dataset.step, Number(el.dataset.i || 0));
+  else if (act === 'step') goStep(el.dataset.step);
+  else if (act === 'pick' && ui.flow?.pick === null) { ui.flow.pick = Number(el.dataset.n); render(); }
   else if (act === 'claude') {
     const entry = S.entries[el.dataset.date];
     const c = challenge(entry.challengeId);

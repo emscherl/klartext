@@ -10,7 +10,7 @@ function memoryStorage() {
 
 function sample() {
   const s = defaultState();
-  s.entries['2026-10-29'] = { date: '2026-10-29', challengeId: 'p01-haushalt-gfk', bereich: 'privat', typ: 'schriftlich', skips: 1, answer: 'Meine Antwort „mit Umlauten“ äöüß', reflection: 'Ging gut', done: true, completedAt: '2026-10-29T19:00:00.000Z', feedback: [] };
+  s.entries['2026-10-29'] = { date: '2026-10-29', challengeId: 'p01-haushalt-gfk', bereich: 'privat', typ: 'schriftlich', skips: 1, learned: true, answer: 'Meine Antwort „mit Umlauten“ äöüß', reflection: 'Ging gut', done: true, completedAt: '2026-10-29T19:00:00.000Z', feedback: [] };
   s.cards['technik:batna'] = newCard('technik:batna', '2026-10-29');
   s.reviewLog['2026-10-29'] = 4;
   return s;
@@ -105,4 +105,13 @@ test('Selbstcheck bleibt erhalten, ungültige Indizes fallen raus', () => {
   const data = JSON.parse(exportState(sample()));
   data.entries['2026-10-29'].selbstcheck = [2, 0, 2, -1, 'x', 99];
   assert.deepEqual(importState(JSON.stringify(data)).entries['2026-10-29'].selbstcheck, [0, 2]);
+});
+
+test('Altdaten ohne learned werden zu false, ungültige Werte ebenso', () => {
+  const s = sample();
+  delete s.entries['2026-10-29'].learned;
+  s.entries['2026-10-30'] = { ...s.entries['2026-10-29'], date: '2026-10-30', learned: 'ja' };
+  const out = importState(exportState(s));
+  assert.equal(out.entries['2026-10-29'].learned, false);
+  assert.equal(out.entries['2026-10-30'].learned, false);
 });

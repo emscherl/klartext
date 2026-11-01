@@ -4,12 +4,12 @@ Persönliches tägliches Kommunikationstraining als Web-App (PWA). Läuft am Rec
 
 ## Was die App kann
 
-- **12-Wochen-Plan:** Roadmap in drei Phasen (Grundlagen, Struktur, echte Gespräche) mit Phasen- und Wochenzielen. Das tägliche Training ist geführt: Schritt für Schritt mit Weiter und Zurück, jeder Schritt bringt sein Werkzeug mit (Begriff, Thema oder Frage des Tages, Timer, Aufnahme, Redeschiene). Am ersten Tag einer Woche stellt ein Einstiegsschritt die Woche vor, fehlt die Messaufnahme, kommt sie als eigener Schritt dazu. Die Übersicht zeigt nur die aktuelle Woche und die Phasen zum Aufklappen; Messwerte, Redeschienen und Einstellungen liegen auf eigenen Seiten. Messaufnahme einmal pro Woche mit Füllwörtern pro Minute, Kernsatz und rotem Faden, Vergleich mit Woche 1.
-- **Challenge des Tages:** jeden Tag eine neue Aufgabe, gemischt aus beruflichen und privaten Situationen. Entweder schriftlich (Antwort formulieren, danach eine mögliche Musterformulierung ansehen) oder im Alltag (erledigen, abschließen, kurz reflektieren). Passt sie nicht, gibt es per Klick eine Alternative.
+- **12-Wochen-Plan:** Roadmap in drei Phasen (Grundlagen, Struktur, echte Gespräche) mit Phasen- und Wochenzielen. Das tägliche Training ist geführt: Schritt für Schritt mit Weiter und Zurück, jeder Schritt bringt sein Werkzeug mit (Begriff, Thema oder Frage des Tages, Timer, Aufnahme, Redeschiene). Am ersten Tag einer Woche stellt ein Einstiegsschritt die Woche vor, fehlt die Messaufnahme, kommt sie als eigener Schritt dazu. Die Übersicht zeigt die aktuelle Woche als Karte mit dem Trainingsknopf, darunter die Phasen zugeklappt; Messwerte, Redeschienen und Einstellungen liegen als Kacheln auf eigenen Seiten. Auf der Startseite steht das Training zusammen mit Challenge und Wiederholung in der Heute-Karte. Messaufnahme einmal pro Woche mit Füllwörtern pro Minute, Kernsatz und rotem Faden, Vergleich mit Woche 1.
+- **Challenge des Tages:** jeden Tag eine neue Aufgabe, gemischt aus beruflichen und privaten Situationen. Geführt in vier Schritten: Situation, die passenden Techniken lernen (Prinzip, Schritte, Beispiel, Merksatz; bekannte Techniken lassen sich überspringen), eine Quizfrage pro Technik, dann die eigene Antwort mit „So gehst du hier vor“. Entweder schriftlich (Antwort formulieren, danach eine mögliche Musterformulierung ansehen) oder im Alltag (erledigen, abschließen, kurz reflektieren). Passt sie nicht, gibt es per Klick eine Alternative.
 - **Feedback zur Antwort:** Nach dem Abschließen einer Challenge gibt es automatische Hinweise (Satzanzahl gegen die Vorgabe, langer erster Satz, „aber“, „immer/nie“, „man“, „du bist“, Weichmacher), eine Checkliste mit den Kriterien der Aufgabe zum Abhaken und die Musterformulierung zum Vergleich. „Feedback von Claude holen“ öffnet Claude mit einer fertigen Anfrage (Situation, Aufgabe, Techniken, Kriterien, Antwort) und kopiert sie zusätzlich in die Zwischenablage; die Antwort lässt sich in der App speichern. Daten verlassen das Gerät nur beim Tippen auf den Knopf.
 - **Techniken:** Bibliothek mit 30 etablierten Kommunikationstechniken, jeweils mit Erklärung, Schritten, Beispiel, Übung, Merksatz und Quelle. Challenges verlinken die passenden Techniken.
 - **Tipps & Kniffe:** 40 kurze, sofort anwendbare Tricks, einer davon täglich als Tipp des Tages.
-- **Wiederholung:** Techniken aus abgeschlossenen Challenges kommen automatisch in den Wiederholungsplan, Techniken und Tipps lassen sich auch von Hand aufnehmen. Bewertung mit Nochmal, Schwer, Gut, Leicht; die Abstände wachsen (1 Tag, 3, 7, dann ca. das 2,5-Fache).
+- **Wiederholung:** Techniken aus abgeschlossenen Challenges kommen automatisch in den Wiederholungsplan, Techniken und Tipps lassen sich auch von Hand aufnehmen. Bewertung mit Nochmal, Schwer, Gut, Leicht; die Abstände wachsen (1 Tag, 3, 7, dann ca. das 2,5-Fache). Unter „Alle Karten ansehen“ sind sie nach fällig, nächste 7 Tage und später gruppiert.
 - **Fortschritt:** Serie, längste Serie, erledigte Challenges, Kalender der letzten vier Wochen, alle Antworten und Reflexionen zum Nachlesen und Weiterbearbeiten.
 - **Sicherung:** „Jetzt sichern“ öffnet am Handy das Teilen-Menü (iCloud Drive, Dateien, Google Drive), am Rechner gibt es einen Download. Nach 7 Tagen ohne Sicherung erinnert die Startseite daran. Import ersetzt den Stand auf dem Gerät.
 - **Verlauf:** Kurven über die 12 Planwochen für Füllwörter pro Minute, roten Faden und Ruhe, zum Antippen; dazu die Gespräche, die besser liefen.
@@ -66,7 +66,7 @@ Rechner und Handy haben getrennte Datenstände. Übertragen geht über Fortschri
 npm test
 ```
 
-Abgedeckt: Tagesauswahl (gleicher Tag gleiche Challenge, keine Wiederholung an aufeinanderfolgenden Tagen über drei Jahre, jede Challenge kommt pro Runde genau einmal, Alternativen), Wiederholungslogik (Fälligkeit am Termin, wachsende Abstände, Zurücksetzen, Grenzen), Serie und Kennzahlen, Speichern/Neuladen, Export/Import samt Fehlerfällen, der 12-Wochen-Plan (Wochen- und Tageszählung, Zeitumstellung, Verlängern, Messwerte) sowie die Inhalte (Mindestumfang, Pflichtfelder, Quellen, gültige Verweise).
+Abgedeckt: Tagesauswahl (gleicher Tag gleiche Challenge, keine Wiederholung an aufeinanderfolgenden Tagen über drei Jahre, jede Challenge kommt pro Runde genau einmal, Alternativen), Wiederholungslogik (Fälligkeit am Termin, wachsende Abstände, Zurücksetzen, Grenzen), Serie und Kennzahlen, Speichern/Neuladen, Export/Import samt Fehlerfällen, der 12-Wochen-Plan (Wochen- und Tageszählung, Zeitumstellung, Verlängern, Messwerte) sowie die Inhalte (Mindestumfang, Pflichtfelder, Quellen, gültige Verweise, Quizfragen, Anwendungsschritte).
 
 ## Inhalte erweitern
 
@@ -90,9 +90,17 @@ Regeln für alle Dateien:
   "schritte": ["Schritt 1", "Schritt 2"],
   "beispiel": "Ein konkretes Beispiel",
   "uebung": "Eine Übung für den Alltag",
-  "merksatz": "Ein Satz, der in der Wiederholung als Kern erscheint"
+  "merksatz": "Ein Satz, der in der Wiederholung als Kern erscheint",
+  "quiz": {
+    "frage": "Kurze neue Situation plus Frage, die die Anwendung prüft",
+    "optionen": ["Option A", "Option B", "Option C"],
+    "richtig": 1,
+    "erklaerung": "Warum die richtige passt und was der ersten und dritten fehlt"
+  }
 }
 ```
+
+`quiz` ist Pflicht: genau drei verschiedene Optionen, `richtig` ist der Index (0 bis 2) der einzigen richtigen. Die Frage erscheint im Quiz-Schritt jeder Challenge, die die Technik nutzt. Eine neue Situation statt des Beispiels wählen, die Optionen ähnlich lang halten und in der Erklärung von „der ersten, zweiten, dritten“ sprechen, weil die App die Optionen nicht nummeriert.
 
 Nur Techniken mit belegbarer Quelle aufnehmen. Neue Kategorien erscheinen automatisch als eigene Gruppe.
 
@@ -107,13 +115,14 @@ Nur Techniken mit belegbarer Quelle aufnehmen. Neue Kategorien erscheinen automa
   "situation": "Ausgangslage",
   "aufgabe": "Was genau zu tun ist",
   "techniken": ["id-einer-technik"],
+  "anwendung": ["Schritt 1, auf diese Situation bezogen", "Schritt 2", "Schritt 3"],
   "reflexion": ["Leitfrage 1", "Leitfrage 2"],
   "musterantwort": "Optional, nur bei schriftlich: eine mögliche Formulierung",
   "kriterien": ["Pflicht bei schriftlich: prüfbare Aussagen für den Selbstcheck"]
 }
 ```
 
-`techniken` muss mindestens eine vorhandene Technik-ID enthalten. Präfix `b` für beruflich, `p` für privat ist nur eine Konvention.
+`techniken` muss mindestens eine vorhandene Technik-ID enthalten. `anwendung` ist Pflicht: 3 bis 4 Schritte, die jede genannte Technik auf genau diese Situation übertragen; sie stehen als „So gehst du hier vor“ über dem Antwortfeld. Keine Details erfinden, die nicht in `situation` oder `aufgabe` stehen. Präfix `b` für beruflich, `p` für privat ist nur eine Konvention.
 
 ### Tipp (`content/tipps.json`)
 

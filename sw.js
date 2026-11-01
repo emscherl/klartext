@@ -1,6 +1,6 @@
 // Offline zuerst aus dem Cache, im Hintergrund wird jede Datei neu geladen (wie bei Recall).
 // Neue Inhalte in content/ kommen so ohne Versionswechsel beim nächsten Start an.
-const CACHE = 'klartext-v4';
+const CACHE = 'klartext-v5';
 const ASSETS = [
   './', 'index.html', 'style.css', 'manifest.webmanifest',
   'src/app.js', 'src/dates.js', 'src/daily.js', 'src/srs.js', 'src/store.js', 'src/progress.js', 'src/feedback.js', 'src/plan.js', 'src/recorder.js', 'src/selfcheck.js',

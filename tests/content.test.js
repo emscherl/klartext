@@ -110,3 +110,19 @@ test('Kriterien der Challenges sind ausgefüllt, höchstens 20, nur bei schriftl
   }
   assert.ok(challenges.filter(c => c.typ === 'schriftlich').every(c => c.kriterien?.length), 'jede schriftliche Challenge hat Kriterien');
 });
+
+test('jede Technik hat eine Quizfrage mit drei Optionen und gültiger Lösung', () => {
+  for (const t of techniken) {
+    const q = t.quiz;
+    assert.ok(q && filled(q.frage) && filled(q.erklaerung), `${t.id}.quiz`);
+    assert.ok(Array.isArray(q.optionen) && q.optionen.length === 3 && q.optionen.every(filled), `${t.id}.quiz.optionen`);
+    assert.equal(new Set(q.optionen).size, 3, `${t.id}.quiz.optionen doppelt`);
+    assert.ok([0, 1, 2].includes(q.richtig), `${t.id}.quiz.richtig`);
+  }
+});
+
+test('jede Challenge sagt in 3 bis 4 Schritten, wie man hier vorgeht', () => {
+  for (const c of challenges) {
+    assert.ok(Array.isArray(c.anwendung) && c.anwendung.length >= 3 && c.anwendung.length <= 4 && c.anwendung.every(filled), `${c.id}.anwendung`);
+  }
+});

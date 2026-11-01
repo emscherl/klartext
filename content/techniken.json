@@ -14,7 +14,17 @@
     ],
     "beispiel": "Kollegin: „Jetzt soll ich die Präsentation auch noch bis morgen machen.“ Du: „Das kommt zusätzlich zu allem anderen obendrauf, und dir fehlt die Zeit. Klingt ziemlich frustrierend.“",
     "uebung": "Gib im nächsten Gespräch zweimal mit eigenen Worten wieder, was du gehört hast, bevor du selbst etwas Inhaltliches sagst.",
-    "merksatz": "Zurückgeben, was ankam, Inhalt und Gefühl, bevor ich selbst antworte."
+    "merksatz": "Zurückgeben, was ankam, Inhalt und Gefühl, bevor ich selbst antworte.",
+    "quiz": {
+      "frage": "Deine Freundin erzählt dir: „Mein Vater will nach dem Sturz nicht ins Heim, aber allein geht es nicht mehr.“ Was antwortest du im Sinne von Aktivem Zuhören?",
+      "optionen": [
+        "Das klingt schwer. Hast du schon an betreutes Wohnen gedacht? Das wäre oft ein guter Mittelweg für alle.",
+        "Du stehst zwischen seinem Willen und dem, was machbar ist. Das reibt dich gerade ziemlich auf, oder?",
+        "Dein Vater will nicht ins Heim, und allein klappt es nicht mehr. Habe ich das so richtig verstanden?"
+      ],
+      "richtig": 1,
+      "erklaerung": "Die Antwort gibt Inhalt und mitschwingendes Gefühl zurück. Die erste schiebt einen Ratschlag nach, die dritte gibt nur den Inhalt wieder, ohne das Gefühl zu benennen."
+    }
   },
   {
     "id": "vier-seiten-modell",
@@ -32,7 +42,17 @@
     ],
     "beispiel": "„Die Ampel ist grün.“ Sache: Die Ampel zeigt Grün. Selbstkundgabe: Ich habe es eilig. Beziehung: Ich traue dir das Fahren allein nicht zu. Appell: Fahr los!",
     "uebung": "Nimm einen Satz, der dich heute gestört hat, und schreibe die vier möglichen Botschaften auf. Welches Ohr war bei dir am lautesten?",
-    "merksatz": "Sache, Selbstkundgabe, Beziehung, Appell: Ich wähle, mit welchem Ohr ich höre."
+    "merksatz": "Sache, Selbstkundgabe, Beziehung, Appell: Ich wähle, mit welchem Ohr ich höre.",
+    "quiz": {
+      "frage": "Deine Chefin schreibt dir knapp: „Der Kunde hat sich schon wieder wegen der Rechnung gemeldet.“ Du bist unsicher, was sie damit von dir will. Was passt zum Vier-Seiten-Modell?",
+      "optionen": [
+        "Ja, die Rechnung ist rausgegangen. Das Zahlungsziel war der 15., das kann man im System nachprüfen.",
+        "Das war nicht mein Fehler, ich habe die Rechnung korrekt verschickt. Ich fühle mich gerade angegriffen.",
+        "Meinst du das als Info oder als Bitte? Soll ich mich um den Kunden kümmern oder reicht dir, dass ich es weiß?"
+      ],
+      "richtig": 2,
+      "erklaerung": "Nur die Nachfrage klärt, welche Seite gemeint war. Die erste antwortet allein auf den Sachinhalt, die zweite hört nur das Beziehungsohr und liest einen Vorwurf hinein."
+    }
   },
   {
     "id": "gewaltfreie-kommunikation",
@@ -49,7 +69,17 @@
     ],
     "beispiel": "„Als du gestern beim Abendessen dreimal aufs Handy geschaut hast (Beobachtung), war ich enttäuscht (Gefühl), weil mir unsere gemeinsame Zeit wichtig ist (Bedürfnis). Wärst du bereit, das Handy beim Essen wegzulegen? (Bitte)“",
     "uebung": "Übersetze einen Vorwurf, den du in letzter Zeit gedacht oder gesagt hast, in die vier Schritte.",
-    "merksatz": "Beobachtung, Gefühl, Bedürfnis, Bitte: beschreiben statt bewerten."
+    "merksatz": "Beobachtung, Gefühl, Bedürfnis, Bitte: beschreiben statt bewerten.",
+    "quiz": {
+      "frage": "Dein Teamleiter schickt dir seit Wochen immer wieder nach 22 Uhr Aufgaben im Chat. Du willst das ansprechen. Welche Aussage folgt den vier Schritten der Gewaltfreien Kommunikation?",
+      "optionen": [
+        "Gestern und heute kamen Aufgaben nach 22 Uhr. Ich war angespannt, weil mir Feierabend wichtig ist. Schickst du sie bitte vor 18 Uhr?",
+        "Gestern und heute kamen Aufgaben nach 22 Uhr im Chat, und ich war sehr genervt. Könntest du das künftig bitte einfach lassen, damit das aufhört?",
+        "Du schickst ständig nach 22 Uhr Aufgaben, und mir ist mein Feierabend wichtig. Ich erwarte, dass du das ab sofort unterlässt."
+      ],
+      "richtig": 0,
+      "erklaerung": "Nur die erste Aussage enthält alle vier Schritte. Der zweiten fehlt das Bedürfnis. Die dritte nennt kein Gefühl, verallgemeinert („ständig“) und formuliert eine Forderung statt einer Bitte."
+    }
   },
   {
     "id": "ich-botschaften",
@@ -65,7 +95,17 @@
     ],
     "beispiel": "Statt „Du lässt mich immer hängen“: „Wenn die Zahlen erst am Morgen der Sitzung kommen, kann ich sie nicht mehr prüfen, und ich fühle mich dann schlecht vorbereitet.“",
     "uebung": "Schreibe drei Du-Sätze auf, die dir im Alltag rausrutschen, und formuliere sie als Ich-Botschaft um.",
-    "merksatz": "Verhalten, Wirkung, Gefühl: über mich sprechen statt über dich urteilen."
+    "merksatz": "Verhalten, Wirkung, Gefühl: über mich sprechen statt über dich urteilen.",
+    "quiz": {
+      "frage": "Eine Kollegin telefoniert im Großraumbüro täglich lange und mit kräftiger Stimme. Du willst es ansprechen. Welche Aussage ist eine Ich-Botschaft im Sinne der Technik?",
+      "optionen": [
+        "Ich finde, du bist beim Telefonieren einfach zu laut, und ich fühle mich dadurch ziemlich gestört bei der Arbeit.",
+        "Wenn du im Großraumbüro telefonierst, fühle ich mich gestört und genervt, und das geht mir schon seit Tagen so.",
+        "Wenn du im Großraumbüro telefonierst, verliere ich den Faden bei meinen Texten, und ich fühle mich gestresst."
+      ],
+      "richtig": 2,
+      "erklaerung": "Es braucht Verhalten, Wirkung und Gefühl. Die erste ist ein verkapptes Urteil („zu laut“) mit „Ich“ davor, die zweite nennt nur Gefühle, aber keine konkrete Wirkung auf dich."
+    }
   },
   {
     "id": "interessen-statt-positionen",
@@ -82,7 +122,17 @@
     ],
     "beispiel": "Zwei Männer in einer Bibliothek streiten ums Fenster: Einer will es offen, der andere zu. Frage nach dem Warum: frische Luft gegen Zugluft. Die Bibliothekarin öffnet ein Fenster im Nebenraum: Luft ohne Zug. (Beispiel aus dem Buch)",
     "uebung": "Nimm eine laufende Meinungsverschiedenheit und notiere für beide Seiten: Was ist die Position, welches Interesse könnte dahinterstehen?",
-    "merksatz": "Nicht über Forderungen feilschen, sondern nach dem Warum fragen."
+    "merksatz": "Nicht über Forderungen feilschen, sondern nach dem Warum fragen.",
+    "quiz": {
+      "frage": "Zwei Teammitglieder beharren auf verschiedenen Tagen für das Wochenmeeting: Montag oder Donnerstag. Du moderierst. Was ist der sinnvollste nächste Schritt?",
+      "optionen": [
+        "Was ist euch an dem jeweiligen Tag wichtig? Ich will erst verstehen, was dahintersteckt, bevor wir Tage vergleichen.",
+        "Dann legen wir das Meeting auf Mittwoch. So müsst ihr beide ein Stück nachgeben, und das ist am Ende fair.",
+        "Wir lassen das Team abstimmen und nehmen den Tag der Mehrheit. Das ist neutral, und keiner muss nachgeben."
+      ],
+      "richtig": 0,
+      "erklaerung": "Zuerst wird das Interesse hinter der Forderung erfragt. Die zweite feilscht um die Mitte, die dritte entscheidet per Mehrheit, bevor jemand sagen konnte, worum es ihm geht."
+    }
   },
   {
     "id": "batna",
@@ -99,7 +149,17 @@
     ],
     "beispiel": "Vor einem Gespräch über eine Gehaltserhöhung: Liegt ein anderes Angebot vor? Welche Weiterbildung oder Aufgabe wäre ein Ausgleich? Was passiert, wenn du bleibst und nichts ändert sich?",
     "uebung": "Schreibe für eine anstehende Verhandlung (Preis, Gehalt, Mietvertrag, Urlaubsplanung) deine BATNA in einem Satz auf.",
-    "merksatz": "Wer seine beste Alternative kennt, verhandelt ruhiger und weiß, wann Nein richtig ist."
+    "merksatz": "Wer seine beste Alternative kennt, verhandelt ruhiger und weiß, wann Nein richtig ist.",
+    "quiz": {
+      "frage": "Du willst einen Gebrauchtwagen kaufen und verhandelst nächste Woche mit einem Händler über den Preis. Wie bereitest du dich nach der BATNA-Technik vor?",
+      "optionen": [
+        "Ich schaue, wie dringend der Händler verkaufen muss, und baue meine Verhandlungstaktik auf seinen Druck auf.",
+        "Ich hole vorab zwei Vergleichsangebote ein und lege fest, ab welchem Preis ich lieber woanders kaufe.",
+        "Ich recherchiere Durchschnittspreise ähnlicher Autos und gehe mit einem Wunschpreis rein, den ich möglichst halte."
+      ],
+      "richtig": 1,
+      "erklaerung": "BATNA heißt, die eigene beste Alternative auszuarbeiten und als Untergrenze festzulegen. Die erste betrachtet nur die Gegenseite, die dritte hat einen Wunsch statt einer Alternative."
+    }
   },
   {
     "id": "sbi-feedback",
@@ -116,7 +176,17 @@
     ],
     "beispiel": "„Im Weekly gestern (S) hast du mich zweimal unterbrochen, bevor ich die Zahlen fertig erklärt hatte (B). Dadurch ist die Entscheidung auf nächste Woche gerutscht, weil das Team den Stand nicht kannte (I).“",
     "uebung": "Formuliere ein Lob für jemanden aus deinem Umfeld nach SBI und sag es heute noch.",
-    "merksatz": "Situation, Verhalten, Wirkung: beobachtbar statt Urteil."
+    "merksatz": "Situation, Verhalten, Wirkung: beobachtbar statt Urteil.",
+    "quiz": {
+      "frage": "Eine Praktikantin hat heute einen schwierigen Kundenanruf gemeistert. Du willst sie gezielt loben. Welche Aussage folgt SBI?",
+      "optionen": [
+        "Du bist einfach ein Naturtalent im Umgang mit Kunden, das merkt man sofort, wenn du mit jemandem telefonierst.",
+        "Beim Kundenanruf heute Morgen hast du das richtig stark gemacht, ruhig und professionell. Weiter so, genau das brauchen wir.",
+        "Im Anruf heute Morgen hast du die Beschwerde ruhig zusammengefasst. Der Kunde wurde ruhiger, und wir konnten es klären."
+      ],
+      "richtig": 2,
+      "erklaerung": "SBI braucht Situation, beobachtbares Verhalten und Wirkung. Die erste ist ein Charakterurteil ohne Situation, die zweite benennt nur Situation und Wertung, aber keine Wirkung."
+    }
   },
   {
     "id": "johari-fenster",
@@ -132,7 +202,17 @@
     ],
     "beispiel": "„Mir ist neulich aufgefallen, dass im Team wenig widersprochen wird, wenn ich etwas vorschlage. Was mache ich, das das begünstigen könnte?“",
     "uebung": "Bitte heute eine Person um eine ehrliche Rückmeldung zu einem konkreten Punkt. Bedanke dich nur, rechtfertige nichts.",
-    "merksatz": "Feedback holen verkleinert den blinden Fleck, Offenheit das Verborgene."
+    "merksatz": "Feedback holen verkleinert den blinden Fleck, Offenheit das Verborgene.",
+    "quiz": {
+      "frage": "Du leitest seit drei Wochen ein Team und willst erfahren, was andere an dir sehen, das du selbst nicht bemerkst. Welche Bitte passt zur Technik?",
+      "optionen": [
+        "In den Teamrunden bin ich oft schnell mit Entscheidungen. Was davon hilft dir, und was macht es dir schwerer?",
+        "Du arbeitest ja viel mit mir zusammen. Wie war ich denn bisher so als Chef aus deiner Sicht?",
+        "Ich entscheide in Runden oft schnell, weil mir der Zeitdruck im Nacken sitzt. Ich wollte nur, dass du das weißt."
+      ],
+      "richtig": 0,
+      "erklaerung": "Der blinde Fleck schrumpft durch eine konkrete Feedbackfrage. Die zweite fragt zu allgemein, die dritte gibt nur etwas von sich preis und verkleinert damit das verborgene statt das blinde Feld."
+    }
   },
   {
     "id": "pyramidenprinzip",
@@ -149,7 +229,17 @@
     ],
     "beispiel": "Statt einer Chronologie: „Wir sollten den Start um zwei Wochen verschieben. Grund 1: Die Teile kommen später. Grund 2: Der Test braucht eine Woche mehr. Details unten.“",
     "uebung": "Nimm deine letzte längere Mail und schreibe sie so um, dass der erste Satz allein reichen würde.",
-    "merksatz": "Antwort zuerst, Begründung danach, Details nach Bedarf."
+    "merksatz": "Antwort zuerst, Begründung danach, Details nach Bedarf.",
+    "quiz": {
+      "frage": "Du schreibst dem Vorstand deines Sportvereins, dass das Sommerfest dieses Jahr nicht stattfinden sollte. Welcher Mailanfang setzt das Pyramidenprinzip um?",
+      "optionen": [
+        "Nach der Helferumfrage im März und dem Kassensturz im Juni habe ich mir die Lage noch einmal angesehen. Dabei ist mir beim Sommerfest einiges aufgefallen.",
+        "Mein Vorschlag: Wir sagen das Sommerfest dieses Jahr ab. Ausschlaggebend sind der Helfermangel und das knappe Budget. Die Zahlen liefere ich nach, wenn ihr sie braucht.",
+        "Der Helfermangel und das knappe Budget sprechen klar dagegen. Deshalb würde ich das Sommerfest diesmal absagen. Die Zahlen liefere ich nach, wenn ihr sie braucht."
+      ],
+      "richtig": 1,
+      "erklaerung": "Die Kernaussage steht im ersten Satz, danach die Gründe. Die erste erzählt chronologisch und lässt den Leser auf das Ergebnis warten, die dritte beginnt mit den Gründen und lässt die Aussage erst folgen."
+    }
   },
   {
     "id": "labeling",
@@ -166,7 +256,17 @@
     ],
     "beispiel": "Kunde: „Das ist jetzt schon die dritte Verschiebung.“ Du: „Es klingt so, als hätten Sie intern schon Ärger deswegen bekommen.“",
     "uebung": "Benenne heute in einem angespannten Moment einmal das Gefühl des anderen als Vermutung und halte danach die Pause aus.",
-    "merksatz": "„Es klingt so, als …“ und dann schweigen."
+    "merksatz": "„Es klingt so, als …“ und dann schweigen.",
+    "quiz": {
+      "frage": "Nach einer Umstrukturierung sagt ein Teammitglied gedehnt: „Ja ja, ich mach das dann halt so.“ Welche Antwort setzt Labeling richtig um?",
+      "optionen": [
+        "Es klingt so, als wärst du von der neuen Aufteilung gerade ziemlich genervt.",
+        "Ich höre, dass du genervt bist. Was genau stört dich denn an der neuen Aufteilung?",
+        "Es klingt so, als wärst du genervt. Die Aufteilung steht aber fest und hat auch Vorteile."
+      ],
+      "richtig": 0,
+      "erklaerung": "Labeling heißt, das Gefühl als Vermutung zu benennen und dann zu schweigen. Die zweite beginnt mit „Ich höre“ und fragt gleich nach, die dritte argumentiert direkt weiter."
+    }
   },
   {
     "id": "kalibrierte-fragen",
@@ -183,7 +283,17 @@
     ],
     "beispiel": "Auf eine überzogene Forderung: „Wie soll ich das machen?“ oder „Was müsste passieren, damit das für uns beide funktioniert?“",
     "uebung": "Bereite für ein schwieriges Gespräch drei Fragen vor, die mit „Wie“ oder „Was“ beginnen.",
-    "merksatz": "„Wie soll ich das machen?“: das Gegenüber löst mein Problem mit."
+    "merksatz": "„Wie soll ich das machen?“: das Gegenüber löst mein Problem mit.",
+    "quiz": {
+      "frage": "Ein Handwerker nennt dir für die Badsanierung einen Starttermin in drei Monaten. Du brauchst ihn in vier Wochen. Welche Frage ist eine kalibrierte Frage?",
+      "optionen": [
+        "Woran liegt es denn, dass Sie nicht früher kommen können? Gibt es dafür einen konkreten Grund?",
+        "Wie bekommen wir es hin, dass Sie bei uns schon früher mit den Arbeiten beginnen können?",
+        "Könnten Sie es nicht doch irgendwie einrichten, früher zu kommen? Das wäre uns sehr wichtig."
+      ],
+      "richtig": 1,
+      "erklaerung": "Kalibrierte Fragen beginnen mit „Wie“ oder „Was“ und machen das Problem gemeinsam. Die erste fragt nach dem Grund, also faktisch ein „Warum“, die dritte ist eine Ja-Nein-Frage, die ein Nein einlädt."
+    }
   },
   {
     "id": "oars",
@@ -200,7 +310,17 @@
     ],
     "beispiel": "„Was ist für dich gerade das Schwierigste an dem Projekt? … Du hast trotz der vielen Wechsel drangeblieben, das ist nicht selbstverständlich. … Wenn ich dich richtig verstehe, geht es dir weniger um die Arbeit als um die unklaren Zuständigkeiten?“",
     "uebung": "Führe ein Gespräch, in dem du jedes der vier Werkzeuge mindestens einmal einsetzt.",
-    "merksatz": "Offen fragen, würdigen, spiegeln, zusammenfassen."
+    "merksatz": "Offen fragen, würdigen, spiegeln, zusammenfassen.",
+    "quiz": {
+      "frage": "Ein Freund erzählt dir ausführlich die Vor- und Nachteile eines Jobwechsels. Welche Antwort ist bei OARS ein Zusammenfassen?",
+      "optionen": [
+        "Das klingt, als hättest du genug von deinem Job. Kündige doch einfach, die Reisezeit allein ist schon Grund genug.",
+        "Ich sortiere mal: Die Reisezeit zehrt an dir, aber Team und Aufgaben magst du. Habe ich das so richtig erfasst?",
+        "Die Reisezeit zehrt also ziemlich an dir. Das ist für dich im Moment wohl der größte Punkt bei der Sache."
+      ],
+      "richtig": 1,
+      "erklaerung": "Ein Summary bündelt mehrere Punkte und prüft, ob es passt. Die erste gibt einen Ratschlag, die dritte spiegelt nur einen einzelnen Punkt (Reflexion) und fragt nicht nach."
+    }
   },
   {
     "id": "metakommunikation",
@@ -217,7 +337,17 @@
     ],
     "beispiel": "„Ich merke, wir wiederholen seit zehn Minuten dieselben Argumente und werden beide lauter. Können wir kurz klären, worum es jedem von uns eigentlich geht?“",
     "uebung": "Achte heute auf einen Moment, in dem ein Gespräch hakt, und sprich das Muster einmal offen an.",
-    "merksatz": "Wenn die Sache hakt, über das Wie reden, nicht noch mehr über das Was."
+    "merksatz": "Wenn die Sache hakt, über das Wie reden, nicht noch mehr über das Was.",
+    "quiz": {
+      "frage": "Mit einem Kollegen tauschst du seit Tagen Mails zum Budget aus. Der Ton wird schärfer, jeder beharrt auf seinen Zahlen. Was ist der nächste Schritt der Metakommunikation?",
+      "optionen": [
+        "Ich stelle meine Zahlen noch einmal übersichtlich zusammen. Vielleicht wird dann klar, wo genau der Unterschied liegt.",
+        "Du wirst in deinen Mails immer schärfer und blockst alles ab. So kommen wir nicht weiter, bitte schreib sachlicher.",
+        "Ich habe das Gefühl, wir reden aneinander vorbei, und der Ton wird rauer. Wie siehst du das? Sollen wir kurz telefonieren?"
+      ],
+      "richtig": 2,
+      "erklaerung": "Metakommunikation beschreibt das Muster als Ich-Aussage und fragt nach der Sicht des anderen. Die erste bleibt auf der Sachebene, die zweite ist ein Du-Vorwurf ohne Nachfrage."
+    }
   },
   {
     "id": "erwachsenen-ich",
@@ -234,7 +364,17 @@
     ],
     "beispiel": "Chef: „Das hätten Sie doch wissen müssen!“ Statt Rechtfertigung: „Mir fehlte die Info zum geänderten Termin. Was brauchen Sie jetzt von mir, damit wir es bis Freitag schaffen?“",
     "uebung": "Wenn dich heute ein Satz triggert, antworte bewusst mit einer sachlichen Frage.",
-    "merksatz": "Auf Vorwurf nicht mit Trotz oder Einknicken reagieren: sachlich fragen."
+    "merksatz": "Auf Vorwurf nicht mit Trotz oder Einknicken reagieren: sachlich fragen.",
+    "quiz": {
+      "frage": "Deine Mutter sagt: „Du meldest dich nie, man muss ja immer hinter dir herlaufen!“ Welche Antwort kommt aus dem Erwachsenen-Ich?",
+      "optionen": [
+        "Ich habe mich zwei Wochen nicht gemeldet, das stimmt. Wie oft wäre dir ein Anruf denn recht?",
+        "Ich habe auch noch ein Leben und kann nicht ständig anrufen. Du könntest dich ja ebenso mal melden, oder?",
+        "Du hast recht, das war nicht in Ordnung von mir. Ich rufe ab jetzt jeden Tag an, versprochen."
+      ],
+      "richtig": 0,
+      "erklaerung": "Das Erwachsenen-Ich antwortet mit Fakten und einer Frage nach Optionen. Die zweite reagiert trotzig (Kind-Ich), die dritte knickt unterwürfig ein, statt die Sachebene zu suchen."
+    }
   },
   {
     "id": "desc-skript",
@@ -251,7 +391,17 @@
     ],
     "beispiel": "„Die letzten drei Abrechnungen kamen jeweils eine Woche nach dem vereinbarten Termin (D). Das bringt meine Monatsplanung durcheinander (E). Ich brauche sie bis zum Fünften (S). Dann kann ich die Zahlungen pünktlich freigeben (C).“",
     "uebung": "Schreib ein DESC-Skript für ein Thema, das du schon länger ansprechen willst.",
-    "merksatz": "Beschreiben, ausdrücken, konkret wünschen, Folgen nennen."
+    "merksatz": "Beschreiben, ausdrücken, konkret wünschen, Folgen nennen.",
+    "quiz": {
+      "frage": "Dein Teamleiter kündigt Wochenenddienste seit Wochen erst am Freitag an. Du planst das Gespräch vorab. Welcher Aufbau folgt dem DESC-Skript?",
+      "optionen": [
+        "Seit drei Wochen steht der Plan erst freitags fest. Das macht mich angespannt. Ich wünsche ihn mir bis Mittwoch, dann kann ich tauschen.",
+        "Ich fühle mich ständig überrumpelt, wenn Wochenenddienste erst freitags feststehen. So geht das nicht weiter, das stresst mich sehr.",
+        "Ich brauche die Einteilung künftig bis Mittwoch. Wenn das wieder nicht klappt, übernehme ich keine Wochenenddienste mehr, das sage ich dir gleich."
+      ],
+      "richtig": 0,
+      "erklaerung": "DESC verlangt Beschreibung, Wirkung auf dich, konkreten Wunsch und Folgen in dieser Reihenfolge. Die zweite hat keinen Wunsch und keine Folgen, die dritte beginnt ohne Beschreibung und nennt nur eine Drohung als Folge."
+    }
   },
   {
     "id": "schallplatte",
@@ -268,7 +418,17 @@
     ],
     "beispiel": "Verkäufer: „Aber das Angebot gilt nur heute.“ Du: „Verstehe. Ich entscheide nicht heute.“ – „Sie verpassen echt was.“ – „Mag sein. Ich entscheide nicht heute.“",
     "uebung": "Lege dir für eine typische Situation, in der du schwer Nein sagst, einen Schallplatten-Satz zurecht.",
-    "merksatz": "Ein Satz, ruhig wiederholt, statt sich auf jedes Argument einzulassen."
+    "merksatz": "Ein Satz, ruhig wiederholt, statt sich auf jedes Argument einzulassen.",
+    "quiz": {
+      "frage": "Ein Nachbar fragt dich zum dritten Mal, ob du am Samstag beim Umzug hilfst, und bietet jetzt eine Pizza als Dank. Du willst nicht. Welche Antwort setzt die Technik um?",
+      "optionen": [
+        "Pizza klingt gut, aber ich bin am Samstag ohnehin schon verplant und danach meistens platt.",
+        "Verstehe, aber Pizza ändert nichts. Ich finde es ziemlich aufdringlich, dass du schon wieder fragst.",
+        "Verstehe, danke für das Angebot. Es bleibt dabei: Ich helfe am Samstag nicht, auch nicht für Pizza."
+      ],
+      "richtig": 2,
+      "erklaerung": "Gefragt ist ein kurzer, gleichlautender Satz nach kurzem Anerkennen. Die erste liefert neue Argumente, die diskutiert werden können, die zweite greift mit einem Vorwurf an."
+    }
   },
   {
     "id": "fogging",
@@ -285,7 +445,17 @@
     ],
     "beispiel": "„Du bist ja ständig unterwegs.“ – „Stimmt, ich bin gerade viel unterwegs.“ Oder: „Dein Plan ist viel zu ambitioniert.“ – „Gut möglich, dass er ambitioniert ist.“",
     "uebung": "Antworte heute auf eine kleine Spitze mit „Kann gut sein“ oder „Da ist was dran“ und beobachte, was passiert.",
-    "merksatz": "Dem wahren Kern zustimmen, nichts rechtfertigen."
+    "merksatz": "Dem wahren Kern zustimmen, nichts rechtfertigen.",
+    "quiz": {
+      "frage": "Ein Kollege stichelt im Teamchat: „Deine Protokolle kommen ja immer erst Tage später.“ Welche Antwort setzt Fogging richtig um?",
+      "optionen": [
+        "Stimmt, es dauert manchmal. Aber ich hatte diese Woche drei Kundentermine und kaum Luft dafür.",
+        "Da ist was dran, meine Protokolle brauchen oft Tage. Kann gut sein, dass dir das auffällt.",
+        "Stimmt, manchmal dauert es. Bei dir fehlen übrigens regelmäßig Anhänge, wenn wir schon dabei sind."
+      ],
+      "richtig": 1,
+      "erklaerung": "Fogging stimmt dem wahren Kern zu, ohne etwas anzuhängen. Die erste rutscht in eine Rechtfertigung, die dritte hängt einen Gegenangriff an."
+    }
   },
   {
     "id": "feedforward",
@@ -302,7 +472,17 @@
     ],
     "beispiel": "„Ich möchte in Präsentationen schneller auf den Punkt kommen. Hast du ein, zwei Ideen, was ich beim nächsten Mal anders machen könnte?“",
     "uebung": "Frag heute zwei Menschen nach je einem Vorschlag für ein Verhalten, an dem du arbeiten willst. Antworte nur mit „Danke“.",
-    "merksatz": "Vorschläge für morgen statt Urteile über gestern."
+    "merksatz": "Vorschläge für morgen statt Urteile über gestern.",
+    "quiz": {
+      "frage": "Du trainierst ein Jugendteam und willst bei den Halbzeitansprachen besser werden. Welche Bitte an den Co-Trainer entspricht Feedforward?",
+      "optionen": [
+        "Wie fandest du meine Halbzeitansprache gestern? Was lief aus deiner Sicht nicht so gut dabei?",
+        "Hast du Tipps, wie ich als Trainer insgesamt besser werden könnte? Ich bin für alles offen, was dir einfällt.",
+        "Bei der nächsten Halbzeitansprache will ich klarer sein. Welche ein, zwei Ideen hast du dafür?"
+      ],
+      "richtig": 2,
+      "erklaerung": "Feedforward wählt ein konkretes Verhalten und fragt nach Ideen für die Zukunft. Die erste blickt auf Vergangenes zurück, die zweite nennt kein konkretes Verhalten."
+    }
   },
   {
     "id": "inneres-team",
@@ -319,7 +499,17 @@
     ],
     "beispiel": "Ein Freund bittet um Geld. Der Hilfsbereite: „Klar, er ist ein Freund.“ Der Vorsichtige: „Das letzte Mal kam es spät zurück.“ Der Ehrliche: „Ich will nicht aus Pflichtgefühl Ja sagen.“ Ergebnis: „Ich leihe dir die Hälfte, mit festem Rückzahltermin.“",
     "uebung": "Nimm eine Entscheidung, die dich gerade beschäftigt, und schreibe drei bis vier innere Stimmen mit je einem Satz auf.",
-    "merksatz": "Erst die inneren Stimmen anhören, dann mit einer Stimme sprechen."
+    "merksatz": "Erst die inneren Stimmen anhören, dann mit einer Stimme sprechen.",
+    "quiz": {
+      "frage": "Du hast ein Jobangebot in einer anderen Stadt. Der Abenteurer, die Sicherheitsdenkerin und der Heimatverbundene in dir haben je ihren Satz gesagt. Was ist jetzt der nächste Schritt?",
+      "optionen": [
+        "Die Stimme wählen, die am vernünftigsten klingt, und den anderen erklären, warum sie nicht recht haben.",
+        "Dem Arbeitgeber erzählen, dass drei Stimmen in mir streiten, und ihn bitten, mir die Entscheidung leichter zu machen.",
+        "Die Stimmen gegeneinander abwägen, eine Haltung finden, die die wichtigen Anliegen aufnimmt, und dem Arbeitgeber klar antworten."
+      ],
+      "richtig": 2,
+      "erklaerung": "Nach dem Anhören wägt das „Oberhaupt“ ab und formuliert eine klare Aussage. Die erste schaltet Stimmen aus, die zweite gibt die Unentschiedenheit nach außen weiter."
+    }
   },
   {
     "id": "teufelskreis",
@@ -337,7 +527,17 @@
     ],
     "beispiel": "Sie kontrolliert nach (Verhalten), weil sie sich Sorgen um den Termin macht (innen). Er zieht sich zurück und meldet sich seltener (Verhalten), weil er sich bevormundet fühlt (innen). Dadurch wächst ihre Sorge, und sie kontrolliert mehr.",
     "uebung": "Zeichne einen Teufelskreis aus deinem Leben auf, in dem du selbst eine Rolle spielst. Wo könntest du aussteigen?",
-    "merksatz": "Nicht Schuld suchen, sondern den Kreis sehen und an der eigenen Stelle aussteigen."
+    "merksatz": "Nicht Schuld suchen, sondern den Kreis sehen und an der eigenen Stelle aussteigen.",
+    "quiz": {
+      "frage": "Dein Teampartner kommentiert deine Entwürfe immer knapper. Du zeigst daraufhin immer weniger Zwischenstände, und er wird noch knapper und misstrauischer. Was hilft nach dem Teufelskreis-Modell?",
+      "optionen": [
+        "Ihm sagen, dass sein knappes Feedback schuld daran ist, dass ich nichts mehr zeige, und ihn bitten, damit aufzuhören.",
+        "Sein Verhalten ein paar Wochen notieren, um zu sehen, wann er knapp reagiert, und es ihm dann zeigen.",
+        "Das Muster mit beiden Seiten aufzeichnen und meinen Anteil ändern: früher Zwischenstände zeigen und fragen, was er braucht."
+      ],
+      "richtig": 2,
+      "erklaerung": "Der Kreis wird mit Verhalten und Innenleben beider Seiten gezeichnet, dann steigt man an der eigenen Stelle aus. Die erste schiebt ihm die Schuld zu, die zweite betrachtet nur seine Seite."
+    }
   },
   {
     "id": "fuenfsatz",
@@ -354,7 +554,17 @@
     ],
     "beispiel": "„Wir verlieren bei Angeboten gerade viel Zeit. Erstens schreiben wir jedes Angebot neu. Zweitens fehlen uns aktuelle Preise an einer Stelle. Drittens wartet der Vertrieb oft zwei Tage auf die Technik. Deshalb schlage ich vor, dass wir bis Monatsende eine Vorlage mit Preisliste bauen.“",
     "uebung": "Bereite deine nächste Wortmeldung im Meeting als Fünfsatz vor: erst den Zielsatz aufschreiben, dann drei Stichworte davor.",
-    "merksatz": "Erst das Ziel, dann drei Schritte dorthin, am Ende das Ziel aussprechen."
+    "merksatz": "Erst das Ziel, dann drei Schritte dorthin, am Ende das Ziel aussprechen.",
+    "quiz": {
+      "frage": "Bei der Eigentümerversammlung hast du zwei Minuten, um den Bau eines Fahrradabstellplatzes zu beantragen. Wie bereitest du deinen Beitrag nach dem Fünfsatz vor?",
+      "optionen": [
+        "Ich beginne mit dem Antrag, nenne danach fünf Argumente nach Wichtigkeit und höre auf, sobald die zwei Minuten um sind, auch mitten im Gedanken.",
+        "Ich lege fest, welchen Beschluss ich am Ende will, und baue von dort aus Einstieg und drei Begründungsschritte rückwärts auf.",
+        "Ich beginne mit dem Anlass, sammle drei Argumente, wie sie mir einfallen, und formuliere den Antrag erst, wenn ich sie habe."
+      ],
+      "richtig": 1,
+      "erklaerung": "Das Ziel steht zuerst fest, Einstieg und drei Schritte arbeiten darauf hin. Die erste setzt den Antrag nach vorn und reiht fünf Argumente, die dritte legt das Ziel erst nach den Argumenten fest, statt zuerst."
+    }
   },
   {
     "id": "bbb-prep",
@@ -371,7 +581,17 @@
     ],
     "beispiel": "„Wir sollten das Kick-off vor Ort machen. Bei neuen Teams entsteht Vertrauen schneller im selben Raum. Beim letzten Projekt hat ein Tag zusammen mehr geklärt als drei Wochen Videocalls. Also: ein Tag vor Ort zum Start.“",
     "uebung": "Nimm dir drei Alltagsthemen und sprich zu jedem eine BBB-Antwort von höchstens einer Minute ins Handy.",
-    "merksatz": "Behauptung, weil, zum Beispiel, also."
+    "merksatz": "Behauptung, weil, zum Beispiel, also.",
+    "quiz": {
+      "frage": "Im Vorstellungsgespräch will die Personalerin wissen, wie du mit Termindruck umgehst. Du hast etwa eine Minute. Welche Antwort folgt dem BBB-Gerüst?",
+      "optionen": [
+        "Ich plane Puffer ein. So bleibt Raum für Ausfälle. Letztes Quartal fiel jemand aus, und wir blieben im Termin. Also: Mit Puffer bleibe ich im Termin.",
+        "Ich plane Puffer ein, und letztes Quartal fiel jemand aus, wir blieben trotzdem im Termin. Ich bleibe aber auch unter Druck meist ruhig und flexibel.",
+        "Letztes Quartal fiel jemand aus, und wir blieben trotzdem im Termin. Seitdem habe ich gemerkt, wie wichtig Puffer sind, und plane deshalb früh."
+      ],
+      "richtig": 0,
+      "erklaerung": "Nur die erste hat Behauptung, Begründung, Beispiel und Schluss. Der zweiten fehlt die Begründung, und sie endet bei etwas anderem. Die dritte beginnt mit dem Beispiel, die Behauptung kommt erst am Ende."
+    }
   },
   {
     "id": "was-na-und-was-jetzt",
@@ -387,7 +607,17 @@
     ],
     "beispiel": "Chef fragt im Flur nach dem Stand: „Der Prototyp ist fertig. Damit können wir die Kundentermine im November halten. Ich brauche bis Freitag dein Okay für die Testkosten.“",
     "uebung": "Beantworte heute jede Statusfrage, die du bekommst, mit genau drei Sätzen nach Was, Na und, Was jetzt.",
-    "merksatz": "Sache, Bedeutung für dich, nächster Schritt."
+    "merksatz": "Sache, Bedeutung für dich, nächster Schritt.",
+    "quiz": {
+      "frage": "Beim Training fragt dich die Kassenwartin nach dem Stand der Turnieranmeldung. Du bist fertig, nur die Hallenzusage fehlt, und sie braucht die zur Überweisung. Welche Antwort passt?",
+      "optionen": [
+        "Die Anmeldung ist raus, nur die Hallenzusage fehlt. Ohne sie kannst du nicht überweisen. Das kann dauern, die Gemeinde ist da oft recht langsam.",
+        "Die Anmeldung ist raus, nur die Hallenzusage fehlt. Ich hake heute bei der Gemeinde nach und melde mich, sobald ich etwas Neues weiß.",
+        "Die Anmeldung ist raus, nur die Hallenzusage fehlt. Ohne sie kannst du nicht überweisen. Ich hake heute bei der Gemeinde nach und melde mich."
+      ],
+      "richtig": 2,
+      "erklaerung": "Nur die dritte nennt Stand, Bedeutung für die Kassenwartin und nächsten Schritt. Der ersten fehlt der nächste Schritt, stattdessen kommt ein Urteil. Der zweiten fehlt das Na und."
+    }
   },
   {
     "id": "und-aber-deshalb",
@@ -403,7 +633,17 @@
     ],
     "beispiel": "„Wir hatten den Termin beim Kunden gut vorbereitet und die Präsentation stand. Aber zehn Minuten vorher fiel der Beamer aus. Deshalb haben wir frei am Whiteboard erklärt, und genau das kam am besten an.“",
     "uebung": "Erzähle heute ein Erlebnis vom Tag in drei Sätzen mit und, aber, deshalb. Danach dieselbe Geschichte ausführlicher, das Gerüst bleibt.",
-    "merksatz": "Und, aber, deshalb: Lage, Wendung, Folge."
+    "merksatz": "Und, aber, deshalb: Lage, Wendung, Folge.",
+    "quiz": {
+      "frage": "Du willst im Newsletter kurz erzählen: Schulung für zwölf Leute, eine Woche vorher sagt die Trainerin ab, eine Kollegin springt ein. Welche Version folgt Und, Aber, Deshalb?",
+      "optionen": [
+        "Die Trainerin sagte eine Woche vorher ab, aber eine Kollegin sprang ein. Deshalb fand die Schulung für zwölf Leute doch statt.",
+        "Die Schulung für zwölf Leute stand, und alle waren angemeldet. Aber eine Woche vorher sagte die Trainerin ab. Deshalb sprang eine Kollegin ein.",
+        "Die Schulung für zwölf Leute stand, und alle waren angemeldet. Aber eine Woche vorher sagte die Trainerin ab. So etwas passiert leider immer wieder."
+      ],
+      "richtig": 1,
+      "erklaerung": "Nur die zweite hat Lage, Wendung und Folge in dieser Reihenfolge. Die erste beginnt mit der Wendung und hat keine gemeinsame Ausgangslage, der dritten fehlt die Folge."
+    }
   },
   {
     "id": "loci-methode",
@@ -420,7 +660,17 @@
     ],
     "beispiel": "Drei Punkte für ein Teammeeting: An der Haustür liegt ein Stapel Angebote (Vertrieb), im Flur steht ein Prototyp (Technik), in der Küche klebt ein Kalender mit rotem Kreis (Termin).",
     "uebung": "Lege die drei Punkte deines nächsten Beitrags an drei Stationen deiner Wohnung und sprich ihn ohne Zettel.",
-    "merksatz": "Jeder Punkt hat einen Ort, die Rede ist ein Spaziergang."
+    "merksatz": "Jeder Punkt hat einen Ort, die Rede ist ein Spaziergang.",
+    "quiz": {
+      "frage": "Du willst bei der Hochzeit deines Bruders eine Rede mit vier Punkten ohne Zettel halten. Welche Vorbereitung folgt der Loci-Methode?",
+      "optionen": [
+        "Ich gehe meinen Heimweg von der Haltestelle in Gedanken ab und hänge an vier Stellen je ein schräges Bild zu einem Punkt auf.",
+        "Ich schreibe die Punkte auf Karten, lerne ihre Reihenfolge auswendig und spreche sie jeden Abend einmal laut und in Ruhe durch.",
+        "Ich bilde aus den Anfangsbuchstaben der vier Punkte ein Merkwort und sage es mir vor, bevor ich ans Mikrofon gehe."
+      ],
+      "richtig": 0,
+      "erklaerung": "Nur die erste bindet jeden Punkt als Bild an eine feste Station eines vertrauten Wegs. Die zweite ist reines Auswendiglernen, die dritte eine Eselsbrücke über Anfangsbuchstaben."
+    }
   },
   {
     "id": "bewusste-pause",
@@ -437,7 +687,17 @@
     ],
     "beispiel": "Statt „Also, ähm, ich glaube, ähm, wir sollten …“: „Ich schlage vor … [Pause] … wir verschieben den Start um eine Woche.“",
     "uebung": "Sprich eine Minute über deinen Tag. Jedes Mal, wenn du ein Füllwort merkst, mach stattdessen eine Sekunde Pause und sprich weiter.",
-    "merksatz": "Pause statt äh: Die Stille arbeitet für mich."
+    "merksatz": "Pause statt äh: Die Stille arbeitet für mich.",
+    "quiz": {
+      "frage": "Beim Anhören deiner Aufnahme der Vereinsansprache fällt dir auf: Du sagst ständig „halt“, dazu hin und wieder „ähm“. Was ist der sinnvollste nächste Schritt?",
+      "optionen": [
+        "Ich nehme mir vor, „halt“ und „ähm“ gleichzeitig zu streichen, und achte beim Sprechen auf jedes Füllwort, das sich einschleicht.",
+        "Ich tausche „halt“ gegen ein anderes Verbindungswort wie „nämlich“ und rede zügig weiter, damit keine Lücken entstehen.",
+        "Ich nehme mir nur „halt“ vor und lasse an der Stelle kurz Stille entstehen, dann nehme ich erneut auf und zähle nach."
+      ],
+      "richtig": 2,
+      "erklaerung": "Ein Füllwort wird durch Stille ersetzt, die Aufnahme zeigt den Fortschritt. Die erste nimmt sich alles auf einmal vor, die zweite tauscht nur das Wort aus, statt Stille zuzulassen."
+    }
   },
   {
     "id": "aufregung-umdeuten",
@@ -453,7 +713,17 @@
     ],
     "beispiel": "Vor dem Gespräch mit dem Investor: Herz klopft, Hände kalt. Statt „Bleib ruhig“ sagst du dir: „Ich bin gespannt, was die zu unserem Plan sagen.“",
     "uebung": "Sag vor deinem nächsten Gespräch, das dich nervös macht, einmal bewusst „Ich bin gespannt“ und notiere danach, wie der Einstieg lief.",
-    "merksatz": "Nicht beruhigen, umdeuten: Ich bin gespannt."
+    "merksatz": "Nicht beruhigen, umdeuten: Ich bin gespannt.",
+    "quiz": {
+      "frage": "Zehn Minuten vor deiner Rede zur Verabschiedung eines Kollegen spürst du Herzklopfen und feuchte Hände. Was hilft nach der Technik des Umdeutens?",
+      "optionen": [
+        "Ich sage mir mehrmals, dass ich ganz ruhig bin, und gehe die Rede noch einmal durch, um jede Unsicherheit loszuwerden.",
+        "Ich nehme das Herzklopfen als Vorfreude an und sage mir, dass ich neugierig auf die Reaktionen der Gäste bin.",
+        "Ich gehe die möglichen Pannen durch und lege mir für jede einen Plan zurecht, damit die Aufregung keinen Platz mehr hat."
+      ],
+      "richtig": 1,
+      "erklaerung": "Die Erregung wird als Vorfreude umgedeutet, der Blick liegt auf dem Gelingen. Die erste will die Nervosität wegreden, die dritte richtet den Blick auf das, was schiefgehen könnte."
+    }
   },
   {
     "id": "ausatmen-beruhigen",
@@ -470,7 +740,17 @@
     ],
     "beispiel": "Vor der Wortmeldung im großen Meeting: zweimal zyklisch seufzen, dann mit dem vorbereiteten ersten Satz einsteigen.",
     "uebung": "Mach vor dem täglichen Sprechtraining drei Atemzüge zyklisches Seufzen und starte erst dann die Aufnahme.",
-    "merksatz": "Doppelt ein, lang aus, dann sprechen."
+    "merksatz": "Doppelt ein, lang aus, dann sprechen.",
+    "quiz": {
+      "frage": "Kurz vor deiner mündlichen Weiterbildungsprüfung wartest du auf dem Flur, die Atmung ist flach und schnell. Wie setzt du das zyklische Seufzen ein?",
+      "optionen": [
+        "Ich atme tief durch die Nase ein, halte die Luft fünf Sekunden an und stoße sie dann kräftig und schnell durch den Mund aus.",
+        "Ich atme mehrmals so tief wie möglich ein und aus und zähle dabei jeweils bis vier, für Ein- und Ausatmen gleich lang.",
+        "Ich atme durch die Nase ein, setze einen kurzen zweiten Zug obendrauf und lasse die Luft lang durch den Mund ausströmen."
+      ],
+      "richtig": 2,
+      "erklaerung": "Nur die dritte hat den zweiten Atemzug und das lange Ausatmen. Die erste hält die Luft an und atmet schnell aus, die zweite atmet gleich lang ein und aus."
+    }
   },
   {
     "id": "wenn-dann-plan",
@@ -487,7 +767,17 @@
     ],
     "beispiel": "„Wenn mich im Meeting jemand nach meiner Meinung fragt, dann atme ich einmal aus und sage zuerst meinen Kernsatz.“",
     "uebung": "Schreib für diese Woche einen Wenn-dann-Plan für eine Situation, in der du sonst den Faden verlierst.",
-    "merksatz": "Wenn die Situation kommt, weiß ich schon, was ich tue."
+    "merksatz": "Wenn die Situation kommt, weiß ich schon, was ich tue.",
+    "quiz": {
+      "frage": "Du willst im Familienchat nicht mehr gereizt auf die Nachrichten deines Bruders antworten. Welche Formulierung hilft dir am ehesten, das im Moment auch umzusetzen?",
+      "optionen": [
+        "Wenn mich im Familienchat eine Nachricht meines Bruders ärgert, dann lege ich das Handy weg und antworte erst später.",
+        "Wenn ich merke, dass ich mich wieder aufrege, dann will ich gelassener bleiben und nicht mehr so schnell zurückschreiben.",
+        "Ich nehme mir fest vor, im Familienchat künftig nicht mehr gereizt zu antworten, und halte mich konsequent daran."
+      ],
+      "richtig": 0,
+      "erklaerung": "Die Situation ist erkennbar, die Handlung sofort ausführbar. Der zweiten fehlt eine konkrete Handlung, der dritten die Situation als Auslöser, sie bleibt ein bloßer Vorsatz."
+    }
   },
   {
     "id": "gezieltes-ueben",
@@ -504,6 +794,16 @@
     ],
     "beispiel": "Teilziel „weniger ‚also‘“: Aufnahme 1 hat sieben „also“, nach dem zweiten Durchgang sind es drei. Notiz für morgen: Pause nach dem ersten Satz.",
     "uebung": "Nimm heute eine Minute zu einem Thema auf, hör sie an und wiederhole sie direkt mit einer einzigen Verbesserung.",
-    "merksatz": "Ein Ziel, aufnehmen, anhören, einmal besser."
+    "merksatz": "Ein Ziel, aufnehmen, anhören, einmal besser.",
+    "quiz": {
+      "frage": "Du führst ab nächstem Monat Kunden durch den Betrieb und willst freier erklären. Dafür hast du täglich zehn Minuten. Wie trainierst du am wirksamsten?",
+      "optionen": [
+        "Ich spreche täglich die gesamte Führung durch und achte auf alles gleichzeitig, damit sich möglichst viel verbessert.",
+        "Ich nehme mir täglich einen Punkt vor, etwa kürzere Sätze, spreche kurz auf, höre es an und wiederhole mit einer Änderung.",
+        "Ich nehme jede Führung ganz auf und höre sie am Wochenende an, um einen allgemeinen Gesamteindruck davon zu bekommen."
+      ],
+      "richtig": 1,
+      "erklaerung": "Ein Teilziel, kurze Aufnahme, Anhören, gezielte Wiederholung. Die erste will alles auf einmal ohne Rückmeldung, die dritte nimmt zwar auf, misst aber an keinem Teilziel und wiederholt nichts."
+    }
   }
 ]

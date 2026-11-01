@@ -1,7 +1,8 @@
 // Lokale Datenhaltung (localStorage) sowie Export und Import als JSON-Sicherung.
 //
 // Zustand:
-//   entries[YYYY-MM-DD] { date, challengeId, bereich, typ, skips, answer, reflection, done, completedAt, feedback: [], selbstcheck?: [Index] }
+//   entries[YYYY-MM-DD] { date, challengeId, bereich, typ, skips, learned, answer, reflection, done, completedAt, feedback: [], selbstcheck?: [Index] }
+//                       learned: Lernschritt und Quiz durchlaufen, die Challenge öffnet dann direkt bei der Antwort
 //   cards[key]          { key: "technik:<id>" | "tipp:<id>", addedAt, due, interval, ease, reps, lapses, lastReview }
 //   reviewLog[YYYY-MM-DD] Anzahl Wiederholungen
 //   lastBackup          YYYY-MM-DD der letzten Sicherung oder null
@@ -66,6 +67,7 @@ export function validate(data) {
       bereich: str(e.bereich),
       typ: str(e.typ),
       skips: Number.isInteger(e.skips) && e.skips >= 0 ? e.skips : 0,
+      learned: e.learned === true,
       answer: str(e.answer),
       reflection: str(e.reflection),
       done: e.done === true,
